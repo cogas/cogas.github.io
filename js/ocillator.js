@@ -6,8 +6,8 @@ window.onload = function(){
     var velosity = new Array();
     velosity[0] = {x:0, y:0};
     velosity[1] = {x:0, y:0};
-    var timer;//ƒ^ƒCƒ}[
-    var delay = 100;//ƒ^ƒCƒ}[‚ğÀs‚·‚éŠÔŠu
+    var timer;//ã‚¿ã‚¤ãƒãƒ¼
+    var delay = 100;//ã‚¿ã‚¤ãƒãƒ¼ã‚’å®Ÿè¡Œã™ã‚‹é–“éš”
     var k = 0.5;
     var m = 1;
     var len = 50;

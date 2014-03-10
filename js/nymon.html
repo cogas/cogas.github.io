@@ -3,39 +3,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=SHIFT_JIS">
 <!--================================================================
-‚±‚ÌWEBƒNƒCƒY‚ÍWEB–â‘èì¬ƒc[ƒ‹‚É‚æ‚Á‚Äo—Í‚³‚ê‚Ü‚µ‚½B
-WEB–â‘èì¬ƒc[ƒ‹ http://www.fureai.or.jp/~irie/webquiz/
-Copyright 1998-2014 IRIE Toshiaki  “ü] —˜–¾  irie—fureai.or.jp
+ã“ã®WEBã‚¯ã‚¤ã‚ºã¯WEBå•é¡Œä½œæˆãƒ„ãƒ¼ãƒ«ã«ã‚ˆã£ã¦å‡ºåŠ›ã•ã‚Œã¾ã—ãŸã€‚
+WEBå•é¡Œä½œæˆãƒ„ãƒ¼ãƒ« http://www.fureai.or.jp/~irie/webquiz/
+Copyright 1998-2014 IRIE Toshiaki  å…¥æ±Ÿ åˆ©æ˜  irieï¼ fureai.or.jp
 ==================================================================-->
-<title>“ü–å›~–â‘è‘‚Ü‚Æ‚ß</title>
+<title>å…¥é–€â—‹Ã—å•é¡Œç·ã¾ã¨ã‚</title>
 
 <script language="JavaScript">
 <!-- 
-var NUM=36;               // –â‘è”
-var snum=20;             // o‘è”
-var shuffle=1;           // –â‘è‚Ì‡”Ô‚ğƒ‰ƒ“ƒ_ƒ€‚É 1:‚·‚éA0:‚µ‚È‚¢
-var kaisetsu_type=0;     // 0:‰ğà‚È‚µ, 1:‰ğàˆê——‚Ì‚İ, 2:Še–â‚¢‚É‰ğàƒ{ƒ^ƒ“‚ ‚è
+var NUM=36;               // å•é¡Œæ•°
+var snum=20;             // å‡ºé¡Œæ•°
+var shuffle=1;           // å•é¡Œã®é †ç•ªã‚’ãƒ©ãƒ³ãƒ€ãƒ ã« 1:ã™ã‚‹ã€0:ã—ãªã„
+var kaisetsu_type=0;     // 0:è§£èª¬ãªã—, 1:è§£èª¬ä¸€è¦§ã®ã¿, 2:å„å•ã„ã«è§£èª¬ãƒœã‚¿ãƒ³ã‚ã‚Š
 
-var refresh=0;           // s‚²‚Æ‚É refresh ‚·‚é:1 ‚µ‚È‚¢:0
-var gokaku=90;           // ‡Ši“_iŸ‚Ì–â‘è‚Éi‚ß‚éj
-var page_fwd=0;          // 1:‡Ši“_‚É’B‚µ‚½‚çŸ‚Éi‚Ş  0:‰½‚à‚µ‚È‚¢
-var nextfile=".html";       // Ÿ‚Ìƒy[ƒW‚Ìƒtƒ@ƒCƒ‹–¼
-var tbl_width=600;         // –â‘è—“‚Ì•
-
-
-// •Ï”‰Šú‰»
-var flg_kWin0=false;     // Œ‹‰Êwindow ŠJ‚¢‚Ä‚¢‚é‚©
-var flg_kWin1=false;     // ‰ğàwindow
-var flg_kWin2=false;     // ‰ğàˆê——window
-var flg_try=false;       // Ì“_ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚©
+var refresh=0;           // è©¦è¡Œã”ã¨ã« refresh ã™ã‚‹:1 ã—ãªã„:0
+var gokaku=90;           // åˆæ ¼ç‚¹ï¼ˆæ¬¡ã®å•é¡Œã«é€²ã‚ã‚‹ï¼‰
+var page_fwd=0;          // 1:åˆæ ¼ç‚¹ã«é”ã—ãŸã‚‰æ¬¡ã«é€²ã‚€  0:ä½•ã‚‚ã—ãªã„
+var nextfile=".html";       // æ¬¡ã®ãƒšãƒ¼ã‚¸ã®ãƒ•ã‚¡ã‚¤ãƒ«å
+var tbl_width=600;         // å•é¡Œæ¬„ã®å¹…
 
 
-// ‚PŸŒ³”z—ñì¬
+// å¤‰æ•°åˆæœŸåŒ–
+var flg_kWin0=false;     // çµæœwindow é–‹ã„ã¦ã„ã‚‹ã‹
+var flg_kWin1=false;     // è§£èª¬window
+var flg_kWin2=false;     // è§£èª¬ä¸€è¦§window
+var flg_try=false;       // æ¡ç‚¹ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã‹
+
+
+// ï¼‘æ¬¡å…ƒé…åˆ—ä½œæˆ
 function MakeArray(n){
 	this.length=n;
 }
 
-// ‚QŸŒ³”z—ñì¬
+// ï¼’æ¬¡å…ƒé…åˆ—ä½œæˆ
 function DIM(dimx,dimy){
 	var i;
 	var myArray = new Array(dimy);
@@ -43,131 +43,131 @@ function DIM(dimx,dimy){
 	return myArray;
 }
 
-var q=new MakeArray(NUM);  // –â‘è•¶ƒf[ƒ^”z—ñ
-var s=new MakeArray(2);    // ‘I‘ğˆƒf[ƒ^”z—ñ
-var v=new MakeArray(NUM);  // ‘I‘ğˆ’l@³‰ğ=1  •s³‰ğ=0 
-var c=new MakeArray(NUM);  // ‘I‘ğ‚µ‚½‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
-var kd=new MakeArray(NUM); // ‰ğàƒJ[ƒhƒf[ƒ^”z—ñ
+var q=new MakeArray(NUM);  // å•é¡Œæ–‡ãƒ‡ãƒ¼ã‚¿é…åˆ—
+var s=new MakeArray(2);    // é¸æŠè‚¢ãƒ‡ãƒ¼ã‚¿é…åˆ—
+var v=new MakeArray(NUM);  // é¸æŠè‚¢å€¤ã€€æ­£è§£=1  ä¸æ­£è§£=0 
+var c=new MakeArray(NUM);  // é¸æŠã—ãŸã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
+var kd=new MakeArray(NUM); // è§£èª¬ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿é…åˆ—
 
 
-// –â‘èƒf[ƒ^  s[]:‘I‘ğˆ, q[]:–â‘è•¶, v[]:“š‚¦(1 or 0)
-s[1]="›";
-s[2]="~";
+// å•é¡Œãƒ‡ãƒ¼ã‚¿  s[]:é¸æŠè‚¢, q[]:å•é¡Œæ–‡, v[]:ç­”ãˆ(1 or 0)
+s[1]="â—‹";
+s[2]="Ã—";
 
-q[1]="ƒƒWƒoƒ“‚Å‚Íuxv‚Í‰pŒê‚Æ“¯‚¶‚Å‘å‘Ìu¸½v‚Æ“Ç‚ŞB";
+q[1]="ãƒ­ã‚¸ãƒãƒ³ã§ã¯ã€Œxã€ã¯è‹±èªã¨åŒã˜ã§å¤§ä½“ã€Œï½¸ï½½ã€ã¨èª­ã‚€ã€‚";
 v[1]="0";
 
-q[2]="ƒƒWƒoƒ“‚ÍA‚ ‚é‰¹‚É‚Í•K‚¸ˆê‚Â‚Ì’Ô‚è‚ªŠ„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚éB";
+q[2]="ãƒ­ã‚¸ãƒãƒ³ã¯ã€ã‚ã‚‹éŸ³ã«ã¯å¿…ãšä¸€ã¤ã®ç¶´ã‚ŠãŒå‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¦ã„ã‚‹ã€‚";
 v[2]="1";
 
-q[3]="ƒAƒ|ƒXƒgƒƒtƒB‚ÍŠî–{“I‚É‚Í•ê‰¹‚Æ•ê‰¹‚ÌŠÔ‚É‚ ‚é‚ªAŒê“ª‚âq‰¹‚ÌŒã‚ë‚É‚­‚é‚±‚Æ‚à‚ ‚éB";
+q[3]="ã‚¢ãƒã‚¹ãƒˆãƒ­ãƒ•ã‚£ã¯åŸºæœ¬çš„ã«ã¯æ¯éŸ³ã¨æ¯éŸ³ã®é–“ã«ã‚ã‚‹ãŒã€èªé ­ã‚„å­éŸ³ã®å¾Œã‚ã«ãã‚‹ã“ã¨ã‚‚ã‚ã‚‹ã€‚";
 v[3]="0";
 
-q[4]="u”o‹åv‚Í{.'aik.}‚Æ‘‚¯‚éB";
+q[4]="ã€Œä¿³å¥ã€ã¯{.'aik.}ã¨æ›¸ã‘ã‚‹ã€‚";
 v[4]="0";
 
-q[5]="u‘¾˜Yv‚Í{.taron.}‚©{.tar.}‚Æ‚Å‚«‚é‚ªA{.taro.}‚Íƒ_ƒ‚Å‚ ‚éB";
+q[5]="ã€Œå¤ªéƒã€ã¯{.taron.}ã‹{.tar.}ã¨ã§ãã‚‹ãŒã€{.taro.}ã¯ãƒ€ãƒ¡ã§ã‚ã‚‹ã€‚";
 v[5]="1";
 
-q[6]="{.kxassan.}‚Ícmene‚Æ‚µ‚Ä”F‚ß‚ç‚ê‚È‚¢‚ªA‚»‚ê‚Í“¯‚¶‰¹‚Ì˜A‘±‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é‚©‚ç‚¾‚¯‚Å‚ ‚éB";
+q[6]="{.kxassan.}ã¯cmeneã¨ã—ã¦èªã‚ã‚‰ã‚Œãªã„ãŒã€ãã‚Œã¯åŒã˜éŸ³ã®é€£ç¶šãŒå«ã¾ã‚Œã¦ã„ã‚‹ã‹ã‚‰ã ã‘ã§ã‚ã‚‹ã€‚";
 v[6]="0";
 
-q[7]="{.lojtan.}‚Ícmene‚Æ‚µ‚Ä”F‚ß‚ç‚ê‚È‚¢‚ªAj‚Æt‚ÌŠÔ‚Éy‚ğ“ü‚ê‚é‚Æcmene‚Æ‚µ‚Ä”F‚ß‚ç‚ê‚éB";
+q[7]="{.lojtan.}ã¯cmeneã¨ã—ã¦èªã‚ã‚‰ã‚Œãªã„ãŒã€jã¨tã®é–“ã«yã‚’å…¥ã‚Œã‚‹ã¨cmeneã¨ã—ã¦èªã‚ã‚‰ã‚Œã‚‹ã€‚";
 v[7]="1";
 
-q[8]="ƒƒWƒoƒ“‚Ì•¶‚ÍA1‚ÂˆÈã‚ÌqŒê‚Æ1‚Â‚Ì€‚©‚ç‚È‚éB";
+q[8]="ãƒ­ã‚¸ãƒãƒ³ã®æ–‡ã¯ã€1ã¤ä»¥ä¸Šã®è¿°èªã¨1ã¤ã®é …ã‹ã‚‰ãªã‚‹ã€‚";
 v[8]="0";
 
-q[9]="€‚Íselbri‚Æ‚¢‚¢AqŒê‚Ísumti‚Æ‚¢‚¤B";
+q[9]="é …ã¯selbriã¨ã„ã„ã€è¿°èªã¯sumtiã¨ã„ã†ã€‚";
 v[9]="0";
 
-q[10]="{do dunda ti}‚Æ‚¢‚¤•¶‚Å‚ÍAx3‚É‚Ízo'e‚ª‘z’è‚³‚ê‚Ä‚¢‚éB";
+q[10]="{do dunda ti}ã¨ã„ã†æ–‡ã§ã¯ã€x3ã«ã¯zo'eãŒæƒ³å®šã•ã‚Œã¦ã„ã‚‹ã€‚";
 v[10]="1";
 
-q[11]="{dunda tu mi}‚Æ‚¢‚¤•¶‚Å‚ÍAx1 = tu ‚Å‚ ‚éB";
+q[11]="{dunda tu mi}ã¨ã„ã†æ–‡ã§ã¯ã€x1 = tu ã§ã‚ã‚‹ã€‚";
 v[11]="0";
 
-q[12]="{.i}‚ÍA‚»‚±‚Å•¶‚ªI‚í‚é‚Æ‚¢‚¤‡}‚Å‚ ‚éB";
+q[12]="{.i}ã¯ã€ãã“ã§æ–‡ãŒçµ‚ã‚ã‚‹ã¨ã„ã†åˆå›³ã§ã‚ã‚‹ã€‚";
 v[12]="0";
 
-q[13]="{fe}‚Í’¼Œã‚É‚­‚é€‚ªqŒê‚Ìx3‚É“ü‚é‚±‚Æ‚ğ–¾‹L‚·‚éB";
+q[13]="{fe}ã¯ç›´å¾Œã«ãã‚‹é …ãŒè¿°èªã®x3ã«å…¥ã‚‹ã“ã¨ã‚’æ˜è¨˜ã™ã‚‹ã€‚";
 v[13]="0";
 
-q[14]="{dunda fa mi do} ‚±‚Ì•¶‚Ì x1 ‚Í mi ‚Å‚ ‚éB";
+q[14]="{dunda fa mi do} ã“ã®æ–‡ã® x1 ã¯ mi ã§ã‚ã‚‹ã€‚";
 v[14]="1";
 
-q[15]="{ti fi do xe klama fu mi fe tu} ‚±‚Ì•¶‚ÍFA—ŞASE—Ş‚Ì–³‚¢•¶‚Å•\‚·‚Æ {mi klama tu do zo'e ti} ‚É‚È‚éB";
+q[15]="{ti fi do xe klama fu mi fe tu} ã“ã®æ–‡ã¯FAé¡ã€SEé¡ã®ç„¡ã„æ–‡ã§è¡¨ã™ã¨ {mi klama tu do zo'e ti} ã«ãªã‚‹ã€‚";
 v[15]="1";
 
-q[16]="FA—Ş‚Í”Ô†‡‚É•À‚×‚é‚Æ•ê‰¹‚ªƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚É‚È‚Á‚Ä‚¨‚èASE—Ş‚Í“]Š·‚·‚éˆÊ’u‚Ìá‚¢‡‚É•À‚×‚é‚Æq‰¹‚ªƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚É‚È‚Á‚Ä‚¢‚éB";
+q[16]="FAé¡ã¯ç•ªå·é †ã«ä¸¦ã¹ã‚‹ã¨æ¯éŸ³ãŒã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«ãªã£ã¦ãŠã‚Šã€SEé¡ã¯è»¢æ›ã™ã‚‹ä½ç½®ã®è‹¥ã„é †ã«ä¸¦ã¹ã‚‹ã¨å­éŸ³ãŒã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«ãªã£ã¦ã„ã‚‹ã€‚";
 v[16]="1";
 
-q[17]="{lo prami ku}‚Íuˆ¤v‚Æ‚¢‚¤ˆÓ–¡‚Å‚ ‚éB";
+q[17]="{lo prami ku}ã¯ã€Œæ„›ã€ã¨ã„ã†æ„å‘³ã§ã‚ã‚‹ã€‚";
 v[17]="0";
 
-q[18]="{lo se dunda ku}‚Íudunda‚Ìx2‚É“–‚Ä‚Í‚Ü‚é‚æ‚¤‚È‚à‚Ìv‚Æ‚¢‚¤ˆÓ–¡‚Å‚ ‚éB";
+q[18]="{lo se dunda ku}ã¯ã€Œdundaã®x2ã«å½“ã¦ã¯ã¾ã‚‹ã‚ˆã†ãªã‚‚ã®ã€ã¨ã„ã†æ„å‘³ã§ã‚ã‚‹ã€‚";
 v[18]="1";
 
-q[19]="ƒƒWƒoƒ“‚Å‚Í’P”Œ`‚Æ•¡”Œ`‚ÅŒê‚ÌŒ`‚ª•Ï‰»‚·‚éB";
+q[19]="ãƒ­ã‚¸ãƒãƒ³ã§ã¯å˜æ•°å½¢ã¨è¤‡æ•°å½¢ã§èªã®å½¢ãŒå¤‰åŒ–ã™ã‚‹ã€‚";
 v[19]="0";
 
-q[20]="u‚»‚ç‚Í‘–‚év‚ÆŒ¾‚¢‚½‚¢‚Æ‚«‚ÍAcmene‚ğ‚»‚Ì‚Ü‚Ü—p‚¢‚ÄA{.soran. bajra} ‚ÆŒ¾‚¦‚Î‚æ‚¢B";
+q[20]="ã€Œãã‚‰ã¯èµ°ã‚‹ã€ã¨è¨€ã„ãŸã„ã¨ãã¯ã€cmeneã‚’ãã®ã¾ã¾ç”¨ã„ã¦ã€{.soran. bajra} ã¨è¨€ãˆã°ã‚ˆã„ã€‚";
 v[20]="0";
 
-q[21]="“ñ‚ÂˆÈã‚Ìq‚È‚êŒê‚ğ‚Â‚È‚°‚Äì‚ç‚ê‚½V‚µ‚¢q‚È‚êŒê‚Ì‚±‚Æ‚ğrunta‚ÆŒÄ‚ÔB";
+q[21]="äºŒã¤ä»¥ä¸Šã®è¿°ãªã‚Œèªã‚’ã¤ãªã’ã¦ä½œã‚‰ã‚ŒãŸæ–°ã—ã„è¿°ãªã‚Œèªã®ã“ã¨ã‚’runtaã¨å‘¼ã¶ã€‚";
 v[21]="0";
 
-q[22]="tanru‚ÌPS‚ÍCüq‚È‚êŒê‚Ì‚à‚Ì‚Æ“¯‚¶‚Å‚ ‚éB";
+q[22]="tanruã®PSã¯ä¿®é£¾è¿°ãªã‚Œèªã®ã‚‚ã®ã¨åŒã˜ã§ã‚ã‚‹ã€‚";
 v[22]="0";
 
-q[23]="‚Q‚Â‚Ìq‚È‚êŒê‚©‚ç‚Å‚«‚étanru‚ÌA¶‚Ìq‚È‚êŒê‚ª‰E‚Ìq‚È‚êŒê‚ğCü‚·‚éB";
+q[23]="ï¼’ã¤ã®è¿°ãªã‚Œèªã‹ã‚‰ã§ãã‚‹tanruã®ã€å·¦ã®è¿°ãªã‚ŒèªãŒå³ã®è¿°ãªã‚Œèªã‚’ä¿®é£¾ã™ã‚‹ã€‚";
 v[23]="0";
 
-q[24]="{plise tricu}‚ğu„‚ªq‹Ÿ‚Ì —ÑŒç‚ğ‚Ô‚Â‚¯‚Ä—V‚ñ‚¾–Ø‚¾v‚Æ‚¢‚¤ˆÓ–¡‚Åg‚¤‚±‚Æ‚Í—¬Î‚É–³—‚Å‚ ‚éB";
+q[24]="{plise tricu}ã‚’ã€Œç§ãŒå­ä¾›ã®é ƒæ—æªã‚’ã¶ã¤ã‘ã¦éŠã‚“ã æœ¨ã ã€ã¨ã„ã†æ„å‘³ã§ä½¿ã†ã“ã¨ã¯æµçŸ³ã«ç„¡ç†ã§ã‚ã‚‹ã€‚";
 v[24]="0";
 
-q[25]="I~Œ‚ÍƒƒWƒoƒ“‚ª“Œê˜_“I‚ÉŒµ–§‚Å‚ ‚é‚½‚ß‚É•s‰ÂŒ‡‚ÈŒê‚Å‚ ‚éB";
+q[25]="çµ‚æ­¢è©ã¯ãƒ­ã‚¸ãƒãƒ³ãŒçµ±èªè«–çš„ã«å³å¯†ã§ã‚ã‚‹ãŸã‚ã«ä¸å¯æ¬ ãªèªã§ã‚ã‚‹ã€‚";
 v[25]="1";
 
-q[26]="I~Œ‚Í•¶\‘¢‚ğ–¾‚ç‚©‚É‚µ‚½‚¢‚Æ‚«‚¾‚¯—p‚¢‚ê‚Î‚æ‚­A•¶–@\‘¢‚ğB–†‚É‚µ‚½‚¢‚Æ‚«‚ÍÈ—ª‚·‚ê‚Î‚æ‚¢B";
+q[26]="çµ‚æ­¢è©ã¯æ–‡æ§‹é€ ã‚’æ˜ã‚‰ã‹ã«ã—ãŸã„ã¨ãã ã‘ç”¨ã„ã‚Œã°ã‚ˆãã€æ–‡æ³•æ§‹é€ ã‚’æ›–æ˜§ã«ã—ãŸã„ã¨ãã¯çœç•¥ã™ã‚Œã°ã‚ˆã„ã€‚";
 v[26]="0";
 
-q[27]="cu‚Æku‚ğ˜A‘±‚·‚é‚±‚Æ‚Í‚Å‚«‚È‚¢B‚Â‚Ü‚èA•K‚¸‚Ç‚¿‚ç‚©ˆê•û‚¾‚¯‚ğg‚í‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B";
+q[27]="cuã¨kuã‚’é€£ç¶šã™ã‚‹ã“ã¨ã¯ã§ããªã„ã€‚ã¤ã¾ã‚Šã€å¿…ãšã©ã¡ã‚‰ã‹ä¸€æ–¹ã ã‘ã‚’ä½¿ã‚ãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚";
 v[27]="0";
 
-q[28]="COI—Ş‚Í‚»‚ÌŒã‚ë‚É‚P‚ÂˆÈã‚Ì€‚ğæ‚è‚Ş‚±‚Æ‚ª‚Å‚«‚éB";
+q[28]="COIé¡ã¯ãã®å¾Œã‚ã«ï¼‘ã¤ä»¥ä¸Šã®é …ã‚’å–ã‚Šè¾¼ã‚€ã“ã¨ãŒã§ãã‚‹ã€‚";
 v[28]="0";
 
-q[29]="COI—Ş‚ÌI~Œ‚Í{ku}‚Å‚ ‚éB";
+q[29]="COIé¡ã®çµ‚æ­¢è©ã¯{ku}ã§ã‚ã‚‹ã€‚";
 v[29]="0";
 
-q[30]="{la [q‚È‚êŒê] ku}‚ğ‘z’è‚µ‚ÄA{COI [q‚È‚êŒê]}‚ÆŒ¾‚¤‚±‚Æ‚ª‚Å‚«‚éB";
+q[30]="{la [è¿°ãªã‚Œèª] ku}ã‚’æƒ³å®šã—ã¦ã€{COI [è¿°ãªã‚Œèª]}ã¨è¨€ã†ã“ã¨ãŒã§ãã‚‹ã€‚";
 v[30]="0";
 
-q[31]="S‘ÔŒ‚ÍŠî–{“I‚É‚Í‚Ç‚±‚É‚Å‚à’u‚¯‚é‚ªA\‘¢‚ğn‚ß‚éŒê‚Ì’¼Œã‚É‚Í’u‚¯‚È‚¢B";
+q[31]="å¿ƒæ…‹è©ã¯åŸºæœ¬çš„ã«ã¯ã©ã“ã«ã§ã‚‚ç½®ã‘ã‚‹ãŒã€æ§‹é€ ã‚’å§‹ã‚ã‚‹èªã®ç›´å¾Œã«ã¯ç½®ã‘ãªã„ã€‚";
 v[31]="0";
 
-q[32]="{.ui mi pendo do}‚Æ‚¢‚¤•¶‚Ì{.ui}‚Í‚»‚êˆÈ‰º‚Ì•¶‘S‘Ì‚ÉŒW‚Á‚Ä‚¢‚éB";
+q[32]="{.ui mi pendo do}ã¨ã„ã†æ–‡ã®{.ui}ã¯ãã‚Œä»¥ä¸‹ã®æ–‡å…¨ä½“ã«ä¿‚ã£ã¦ã„ã‚‹ã€‚";
 v[32]="1";
 
-q[33]="S‘ÔŒ‚ÌˆÓ–¡˜_‚Í‚»‚ê‚Ì“Œê˜_‚Æ‘S‚­“¯‚¶‚Å‚ ‚éB";
+q[33]="å¿ƒæ…‹è©ã®æ„å‘³è«–ã¯ãã‚Œã®çµ±èªè«–ã¨å…¨ãåŒã˜ã§ã‚ã‚‹ã€‚";
 v[33]="0";
 
-q[34]="NAI—Ş‚Í’¼‘O‚ÌS‘ÔŒ‚ÉŒW‚èA‚»‚ÌˆÓ–¡‚ğ”½‘Î‚É‚·‚éB";
+q[34]="NAIé¡ã¯ç›´å‰ã®å¿ƒæ…‹è©ã«ä¿‚ã‚Šã€ãã®æ„å‘³ã‚’åå¯¾ã«ã™ã‚‹ã€‚";
 v[34]="1";
 
-q[35]="{pei}‚Í•K‚¸S‘ÔŒ‚Ì’¼Œã‚É’u‚©‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B";
+q[35]="{pei}ã¯å¿…ãšå¿ƒæ…‹è©ã®ç›´å¾Œã«ç½®ã‹ãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚";
 v[35]="0";
 
-q[36]="{.ui dai}‚Í•K‚¸‚µ‚à•·‚«è‚ªuK‚¹‚Å‚ ‚év‚Æ‚¢‚¤‚±‚Æ‚ğ˜bÒ‚ªv‚Á‚Ä‚¢‚é‚í‚¯‚Å‚Í‚È‚¢B";
+q[36]="{.ui dai}ã¯å¿…ãšã—ã‚‚èãæ‰‹ãŒã€Œå¹¸ã›ã§ã‚ã‚‹ã€ã¨ã„ã†ã“ã¨ã‚’è©±è€…ãŒæ€ã£ã¦ã„ã‚‹ã‚ã‘ã§ã¯ãªã„ã€‚";
 v[36]="1";
 
 
 
-// ‰ğàƒJ[ƒhƒf[ƒ^
+// è§£èª¬ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
 
 
-// n ‚Ü‚Å‚Ì®”‚ğƒ‰ƒ“ƒ_ƒ€‚É”­¶  –ß‚è’l x[]
+// n ã¾ã§ã®æ•´æ•°ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã«ç™ºç”Ÿ  æˆ»ã‚Šå€¤ x[]
 function ransu(n) {
 	var k=1, l,  bingo;
 	var x=new MakeArray(snum);
@@ -177,25 +177,25 @@ function ransu(n) {
 	while ( k<=n ) {
     	x[k] = Math.floor(n * Math.random())+1;
 	    bingo = 0;
-	    for (l=1; l<k; l++) {  // ‚·‚Å‚É“¯‚¶”š‚ª‚È‚¢‚©ƒ`ƒFƒbƒN
+	    for (l=1; l<k; l++) {  // ã™ã§ã«åŒã˜æ•°å­—ãŒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	        if ( x[k] == x[l] ) { bingo=1; break; }
 	    }
-	    if (bingo==0) k++;  	// “¯‚¶”š‚ª‚È‚¯‚ê‚Î k++
+	    if (bingo==0) k++;  	// åŒã˜æ•°å­—ãŒãªã‘ã‚Œã° k++
 	}
 	return x;
 }
 
 
-// ³‰ğ”ƒJƒEƒ“ƒg—p”z—ñ a[] ‰Šú‰»
+// æ­£è§£æ•°ã‚«ã‚¦ãƒ³ãƒˆç”¨é…åˆ— a[] åˆæœŸåŒ–
 var a=new MakeArray(NUM);
 for (i=1;i<=NUM;i++) { a[i]=0; }
 
-// radio button ‚ª‰Ÿ‚³‚ê‚½‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN—p”z—ñ c[] ‰Šú‰»
+// radio button ãŒæŠ¼ã•ã‚ŒãŸã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ç”¨é…åˆ— c[] åˆæœŸåŒ–
 for (i=1;i<=NUM;i++) {
     c[i] = false;
 }
 
-// radio button ‚ª‘I‘ğ‚³‚ê‚½‚Æ‚«‚Ìˆ—
+// radio button ãŒé¸æŠã•ã‚ŒãŸã¨ãã®å‡¦ç†
 function radio1(parts) { c[1]=true; a[1]=parts.value; }
 function radio2(parts) { c[2]=true; a[2]=parts.value; }
 function radio3(parts) { c[3]=true; a[3]=parts.value; }
@@ -234,62 +234,62 @@ function radio35(parts) { c[35]=true; a[35]=parts.value; }
 function radio36(parts) { c[36]=true; a[36]=parts.value; }
 
 
-// Ì“_ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—iŒ‹‰Êwindowj
+// æ¡ç‚¹ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†ï¼ˆçµæœwindowï¼‰
 function kekka(f){
-    // refresh ƒ‚[ƒh‚Ì‚Æ‚«‚ÍƒYƒ‹‚È‚µ
+    // refresh ãƒ¢ãƒ¼ãƒ‰ã®ã¨ãã¯ã‚ºãƒ«ãªã—
     if (flg_try && refresh) { 
-       result = confirm('‚Í‚¶‚ß‚©‚ç‚â‚è’¼‚³‚È‚¢‚ÆÌ“_‚Å‚«‚Ü‚¹‚ñB‚â‚è’¼‚µ‚Ü‚·‚©H');
+       result = confirm('ã¯ã˜ã‚ã‹ã‚‰ã‚„ã‚Šç›´ã•ãªã„ã¨æ¡ç‚¹ã§ãã¾ã›ã‚“ã€‚ã‚„ã‚Šç›´ã—ã¾ã™ã‹ï¼Ÿ');
        if (result) {
           location.reload();
           return;
        } else  return;
     }
 
-    // –¢‰ñ“š‚Ì–â‘è‚ª‚ ‚Á‚½‚çŠm”F‚·‚é
+    // æœªå›ç­”ã®å•é¡ŒãŒã‚ã£ãŸã‚‰ç¢ºèªã™ã‚‹
     var kaito=0;
     for (i=1;i<=NUM;i++) { kaito += c[i]; }
     if (kaito != snum) {
-        result=confirm("‚Ü‚¾‰ñ“š‚µ‚Ä‚¢‚È‚¢–â‘è‚ª‚ ‚è‚Ü‚·B‚±‚Ì‚Ü‚ÜÌ“_‚µ‚Ü‚·‚©H");
+        result=confirm("ã¾ã å›ç­”ã—ã¦ã„ãªã„å•é¡ŒãŒã‚ã‚Šã¾ã™ã€‚ã“ã®ã¾ã¾æ¡ç‚¹ã—ã¾ã™ã‹ï¼Ÿ");
         if (!result) return;
     }
 
-    // Œ‹‰Êƒf[ƒ^ˆ—
+    // çµæœãƒ‡ãƒ¼ã‚¿å‡¦ç†
     var data="", seikai=0 ,j, i, yy, score, scb=0;
     flg_try = true;
-    data += "<html><head><title>Œ‹‰Ê<\/title><\/head>";
+    data += "<html><head><title>çµæœ<\/title><\/head>";
     data += "<bo" + "dy bgcolor=pink text=black>";
-    data += "<font size=4><b>Ì“_Œ‹‰Ê‚Å‚·<\/b><\/font>";
+    data += "<font size=4><b>æ¡ç‚¹çµæœã§ã™<\/b><\/font>";
     data += "<br><br><table border=0 cellspacing=2 cellpadding=5><tr>";
     for(i=1;i<=snum;i++){
         j=x[i];
-        data += "<td width=55 align=center bgcolor=white>–â"+i;
+        data += "<td width=55 align=center bgcolor=white>å•"+i;
         if (!c[j]) {
-            data += "<td width=25 align=center bgcolor=white>@<\/font>";
+            data += "<td width=25 align=center bgcolor=white>ã€€<\/font>";
         } else {
             if (a[j]==1) {
-                data += "<td width=25 align=center bgcolor=white><font color=blue><b>›<\/b><\/font>";
+                data += "<td width=25 align=center bgcolor=white><font color=blue><b>â—‹<\/b><\/font>";
             } else {
-                data += "<td width=25 align=center bgcolor=white><font color=red><b>~<\/b><\/font>";
+                data += "<td width=25 align=center bgcolor=white><font color=red><b>Ã—<\/b><\/font>";
             }
         }
         if (i%5==0) {data += "<tr>";}
-        seikai=seikai+eval(a[j]);      // ³‰ğ”‚ğƒJƒEƒ“ƒg
+        seikai=seikai+eval(a[j]);      // æ­£è§£æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
     }
     data += "<\/table><br>  <table><tr><td width=420><blockquote><font color=green>";
     score = Math.floor(100*seikai/snum+0.5);
-    if (score != 100) data += snum+"–â’† "+seikai+"–â³‰ğ";
-    if (score == 100) data += "‘S–â³‰ğ";
+    if (score != 100) data += snum+"å•ä¸­ "+seikai+"å•æ­£è§£";
+    if (score == 100) data += "å…¨å•æ­£è§£";
     data += "<\/font><br>"; 
-    if (score < gokaku) data += "<font color=green> ‚à‚Á‚ÆŠæ’£‚è‚Ü‚µ‚å‚¤ <\/font>";
-    if (score >= gokaku && score < 100) data += "<font color=green> ‚æ‚­‚Å‚«‚Ü‚µ‚½ <\/font>";
-    if (score == 100) data += "<font color=red> Perfect!! ‚¨‚ß‚Å‚Æ‚¤I <\/font>";
+    if (score < gokaku) data += "<font color=green> ã‚‚ã£ã¨é ‘å¼µã‚Šã¾ã—ã‚‡ã† <\/font>";
+    if (score >= gokaku && score < 100) data += "<font color=green> ã‚ˆãã§ãã¾ã—ãŸ <\/font>";
+    if (score == 100) data += "<font color=red> Perfect!! ãŠã‚ã§ã¨ã†ï¼ <\/font>";
     data += "<\/blockquote><\/td>";
-    data += "<td nowrap><u><font size=7 color=red>" + score + "“_<\/font><\/u>";
+    data += "<td nowrap><u><font size=7 color=red>" + score + "ç‚¹<\/font><\/u>";
     data += "<\/table>";
     data += "<center><form>";
-    if (score < gokaku && !refresh || score>=gokaku && !page_fwd) data += "<input type=button value='•Â‚¶‚é' onClick='window.close();'>";
-    if (score < gokaku && refresh) data += " <input type=button onClick='window.opener.document.location.reload();' value='‚â‚è’¼‚µ'>";
-    if (score >= gokaku && page_fwd) data += "<input type=button onClick=window.opener.document.location='" + nextfile + "' value='Ÿ‚Éi‚Ş'>";
+    if (score < gokaku && !refresh || score>=gokaku && !page_fwd) data += "<input type=button value='é–‰ã˜ã‚‹' onClick='window.close();'>";
+    if (score < gokaku && refresh) data += " <input type=button onClick='window.opener.document.location.reload();' value='ã‚„ã‚Šç›´ã—'>";
+    if (score >= gokaku && page_fwd) data += "<input type=button onClick=window.opener.document.location='" + nextfile + "' value='æ¬¡ã«é€²ã‚€'>";
     data += "<\/form><\/center><\/bo" + "dy><\/html>";
 
     flg_kWin0=1;
@@ -303,21 +303,21 @@ function kekka(f){
 }
 
 
-// ‰ğàˆê——ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Æ‚«‚Ìˆ—
+// è§£èª¬ä¸€è¦§ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®å‡¦ç†
 function kaisetsu_view() {
     flg_kWin1=1;
     var data="";
-    data += "<html><head><title>‰ğàƒJ[ƒh<\/title><\/head>";
+    data += "<html><head><title>è§£èª¬ã‚«ãƒ¼ãƒ‰<\/title><\/head>";
     data += "<bo" + "dy bgcolor=lavender text=black>";
     data += "<dl>";
     for(i=1;i<=snum;i++) {
         j = x[i];
-        data += "<dt><table cellpadding=3 align=left><td bgcolor=pink> –â" + i + "<\/table>";
+        data += "<dt><table cellpadding=3 align=left><td bgcolor=pink> å•" + i + "<\/table>";
         data += "<table><tr><td>" + kd[j] + "<\/table><p>";
     }
     data += "<\/dl><br><br>";
     data += "<center><form>";
-    data += "<input type=button value='•Â‚¶‚é' onClick='window.close();'>";
+    data += "<input type=button value='é–‰ã˜ã‚‹' onClick='window.close();'>";
     data += "<\/form><\/center><\/bo" + "dy><\/html>";
     kWin1 = window.open("","kWin1","width=500,height=400,scrollbars=1,resizable=1,directoies=0");
     kWin1.focus();
@@ -326,15 +326,15 @@ function kaisetsu_view() {
     kWin1.document.close();
 }
 
-// ‰ğàƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Ìˆ—
+// è§£èª¬ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸæ™‚ã®å‡¦ç†
 function single_kaisetsu(m) {
     flg_kWin2=1;
     var data="";
-    data += "<html><head><title>‰ğà<\/title><\/head>";
+    data += "<html><head><title>è§£èª¬<\/title><\/head>";
     data += "<bo" + "dy bgcolor=lavender text=black>";
     data +=  kd[m];
     data += "<br><br><center><form>";
-    data += "<input type=button value='•Â‚¶‚é' onClick='window.close();'>";
+    data += "<input type=button value='é–‰ã˜ã‚‹' onClick='window.close();'>";
     data += "<\/form><\/center><\/bo" + "dy><\/html>";
     kWin2 = window.open("","kWin2","width=350,height=150,scrollbars=1,resizable=1");
     kWin2.focus();
@@ -344,16 +344,16 @@ function single_kaisetsu(m) {
 }
 
 
-// ³Œëƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Æ‚«‚Ìˆ—
+// æ­£èª¤ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®å‡¦ç†
 function seigo(m) {
-    if (!c[m]) { alert("“š‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢");
+    if (!c[m]) { alert("ç­”ã‚’é¸æŠã—ã¦ãã ã•ã„");
     } else {
-        if (a[m] == 1) { alert("›@³‰ğ‚Å‚·@›"); } else { alert("~@ˆá‚¢‚Ü‚·@~"); }
+        if (a[m] == 1) { alert("â—‹ã€€æ­£è§£ã§ã™ã€€â—‹"); } else { alert("Ã—ã€€é•ã„ã¾ã™ã€€Ã—"); }
     }
 }
 
 
-// Unload ‚µ‚½‚Æ‚« sub window‚ğ•Â‚¶‚é
+// Unload ã—ãŸã¨ã sub windowã‚’é–‰ã˜ã‚‹
 function byebye(){
     if (flg_kWin0 && !kWin0.closed) kWin0.close();
     if (flg_kWin1 && !kWin1.closed) kWin1.close(); 
@@ -364,17 +364,17 @@ function byebye(){
 </script>
 </head>
 
-<!------------------------ BODY ‚Í‚±‚±‚©‚ç ------------------------->
+<!------------------------ BODY ã¯ã“ã“ã‹ã‚‰ ------------------------->
 
 <body bgcolor=white text=black onLoad="document.myForm.reset()" onUnload="byebye()">
-<h2>“ü–å›~–â‘è‘‚Ü‚Æ‚ß</h2>
-Ÿ‚Ì•¶‚ª³‚µ‚¯‚ê‚Î›CŒë‚è‚È‚ç~‚ğ‘I‚Ñ‚È‚³‚¢B
+<h2>å…¥é–€â—‹Ã—å•é¡Œç·ã¾ã¨ã‚</h2>
+æ¬¡ã®æ–‡ãŒæ­£ã—ã‘ã‚Œã°â—‹ï¼Œèª¤ã‚Šãªã‚‰Ã—ã‚’é¸ã³ãªã•ã„ã€‚
 
 
 <noscript>
 <br>
-‚±‚Ì³Œë–â‘è‚Í JavaScript 1.1‚Å‘‚©‚ê‚Ä‚¢‚Ü‚·B<br>
-Netscape Navigator 3.0 ˆÈã ‚Ü‚½‚Í Internet Explorer 4.0 ˆÈã‚Å‚²——‰º‚³‚¢B<br>
+ã“ã®æ­£èª¤å•é¡Œã¯ JavaScript 1.1ã§æ›¸ã‹ã‚Œã¦ã„ã¾ã™ã€‚<br>
+Netscape Navigator 3.0 ä»¥ä¸Š ã¾ãŸã¯ Internet Explorer 4.0 ä»¥ä¸Šã§ã”è¦§ä¸‹ã•ã„ã€‚<br>
 </noscript>
 
 
@@ -398,43 +398,43 @@ for (j=1; j<=snum; j++){
     } else {
         bgc1="pink"; bgc2="lightyellow"; textc="black";
     }
-    str += "<tr><th width=40 bgcolor=" + bgc1 + " align=center>–â" + j + "<\/th>";
+    str += "<tr><th width=40 bgcolor=" + bgc1 + " align=center>å•" + j + "<\/th>";
     str += "<td width=" + (tbl_width - 160) + " bgcolor=" + bgc2 + ">";
     str += "<font color=" +textc + ">" + q[k] + "<\/font><\/td>";
     str += "<td bgcolor=" + bgc2 + " nowrap>"; 
     str += "<input type=radio name=Q" + j + " value=" + v[k];
     str += " onClick='radio" + k + "(this)'>";
-    str += "<font color=" + textc + ">" + s[1]  + "<\/font>@@";
+    str += "<font color=" + textc + ">" + s[1]  + "<\/font>ã€€ã€€";
     v2 = 1 - v[k];
     str += "<input type=radio name=Q" + j + " value=" + v2;
     str += " onClick='radio" + k + "(this)'>";
     str += "<font color=" + textc + ">" + s[2] + "<\/font>";
     
     if (kaisetsu_type == 2) {
-       str += "@@<input type=button value='‰ğà' onClick='single_kaisetsu(" + k + ")'>";
+       str += "ã€€ã€€<input type=button value='è§£èª¬' onClick='single_kaisetsu(" + k + ")'>";
     }
     str += "<\/td><\/tr>";
 }
 str += "<\/table><br>";
 str += "<table border=0 cellspacing=0 cellpadding=2>";
 str += "<tr><td align=center width=" + tbl_width + "><br>";
-str += "<input type=button onClick='kekka(this.form)' value=' Ì“_‚·‚é '>@";
-str += "<input type=button onClick='location.reload()' value=' ‚à‚¤ˆê“x '>";
+str += "<input type=button onClick='kekka(this.form)' value=' æ¡ç‚¹ã™ã‚‹ '>ã€€";
+str += "<input type=button onClick='location.reload()' value=' ã‚‚ã†ä¸€åº¦ '>";
 if (kaisetsu_type >= 1)
-  str += "@<input type=button onClick='kaisetsu_view()' value=' ‰ğàˆê—— '>";
-if (snum < NUM) str += "<br><small><br>‚à‚¤ˆê“x‚ğƒNƒŠƒbƒN‚·‚é‚Æ•Ê‚Ì–â‘è‚ªo‘è‚³‚ê‚Ü‚·<\/small>";
+  str += "ã€€<input type=button onClick='kaisetsu_view()' value=' è§£èª¬ä¸€è¦§ '>";
+if (snum < NUM) str += "<br><small><br>ã‚‚ã†ä¸€åº¦ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨åˆ¥ã®å•é¡ŒãŒå‡ºé¡Œã•ã‚Œã¾ã™<\/small>";
 str += "<\/td><\/tr>";
-str += "<!----------------- ˆÈ‰º‚ÌƒŠƒ“ƒN‚ÍÁ‚³‚È‚¢‚Å‚­‚¾‚³‚¢ -------------->";
+str += "<!----------------- ä»¥ä¸‹ã®ãƒªãƒ³ã‚¯ã¯æ¶ˆã•ãªã„ã§ãã ã•ã„ -------------->";
 str += "<tr><td align=right>";
 str += "  <a href='http://www.fureai.or.jp/~irie/webquiz/' target=top>";
-str += "  <font size=1><i>created by WEB–â‘èì¬ƒc[ƒ‹<\/i><\/font><\/a>";
+str += "  <font size=1><i>created by WEBå•é¡Œä½œæˆãƒ„ãƒ¼ãƒ«<\/i><\/font><\/a>";
 str += "<\/table><br>";
 str += "<\/form>";
 document.write( str );
 //-->
 </script>
 
-<!------------- ‚±‚±‚©‚ç‰º‚Í‚²©—R‚É‚Ç‚¤‚¼ ---------------->
+<!------------- ã“ã“ã‹ã‚‰ä¸‹ã¯ã”è‡ªç”±ã«ã©ã†ã ---------------->
 
 
 

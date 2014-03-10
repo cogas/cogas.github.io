@@ -1,8 +1,8 @@
 window.onload = function(){
-    var point = {x:0,y:0};//À•W
-    var par = {x:4,y:6};//•Ï‰»—Ê
-    var timer;//ƒ^ƒCƒ}[
-    var delay = 1000;//ƒ^ƒCƒ}[‚ğÀs‚·‚éŠÔŠu
+    var point = {x:0,y:0};//åº§æ¨™
+    var par = {x:4,y:6};//å¤‰åŒ–é‡
+    var timer;//ã‚¿ã‚¤ãƒãƒ¼
+    var delay = 1000;//ã‚¿ã‚¤ãƒãƒ¼ã‚’å®Ÿè¡Œã™ã‚‹é–“éš”
     var loop = function(){
         point.x = (1 + point.x) % 60;
         point.y = (1 + point.y) % 60;

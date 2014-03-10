@@ -4,20 +4,20 @@ window.onload = function(){
     var ctx = can.getContext("2d");
 
     //options
-    var point = {x:0,y:0};//À•W
-    var par = {x:4,y:6};//•Ï‰»—Ê
-    var timer;//ƒ^ƒCƒ}[
-    var delay = 1;//ƒ^ƒCƒ}[‚ğÀs‚·‚éŠÔŠu
+    var point = {x:0,y:0};//åº§æ¨™
+    var par = {x:4,y:6};//å¤‰åŒ–é‡
+    var timer;//ã‚¿ã‚¤ãƒãƒ¼
+    var delay = 1;//ã‚¿ã‚¤ãƒãƒ¼ã‚’å®Ÿè¡Œã™ã‚‹é–“éš”
     var width = can.width
     var height = can.height
     
-    //•`‰æˆ—‚ğs‚¤ŠÖ”Bloop()ŠÖ”‚Ì’†‚ÅŒÄ‚Ño‚·B
+    //æç”»å‡¦ç†ã‚’è¡Œã†é–¢æ•°ã€‚loop()é–¢æ•°ã®ä¸­ã§å‘¼ã³å‡ºã™ã€‚
     function draw(x,y){
-//        ctx.clearRect(0,0,width,height);//ˆê“xcanvas‚ğƒNƒŠƒA
-        ctx.fillRect(x,y,5,5);//point‚ÌÀ•W‚É•`‰æ
+//        ctx.clearRect(0,0,width,height);//ä¸€åº¦canvasã‚’ã‚¯ãƒªã‚¢
+        ctx.fillRect(x,y,5,5);//pointã®åº§æ¨™ã«æç”»
     }
     
-    //ŒJ‚è•Ô‚µ•`‰æ‚ğs‚¤ŠÖ”B
+    //ç¹°ã‚Šè¿”ã—æç”»ã‚’è¡Œã†é–¢æ•°ã€‚
     var loop = function(){
 
         draw(Math.random()*width,Math.random()*height);
