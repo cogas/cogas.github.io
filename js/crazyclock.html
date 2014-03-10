@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>crazy clock</title>
+<script type="text/javascript" src="crazyclock.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script src="./jcanvas.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<style type="text/css" media="screen">
+/* <![CDATA[ */
+div#stage{
+    width:500px;
+    height:500px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-300px;
+    margin-top:-250px;
+    border:1px solid black;
+}
+/* ]]> */
+</style>
+</head>
+
+<body>
+        <div class="lbor">
+        <div class="title">crazy clock</div>
+        <div class="text">
+            現在の時間を何も教えてくれない時計。秒針だけがカチコチと。
+        </div>
+        </div>
+    
+    
+<div id="stage">
+    <canvas id="cvs" width=500 height=500></canvas>
+</div>
+        <div class="lbor">
+        <div class="text"><a href="../index.html"><center>- top -</center></a></div>
+        </div>
+</body>
+</html>

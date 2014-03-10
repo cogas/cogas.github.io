@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>ball_att</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script type="text/javascript" src="jcanvas.min.js"></script>
+<script type="text/javascript" src="ball_att.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<style type="text/css" media="screen">
+/* <![CDATA[ */
+div#stage{
+    width:600px;
+    height:600px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-300px;
+    margin-top:-250px;
+    border:1px solid black;
+}
+/* ]]> */
+</style>
+</head>
+
+<body>
+        <div class="lbor">
+        <div class="title">ボールとインタラクティブ</div>
+        <div class="text">
+        ボールと戯れる。
+        </div>
+        </div>
+    
+<div id="stage">
+    <canvas id="cvs" width=600 height=600></canvas>
+</div>
+
+        <div class="lbor">
+        <div class="text"><a href="../index.html"><center>- top -</center></a></div>
+        </div>
+
+<table class = "text">
+<tr>
+ <td>描画速度 ：</td>
+ <td><input type=range id="speed" value=50 min=1 min=1000></td>
+</tr>
+<tr>
+ <td>半径 ：</td>
+ <td><input type=range id="rad" value=25 min=1 min=100></td>
+</tr>
+<tr>
+ <td>ゆらぎ具合 ：</td>
+ <td><input type=range id="yuragi" value=50 min=0 min=1000></td>
+</tr>
+<tr>
+ <td>重力 ：</td>
+ <td><input type=range id="gravity" value=0 min=0 min=100></td>
+</tr>
+<tr>
+ <td>色：</td>
+ <td>
+  <input type=radio value="darkblue" name=color id="color1" checked> 青
+  <input type=radio value="darkred" name=color id="color2"> 赤
+ </td>
+</tr>
+<tr>
+ <td>個数 ：</td>
+ <td>
+  <input type=number id="number" value=4>
+ </td>
+</tr>
+<tr>
+ <td></td>
+ <td>
+  <input type="button" value="RESET" id="reset">
+ </td>
+</tr>
+</table>
+
+
+
+</body>
+</html>

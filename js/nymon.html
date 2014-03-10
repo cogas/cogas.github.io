@@ -1,0 +1,442 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=SHIFT_JIS">
+<!--================================================================
+このWEBクイズはWEB問題作成ツールによって出力されました。
+WEB問題作成ツール http://www.fureai.or.jp/~irie/webquiz/
+Copyright 1998-2014 IRIE Toshiaki  入江 利明  irie＠fureai.or.jp
+==================================================================-->
+<title>入門○×問題総まとめ</title>
+
+<script language="JavaScript">
+<!-- 
+var NUM=36;               // 問題数
+var snum=20;             // 出題数
+var shuffle=1;           // 問題の順番をランダムに 1:する、0:しない
+var kaisetsu_type=0;     // 0:解説なし, 1:解説一覧のみ, 2:各問いに解説ボタンあり
+
+var refresh=0;           // 試行ごとに refresh する:1 しない:0
+var gokaku=90;           // 合格点（次の問題に進める）
+var page_fwd=0;          // 1:合格点に達したら次に進む  0:何もしない
+var nextfile=".html";       // 次のページのファイル名
+var tbl_width=600;         // 問題欄の幅
+
+
+// 変数初期化
+var flg_kWin0=false;     // 結果window 開いているか
+var flg_kWin1=false;     // 解説window
+var flg_kWin2=false;     // 解説一覧window
+var flg_try=false;       // 採点ボタンを押したか
+
+
+// １次元配列作成
+function MakeArray(n){
+	this.length=n;
+}
+
+// ２次元配列作成
+function DIM(dimx,dimy){
+	var i;
+	var myArray = new Array(dimy);
+	for (i=0; i<=dimx; i++) myArray[i] = new Array(dimx);
+	return myArray;
+}
+
+var q=new MakeArray(NUM);  // 問題文データ配列
+var s=new MakeArray(2);    // 選択肢データ配列
+var v=new MakeArray(NUM);  // 選択肢値　正解=1  不正解=0 
+var c=new MakeArray(NUM);  // 選択したかどうかのチェック
+var kd=new MakeArray(NUM); // 解説カードデータ配列
+
+
+// 問題データ  s[]:選択肢, q[]:問題文, v[]:答え(1 or 0)
+s[1]="○";
+s[2]="×";
+
+q[1]="ロジバンでは「x」は英語と同じで大体「ｸｽ」と読む。";
+v[1]="0";
+
+q[2]="ロジバンは、ある音には必ず一つの綴りが割り当てられている。";
+v[2]="1";
+
+q[3]="アポストロフィは基本的には母音と母音の間にあるが、語頭や子音の後ろにくることもある。";
+v[3]="0";
+
+q[4]="「俳句」は{.'aik.}と書ける。";
+v[4]="0";
+
+q[5]="「太郎」は{.taron.}か{.tar.}とできるが、{.taro.}はダメである。";
+v[5]="1";
+
+q[6]="{.kxassan.}はcmeneとして認められないが、それは同じ音の連続が含まれているからだけである。";
+v[6]="0";
+
+q[7]="{.lojtan.}はcmeneとして認められないが、jとtの間にyを入れるとcmeneとして認められる。";
+v[7]="1";
+
+q[8]="ロジバンの文は、1つ以上の述語と1つの項からなる。";
+v[8]="0";
+
+q[9]="項はselbriといい、述語はsumtiという。";
+v[9]="0";
+
+q[10]="{do dunda ti}という文では、x3にはzo'eが想定されている。";
+v[10]="1";
+
+q[11]="{dunda tu mi}という文では、x1 = tu である。";
+v[11]="0";
+
+q[12]="{.i}は、そこで文が終わるという合図である。";
+v[12]="0";
+
+q[13]="{fe}は直後にくる項が述語のx3に入ることを明記する。";
+v[13]="0";
+
+q[14]="{dunda fa mi do} この文の x1 は mi である。";
+v[14]="1";
+
+q[15]="{ti fi do xe klama fu mi fe tu} この文はFA類、SE類の無い文で表すと {mi klama tu do zo'e ti} になる。";
+v[15]="1";
+
+q[16]="FA類は番号順に並べると母音がアルファベット順になっており、SE類は転換する位置の若い順に並べると子音がアルファベット順になっている。";
+v[16]="1";
+
+q[17]="{lo prami ku}は「愛」という意味である。";
+v[17]="0";
+
+q[18]="{lo se dunda ku}は「dundaのx2に当てはまるようなもの」という意味である。";
+v[18]="1";
+
+q[19]="ロジバンでは単数形と複数形で語の形が変化する。";
+v[19]="0";
+
+q[20]="「そらは走る」と言いたいときは、cmeneをそのまま用いて、{.soran. bajra} と言えばよい。";
+v[20]="0";
+
+q[21]="二つ以上の述なれ語をつなげて作られた新しい述なれ語のことをruntaと呼ぶ。";
+v[21]="0";
+
+q[22]="tanruのPSは修飾述なれ語のものと同じである。";
+v[22]="0";
+
+q[23]="２つの述なれ語からできるtanruの、左の述なれ語が右の述なれ語を修飾する。";
+v[23]="0";
+
+q[24]="{plise tricu}を「私が子供の頃林檎をぶつけて遊んだ木だ」という意味で使うことは流石に無理である。";
+v[24]="0";
+
+q[25]="終止詞はロジバンが統語論的に厳密であるために不可欠な語である。";
+v[25]="1";
+
+q[26]="終止詞は文構造を明らかにしたいときだけ用いればよく、文法構造を曖昧にしたいときは省略すればよい。";
+v[26]="0";
+
+q[27]="cuとkuを連続することはできない。つまり、必ずどちらか一方だけを使わなければならない。";
+v[27]="0";
+
+q[28]="COI類はその後ろに１つ以上の項を取り込むことができる。";
+v[28]="0";
+
+q[29]="COI類の終止詞は{ku}である。";
+v[29]="0";
+
+q[30]="{la [述なれ語] ku}を想定して、{COI [述なれ語]}と言うことができる。";
+v[30]="0";
+
+q[31]="心態詞は基本的にはどこにでも置けるが、構造を始める語の直後には置けない。";
+v[31]="0";
+
+q[32]="{.ui mi pendo do}という文の{.ui}はそれ以下の文全体に係っている。";
+v[32]="1";
+
+q[33]="心態詞の意味論はそれの統語論と全く同じである。";
+v[33]="0";
+
+q[34]="NAI類は直前の心態詞に係り、その意味を反対にする。";
+v[34]="1";
+
+q[35]="{pei}は必ず心態詞の直後に置かなければならない。";
+v[35]="0";
+
+q[36]="{.ui dai}は必ずしも聞き手が「幸せである」ということを話者が思っているわけではない。";
+v[36]="1";
+
+
+
+// 解説カードデータ
+
+
+// n までの整数をランダムに発生  戻り値 x[]
+function ransu(n) {
+	var k=1, l,  bingo;
+	var x=new MakeArray(snum);
+
+	x[k] = Math.floor(n * Math.random())+1;
+	k++;
+	while ( k<=n ) {
+    	x[k] = Math.floor(n * Math.random())+1;
+	    bingo = 0;
+	    for (l=1; l<k; l++) {  // すでに同じ数字がないかチェック
+	        if ( x[k] == x[l] ) { bingo=1; break; }
+	    }
+	    if (bingo==0) k++;  	// 同じ数字がなければ k++
+	}
+	return x;
+}
+
+
+// 正解数カウント用配列 a[] 初期化
+var a=new MakeArray(NUM);
+for (i=1;i<=NUM;i++) { a[i]=0; }
+
+// radio button が押されたかどうかチェック用配列 c[] 初期化
+for (i=1;i<=NUM;i++) {
+    c[i] = false;
+}
+
+// radio button が選択されたときの処理
+function radio1(parts) { c[1]=true; a[1]=parts.value; }
+function radio2(parts) { c[2]=true; a[2]=parts.value; }
+function radio3(parts) { c[3]=true; a[3]=parts.value; }
+function radio4(parts) { c[4]=true; a[4]=parts.value; }
+function radio5(parts) { c[5]=true; a[5]=parts.value; }
+function radio6(parts) { c[6]=true; a[6]=parts.value; }
+function radio7(parts) { c[7]=true; a[7]=parts.value; }
+function radio8(parts) { c[8]=true; a[8]=parts.value; }
+function radio9(parts) { c[9]=true; a[9]=parts.value; }
+function radio10(parts) { c[10]=true; a[10]=parts.value; }
+function radio11(parts) { c[11]=true; a[11]=parts.value; }
+function radio12(parts) { c[12]=true; a[12]=parts.value; }
+function radio13(parts) { c[13]=true; a[13]=parts.value; }
+function radio14(parts) { c[14]=true; a[14]=parts.value; }
+function radio15(parts) { c[15]=true; a[15]=parts.value; }
+function radio16(parts) { c[16]=true; a[16]=parts.value; }
+function radio17(parts) { c[17]=true; a[17]=parts.value; }
+function radio18(parts) { c[18]=true; a[18]=parts.value; }
+function radio19(parts) { c[19]=true; a[19]=parts.value; }
+function radio20(parts) { c[20]=true; a[20]=parts.value; }
+function radio21(parts) { c[21]=true; a[21]=parts.value; }
+function radio22(parts) { c[22]=true; a[22]=parts.value; }
+function radio23(parts) { c[23]=true; a[23]=parts.value; }
+function radio24(parts) { c[24]=true; a[24]=parts.value; }
+function radio25(parts) { c[25]=true; a[25]=parts.value; }
+function radio26(parts) { c[26]=true; a[26]=parts.value; }
+function radio27(parts) { c[27]=true; a[27]=parts.value; }
+function radio28(parts) { c[28]=true; a[28]=parts.value; }
+function radio29(parts) { c[29]=true; a[29]=parts.value; }
+function radio30(parts) { c[30]=true; a[30]=parts.value; }
+function radio31(parts) { c[31]=true; a[31]=parts.value; }
+function radio32(parts) { c[32]=true; a[32]=parts.value; }
+function radio33(parts) { c[33]=true; a[33]=parts.value; }
+function radio34(parts) { c[34]=true; a[34]=parts.value; }
+function radio35(parts) { c[35]=true; a[35]=parts.value; }
+function radio36(parts) { c[36]=true; a[36]=parts.value; }
+
+
+// 採点ボタンが押されたときの処理（結果window）
+function kekka(f){
+    // refresh モードのときはズルなし
+    if (flg_try && refresh) { 
+       result = confirm('はじめからやり直さないと採点できません。やり直しますか？');
+       if (result) {
+          location.reload();
+          return;
+       } else  return;
+    }
+
+    // 未回答の問題があったら確認する
+    var kaito=0;
+    for (i=1;i<=NUM;i++) { kaito += c[i]; }
+    if (kaito != snum) {
+        result=confirm("まだ回答していない問題があります。このまま採点しますか？");
+        if (!result) return;
+    }
+
+    // 結果データ処理
+    var data="", seikai=0 ,j, i, yy, score, scb=0;
+    flg_try = true;
+    data += "<html><head><title>結果<\/title><\/head>";
+    data += "<bo" + "dy bgcolor=pink text=black>";
+    data += "<font size=4><b>採点結果です<\/b><\/font>";
+    data += "<br><br><table border=0 cellspacing=2 cellpadding=5><tr>";
+    for(i=1;i<=snum;i++){
+        j=x[i];
+        data += "<td width=55 align=center bgcolor=white>問"+i;
+        if (!c[j]) {
+            data += "<td width=25 align=center bgcolor=white>　<\/font>";
+        } else {
+            if (a[j]==1) {
+                data += "<td width=25 align=center bgcolor=white><font color=blue><b>○<\/b><\/font>";
+            } else {
+                data += "<td width=25 align=center bgcolor=white><font color=red><b>×<\/b><\/font>";
+            }
+        }
+        if (i%5==0) {data += "<tr>";}
+        seikai=seikai+eval(a[j]);      // 正解数をカウント
+    }
+    data += "<\/table><br>  <table><tr><td width=420><blockquote><font color=green>";
+    score = Math.floor(100*seikai/snum+0.5);
+    if (score != 100) data += snum+"問中 "+seikai+"問正解";
+    if (score == 100) data += "全問正解";
+    data += "<\/font><br>"; 
+    if (score < gokaku) data += "<font color=green> もっと頑張りましょう <\/font>";
+    if (score >= gokaku && score < 100) data += "<font color=green> よくできました <\/font>";
+    if (score == 100) data += "<font color=red> Perfect!! おめでとう！ <\/font>";
+    data += "<\/blockquote><\/td>";
+    data += "<td nowrap><u><font size=7 color=red>" + score + "点<\/font><\/u>";
+    data += "<\/table>";
+    data += "<center><form>";
+    if (score < gokaku && !refresh || score>=gokaku && !page_fwd) data += "<input type=button value='閉じる' onClick='window.close();'>";
+    if (score < gokaku && refresh) data += " <input type=button onClick='window.opener.document.location.reload();' value='やり直し'>";
+    if (score >= gokaku && page_fwd) data += "<input type=button onClick=window.opener.document.location='" + nextfile + "' value='次に進む'>";
+    data += "<\/form><\/center><\/bo" + "dy><\/html>";
+
+    flg_kWin0=1;
+    yy=280+35*(Math.floor(snum/5-0.1));
+    if (yy > 480) { yy=480; scb=1; }
+    kWin0=window.open("","kekkaWin","width=560,height=" + yy + ",toolbar=0,menubar=0,resizable=1,scrollbars=" + scb + ",location=0,directories=0,status=0");
+    kWin0.focus();
+    kWin0.document.open();
+    kWin0.document.write(data);
+    kWin0.document.close();
+}
+
+
+// 解説一覧ボタンを押したときの処理
+function kaisetsu_view() {
+    flg_kWin1=1;
+    var data="";
+    data += "<html><head><title>解説カード<\/title><\/head>";
+    data += "<bo" + "dy bgcolor=lavender text=black>";
+    data += "<dl>";
+    for(i=1;i<=snum;i++) {
+        j = x[i];
+        data += "<dt><table cellpadding=3 align=left><td bgcolor=pink> 問" + i + "<\/table>";
+        data += "<table><tr><td>" + kd[j] + "<\/table><p>";
+    }
+    data += "<\/dl><br><br>";
+    data += "<center><form>";
+    data += "<input type=button value='閉じる' onClick='window.close();'>";
+    data += "<\/form><\/center><\/bo" + "dy><\/html>";
+    kWin1 = window.open("","kWin1","width=500,height=400,scrollbars=1,resizable=1,directoies=0");
+    kWin1.focus();
+    kWin1.document.open();
+    kWin1.document.write(data);
+    kWin1.document.close();
+}
+
+// 解説ボタンを押した時の処理
+function single_kaisetsu(m) {
+    flg_kWin2=1;
+    var data="";
+    data += "<html><head><title>解説<\/title><\/head>";
+    data += "<bo" + "dy bgcolor=lavender text=black>";
+    data +=  kd[m];
+    data += "<br><br><center><form>";
+    data += "<input type=button value='閉じる' onClick='window.close();'>";
+    data += "<\/form><\/center><\/bo" + "dy><\/html>";
+    kWin2 = window.open("","kWin2","width=350,height=150,scrollbars=1,resizable=1");
+    kWin2.focus();
+    kWin2.document.open();
+    kWin2.document.write(data);
+    kWin2.document.close();
+}
+
+
+// 正誤ボタンを押したときの処理
+function seigo(m) {
+    if (!c[m]) { alert("答を選択してください");
+    } else {
+        if (a[m] == 1) { alert("○　正解です　○"); } else { alert("×　違います　×"); }
+    }
+}
+
+
+// Unload したとき sub windowを閉じる
+function byebye(){
+    if (flg_kWin0 && !kWin0.closed) kWin0.close();
+    if (flg_kWin1 && !kWin1.closed) kWin1.close(); 
+    if (flg_kWin2 && !kWin2.closed) kWin2.close();
+}
+
+//-->
+</script>
+</head>
+
+<!------------------------ BODY はここから ------------------------->
+
+<body bgcolor=white text=black onLoad="document.myForm.reset()" onUnload="byebye()">
+<h2>入門○×問題総まとめ</h2>
+次の文が正しければ○，誤りなら×を選びなさい。
+
+
+<noscript>
+<br>
+この正誤問題は JavaScript 1.1で書かれています。<br>
+Netscape Navigator 3.0 以上 または Internet Explorer 4.0 以上でご覧下さい。<br>
+</noscript>
+
+
+<script language="JavaScript">
+<!--
+var x=new MakeArray(NUM);
+var m=new MakeArray(4);
+var str="", k; 
+
+if (shuffle) {
+    x = ransu(NUM); 
+} else {
+    for (i=1;i<=NUM;i++) { x[i]=i; }
+}
+str += "<form name='myForm'>";
+str += "<table border=1 cellpadding=5 cellspacing=0>";
+for (j=1; j<=snum; j++){
+    k=x[j];
+    if (j % 2 > 0) {
+        bgc1="pink"; bgc2="lightcyan"; textc="black";
+    } else {
+        bgc1="pink"; bgc2="lightyellow"; textc="black";
+    }
+    str += "<tr><th width=40 bgcolor=" + bgc1 + " align=center>問" + j + "<\/th>";
+    str += "<td width=" + (tbl_width - 160) + " bgcolor=" + bgc2 + ">";
+    str += "<font color=" +textc + ">" + q[k] + "<\/font><\/td>";
+    str += "<td bgcolor=" + bgc2 + " nowrap>"; 
+    str += "<input type=radio name=Q" + j + " value=" + v[k];
+    str += " onClick='radio" + k + "(this)'>";
+    str += "<font color=" + textc + ">" + s[1]  + "<\/font>　　";
+    v2 = 1 - v[k];
+    str += "<input type=radio name=Q" + j + " value=" + v2;
+    str += " onClick='radio" + k + "(this)'>";
+    str += "<font color=" + textc + ">" + s[2] + "<\/font>";
+    
+    if (kaisetsu_type == 2) {
+       str += "　　<input type=button value='解説' onClick='single_kaisetsu(" + k + ")'>";
+    }
+    str += "<\/td><\/tr>";
+}
+str += "<\/table><br>";
+str += "<table border=0 cellspacing=0 cellpadding=2>";
+str += "<tr><td align=center width=" + tbl_width + "><br>";
+str += "<input type=button onClick='kekka(this.form)' value=' 採点する '>　";
+str += "<input type=button onClick='location.reload()' value=' もう一度 '>";
+if (kaisetsu_type >= 1)
+  str += "　<input type=button onClick='kaisetsu_view()' value=' 解説一覧 '>";
+if (snum < NUM) str += "<br><small><br>もう一度をクリックすると別の問題が出題されます<\/small>";
+str += "<\/td><\/tr>";
+str += "<!----------------- 以下のリンクは消さないでください -------------->";
+str += "<tr><td align=right>";
+str += "  <a href='http://www.fureai.or.jp/~irie/webquiz/' target=top>";
+str += "  <font size=1><i>created by WEB問題作成ツール<\/i><\/font><\/a>";
+str += "<\/table><br>";
+str += "<\/form>";
+document.write( str );
+//-->
+</script>
+
+<!------------- ここから下はご自由にどうぞ ---------------->
+
+
+
+</body>
+</html>
