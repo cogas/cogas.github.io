@@ -6,6 +6,8 @@
   var color 
   var w = $('canvas')[0].width;
 	var h = $('canvas')[0].height;
+	var dt = 0.01;
+	var dif = 10;
 	
   init();
   draw();
@@ -22,7 +24,7 @@
       area[i] = new Array(length);
       newarea[i] = new Array (length); 
       for(var j=0; j<=length; j++){
-        area[i][j] = {x:600/(length+1)*i, y:600/(length+1)*j, u: Math.round(Math.random())};
+        area[i][j] = {x:600/(length+1)*i, y:600/(length+1)*j, u:Math.random()};
       }
     }
   };
@@ -33,7 +35,7 @@
     for (var i=0; i<=length; i++){
       for(var j=0; j<=length; j++){
         $('canvas').drawRect({
-          fillStyle: 'rgba(0,0,0,'+((area[i][j].u+1)%2)+')',
+          fillStyle: 'rgba(0,0,0,'+(area[i][j].u)+')',
           width : 600/(length+1), height : 600/(length+1), fromCenter : false,
           x: area[i][j].x, y: area[i][j].y,
         });
@@ -45,48 +47,27 @@
   function renew() {
     for(var i=0; i<=length; i++){
       for(var j=0; j<=length; j++){
-        if(deathCheck (area[i][j])) {newarea[i][j] = 1;}
-        else {
-          if (birthCheck (area[i][j])) {newarea[i][j] = 0;}
-          else newarea[i][j] = area[i][j].u;
-        }
+      	newarea[i][j] = dif*dt*laplase(area[i][j]);
       }
     }
     for(var i=0; i<=length; i++){
       for(var j=0; j<=length; j++){
-        area[i][j].u = newarea[i][j];
+        area[i][j].u += newarea[i][j];
       }
     }
   };
   
-  
-  function birthCheck(obj) {
-    return (obj.u == 1 && (aroundSum (obj) == 3));
-  };
-  
-  
-  function deathCheck(obj) {
-    return (obj.u == 0 && (aroundSum(obj) != 3) && (aroundSum(obj) !=2));
-  };
-  
-  
-  function aroundSum(obj){
-    var sum;
+	function laplase(obj){
     var i = (obj.x)*(length+1)/600;
     var j = (obj.y)*(length+1)/600;
     var a,b,c,d;
-    if(i == 0) a = 1; else a = area[i-1][j].u;
-    if(i == length) b = 1; else b = area[i+1][j].u;
-    if(j == 0) c = 1; else c = area[i][j-1].u;
-    if(j == length) d = 1; else d = area[i][j+1].u;
-    if(i != 0 && j != 0) e = area[i-1][j-1].u; else e = 1;
-    if(i != length && j != 0) f = area[i+1][j-1].u; else f =1;
-    if(j != length && i != 0) g = area[i-1][j+1].u; else g =1;
-    if(j != length && i != length) h = area[i+1][j+1].u; else h=1;
-    sum = a+b+c+d+e+f+g+h;
-    return (8-sum);
-  };
-  
+    if(i == 0) a = 0; else a = area[i-1][j].u;
+    if(i == length) b = 0; else b = area[i+1][j].u;
+    if(j == 0) c = 0; else c = area[i][j-1].u;
+    if(j == length) d = 0; else d = area[i][j+1].u;
+    return (a+b+c+d-4*obj.u);
+	};
+
   $('#mass20')
   .change(function(){
     clearInterval(interval);
@@ -124,18 +105,25 @@
     freq = $(this)[0].value;
     interval = setInterval(loop,1000/freq);
   });
+  $('#diff').change(function(){
+    dif = $(this)[0].value;
+  });
+  $('#dt').change(function(){
+    dt = $(this)[0].value;
+  });
   $('#extinct').click(function(){
     for (var i=0; i<=length; i++){
       for(var j=0; j<=length; j++){
-        area[i][j].u = 1;
+        area[i][j].u = 0;
         $('canvas').drawRect({
-          fillStyle: 'rgb('+ Math.round(area[i][j].u*256) + ',' + Math.round(area[i][j].u*256) + ',' + Math.round(area[i][j].u*256) + ')',
+          fillStyle: 'rgba(0,0,0,0)',
           width : 600/(length+1), height : 600/(length+1), fromCenter : false,
           x: area[i][j].x, y: area[i][j].y,
         });
         }
     }
   });
+  
   var mauseState = false;
   var memi,memj;
   $('canvas')
@@ -148,9 +136,9 @@
     var i = Math.floor(x*(length+1)/600);
     var j = Math.floor(y*(length+1)/600);
     memi = i; memj = j;
-    area[i][j].u = (area[i][j].u+1)%2;
+    area[i][j].u = 1;
     $('canvas').drawRect({
-      fillStyle: 'rgb('+ Math.round(area[i][j].u*256) + ',' + Math.round(area[i][j].u*256) + ',' + Math.round(area[i][j].u*256) + ')',
+      fillStyle: 'rgba(0,0,0,1)',
       width : 600/(length+1), height : 600/(length+1), fromCenter : false,
       x: area[i][j].x, y: area[i][j].y,
     });
@@ -164,9 +152,9 @@
       var j = Math.floor(y*(length+1)/600);
       if(memi != i || memj != j){
         memi = i; memj = j;
-        area[i][j].u = (area[i][j].u+1)%2;
+        area[i][j].u = 1;
         $('canvas').drawRect({
-          fillStyle: 'rgb('+ Math.round(area[i][j].u*256) + ',' + Math.round(area[i][j].u*256) + ',' + Math.round(area[i][j].u*256) + ')',
+          fillStyle: 'rgba(0,0,0,1)',
           width : 600/(length+1), height : 600/(length+1), fromCenter : false,
           x: area[i][j].x, y: area[i][j].y,
         });

@@ -1,9 +1,9 @@
-<html>
+﻿<html>
 <head>
-<title>ライフゲーム</title>
+<title>拡散</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script type="text/javascript" src="jcanvas.min.js"></script>
-<script type="text/javascript" src="cellautomata.js"></script>
+<script type="text/javascript" src="diffusion.js"></script>
 <link href="index.css" rel="stylesheet" type="text/css">
 <style type="text/css" media="screen">
 /* <![CDATA[ */
@@ -24,9 +24,9 @@ div#stage{
 
 <body>
         <div class="lbor">
-        <div class="title">セル・オートマトン</div>
+        <div class="title">拡散</div>
         <div class="text">
-    セル・オートマトンっ。というか、ライフゲーム。ドラッグしたら白黒反転するよ。
+        反応拡散方程式の前段階。まだプロトタイプよ。
         </div>
         </div>
     
@@ -39,7 +39,11 @@ div#stage{
 <table class = "text">
 <tr>
  <td>描画速度 ：</td>
- <td><input type=range id="speed" value=5 min=1 min=50></td>
+ <td><input type=range id="speed" value=5 min=1 max=100></td>
+</tr>
+<tr>
+ <td>拡散拡散 D ：</td>
+ <td><input type=range id="diff" value=5 min=0.1 max=20></td>
 </tr>
 <tr>
  <td>サイズ：</td>
@@ -47,7 +51,6 @@ div#stage{
   <input type=radio value="darkblue" name=mass id="mass20"> 20*20
   <input type=radio value="darkred" name=mass id="mass60" checked> 60*60
   <input type=radio value="darkblue" name=mass id="mass100"> 100*100
-  <input type=radio value="darkred" name=mass id="mass150"> 150*150
  </td>
 </tr>
 <tr>
@@ -63,9 +66,6 @@ div#stage{
     <canvas id="cvs" width=600 height=600></canvas>
 </center></div>
         
-
-あれを実装したい。
-初期条件をラジオで決める（丸とか■とか・・・なんでもいいけど）
 
 </body>
 </html>
