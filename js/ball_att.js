@@ -1,4 +1,4 @@
-$(function(){
+﻿$(function(){
   var freq = 100;
   var mass = new Array();
   var round = 25;
@@ -8,6 +8,7 @@ $(function(){
   var w = $('canvas')[0].width;
   var yuragi = 50;
   var gravity = 0;
+  var gensui = 0.5;
 
   init();
   var interval = setInterval (loop, 1000/freq);
@@ -40,8 +41,8 @@ $(function(){
   };
   
   function renew(m) {
-    m.vel.x += (Math.random()-0.5)*yuragi*delta;
-    m.vel.y += (Math.random()-0.5)*yuragi*delta + gravity*delta;
+    m.vel.x += -gensui*m.vel.x*delta + Math.sqrt((-2)*Math.log(Math.random()))*Math.sin(2*Math.PI*Math.random())*yuragi*delta;
+    m.vel.y += -gensui*m.vel.y*delta + Math.sqrt((-2)*Math.log(Math.random()))*Math.sin(2*Math.PI*Math.random())*yuragi*delta + gravity*delta;
     m.point.x += m.vel.x*delta;
     m.point.y += m.vel.y*delta;
     reflect (m);
@@ -87,6 +88,9 @@ $(function(){
   });
   $('#gravity').change(function(){
     gravity = Number($(this)[0].value);
+  });
+  $('#gensui').change(function(){
+    gensui = Number($(this)[0].value);
   });
   
 });
