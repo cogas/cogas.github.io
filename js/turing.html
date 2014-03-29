@@ -1,0 +1,110 @@
+﻿<html>
+<head>
+<title>反応拡散方程式</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script type="text/javascript" src="jcanvas.min.js"></script>
+<script type="text/javascript" src="turing.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<style type="text/css" media="screen">
+/* <![CDATA[ */
+div#stage{
+    width:600px;
+    height:600px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-300px;
+    margin-top:-250px;
+    border:1px solid black;
+}
+/* ]]> */
+</style>
+
+</head>
+
+<body>
+        <div class="lbor">
+        <div class="title">反応拡散方程式</div>
+        <div class="text">
+        反応拡散方程式。<p>
+        <img src=http://www.codecogs.com/eq.latex?\frac{\partial%20&u}{\partial%20&t}=au+bv+D_{u}\bigtriangleup%20&u><p>
+        <img src=http://www.codecogs.com/eq.latex?\frac{\partial%20&v}{\partial%20&t}=cu+dv+D_{v}\bigtriangleup%20&v><p>
+        uの量だけ可視化。黒ければ黒いほどそのマスのuの値は大きい。
+        </div>
+        </div>
+    
+    
+        <div class="lbor">
+        <div class="text"><a href="../index.html"><center>- top -</center></a></div>
+        </div>
+
+
+<table class = "text">
+<tr>
+ <td>描画速度 ：</td>
+ <td><input type=range id="speed" value=5 min=1 max=100></td>
+</tr>
+<tr>
+ <td>拡散拡散 Du ：</td>
+ <td><input type=number id="Du" value=0.5 min=0.1 max=20 step=0.01></td>
+</tr>
+<tr>
+ <td>拡散拡散 Dv ：</td>
+ <td><input type=number id="Dv" value=0.5 min=0.1 max=20 step=0.01></td>
+</tr>
+<tr>
+ <td>a ：</td>
+ <td>
+  <input type=number id="a" value=1 step=0.01>
+ </td>
+</tr>
+<tr>
+ <td>b ：</td>
+ <td>
+  <input type=number id="b" value=-1 step=0.01>
+ </td>
+</tr>
+<tr>
+ <td>c ：</td>
+ <td>
+  <input type=number id="c" value=-1 step=0.01>
+ </td>
+</tr>
+<tr>
+ <td>d ：</td>
+ <td>
+  <input type=number id="d" value=1 step=0.01>
+ </td>
+</tr>
+
+
+<tr>
+ <td>サイズ：</td>
+ <td>
+  <input type=radio name=mass id="mass20"> 20*20
+  <input type=radio name=mass id="mass60" checked> 60*60
+  <input type=radio name=mass id="mass100"> 100*100
+ </td>
+</tr>
+<tr>
+ <td>真っ白</td>
+ <td>
+  <input type="button" value="EXTINCT" id="extinct">
+ </td>
+</tr>
+<tr>
+ <td>ランダムリセット</td>
+ <td>
+  <input type="button" value="RESET" id="reset">
+ </td>
+</tr>
+
+</table>
+
+<div id="stage"><center>
+    <canvas id="cvs" width=600 height=600></canvas>
+</center></div>
+        
+
+</body>
+</html>
