@@ -9,14 +9,13 @@
 /* <![CDATA[ */
 div#stage{
     width:600px;
-    height:600px;
+    height:300px;
     position:absolute;
     top:50%;
     left:50%;
     margin-left:-300px;
-    margin-top:-250px;
-    border:1px solid black;
-}
+    margin-top: -150px;
+    }
 /* ]]> */
 </style>
 
@@ -29,7 +28,10 @@ div#stage{
         反応拡散方程式。<p>
         <img src=http://www.codecogs.com/eq.latex?\frac{\partial%20&u}{\partial%20&t}=au+bv+D_{u}\bigtriangleup%20&u><p>
         <img src=http://www.codecogs.com/eq.latex?\frac{\partial%20&v}{\partial%20&t}=cu+dv+D_{v}\bigtriangleup%20&v><p>
-        uの量だけ可視化。黒ければ黒いほどそのマスのuの値は大きい。
+        uの量だけ可視化。黒ければ黒いほどそのマスのuの値は大きい。<p>
+        ※注釈<p>
+        拡散しない場合、それぞれのマスが振動するためのa,b,c,dの関係は、<p>
+        <img src=http://www.codecogs.com/eq.latex?(a-d)^2+4bc<0><p>        
         </div>
         </div>
     
@@ -43,6 +45,14 @@ div#stage{
 <tr>
  <td>描画速度 ：</td>
  <td><input type=range id="speed" value=5 min=1 max=100></td>
+</tr>
+<tr>
+ <td>uの検出域 ：</td>
+ <td><input type=number id="detectU" value=1 min=0.01 max=50 step=0.5></td>
+</tr>
+<tr>
+ <td>vの検出域 ：</td>
+ <td><input type=number id="detectV" value=1 min=0.01 max=50 step=0.5></td>
 </tr>
 <tr>
  <td>拡散拡散 Du ：</td>
@@ -82,8 +92,8 @@ div#stage{
  <td>サイズ：</td>
  <td>
   <input type=radio name=mass id="mass20"> 20*20
-  <input type=radio name=mass id="mass60" checked> 60*60
-  <input type=radio name=mass id="mass100"> 100*100
+  <input type=radio name=mass id="mass50" checked> 50*50
+  <input type=radio name=mass id="mass60"> 60*60
  </td>
 </tr>
 <tr>
@@ -102,7 +112,7 @@ div#stage{
 </table>
 
 <div id="stage"><center>
-    <canvas id="cvs" width=600 height=600></canvas>
+    <canvas id="cvs" width=600 height=300></canvas>
 </center></div>
         
 
