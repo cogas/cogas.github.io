@@ -4,7 +4,7 @@
 
 
 section{/*全体枠*/
-  width: 400px;/*全体の幅*/
+  width: 98%;/*全体の幅*/
   border-left: solid 4px #665e51;/*枠色*/
   border-bottom: solid 1px #665e51;
   }
