@@ -4,115 +4,12 @@
 <meta charset="UTF-8">
 <meta name="autor" content="la .cogas.">
 <meta name="keywords" content="test">
-<meta name="description" content="化学ポテンシャルについて">
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<link rel="stylesheet" type="text/css" href="index.css">
-<title>title</title>
+<meta name="description" content="test contents">
+<link rel="stylesheet" type="text/css" href="../index2.css">
+<title>{{page.title}}
+</title>
 </head>
 <body>
-<article >
-<section>
-<h1 >すごいぞ！化学ポテンシャル</h1>
-<p>院試勉強のついでに化学ポテンシャルについて簡単にまとめようかなって。</p>
-</section>
-
-<section >
-<h2 >1. 化学ポテンシャルとは</h2>
-<p>とりあえず、化学ポテンシャルとは何なのかということから入りますと、ざっくり言えば、
-	<dl><dd>「ある化学変換（だけではないけど）に伴う熱力学量のこと」</dd></dl>
-です。もう少しだけきちんと言えば、
-	<dl><dd>「粒子種が系に1mol 生成/流入 することによって増加するエネルギー（自由エネルギー）のこと」</dd></dl>
-です。定義は簡単に「粒子種の生成/流入で増える何か」とでも捉えましょう。</p>
-<p>粒子種と書きましたが、これは化学ポテンシャルは種類の違う粒子（水とオキソニウムイオンとか）のそれぞれに定義されているものだからです。</p>
-</section>
-
-<section >
-<h2 >1.1 化学ポテンシャルで表せること</h2>
-<p>化学ポテンシャルはいろいろな現象で活躍します。原則、粒子が増えたり減ったりする現象なら大体使えます。例を挙げると、
-<ul>
-	<li>化学反応（粒子種が生成したり消滅したりする）</li>
-	<li>相の状態（粒子種が相Aから相Bに移動、つまり、Aから粒子が消え、Bに粒子が現れる）</li>
-</ul>
-この２つが主になりますが、この２つを表現できることによって導ける等式はかなり豊富で、
-<ul>
-	<li>平衡定数（分配平衡定数、電離平衡定数、イオン積などなど）</li>
-	<li>クラジウスクラペイロン式</li>
-	<li>van't Hoff式</li>
-	<li>浸透圧</li>
-	<li>沸点/凝固点変化</li>
-	<li>膜電位</li>
-</ul>
-などなど、いろいろあります。</p>
-</section>
-
-<section >
-<h2 >1.2 化学ポテンシャルとその周辺の数式</h2>
-<p>まず、化学ポテンシャルは、普通 \(\mu\) で表し、圧力Pと温度Tの関数ですから、粒子種kの化学ポテンシャルを
-$$\mu_k(P,T)$$
-と書きます。</p>
-
-<p>よく耳にするギブズエネルギーは、化学ポテンシャルとモル数の積の和で表せて、
-$$G(P,T,N_k) = \sum_{k} \mu_k(P,T) \cdot N_k$$
-となります。実際、化学ポテンシャルで平衡状態の現象が記述できるのは、このギブズエネルギーとの繋がりのおかげでもあります。</p>
-
-<p>ちなみに、1成分系だと、
-$$G(P,T,N_k) = &nbsp;\mu_k(P,T) \cdot N_k$$
-なので、化学ポテンシャルとは(1成分系では)1molあたりのギブズエネルギーのことだということがわかります。一般的には、
-$$\left( \frac{\partial G }{\partial N_k} \right )_{P,T,N_i} = \mu_k(P,T)$$
-となり、「粒子種kのモル数を1mol増加したときのGの増加量がkの化学ポテンシャルに相当する」ということになります。<br>
-（ここで、偏微分の右下の添字はこの操作中（kのモル数を増やす)に固定されているパラメータを表します。つまり、圧力、温度、他の粒子種のモル数を一定に保ったままkのモル数だけ増やす、ということです）</p>
-
-<p>あともう一つだけ紹介しておくと、圧力、温度一定での粒子種のモル数変化によるギブズエネルギーの変化は、
-$$\Delta G(P,T,N_k) = \sum_{k} \mu_k(P,T)~\Delta N_k$$
-となります。これは上の式を考えても直観的な式でしょう。</p>
-
-<p>平衡状態では\(\Delta G = 0\)がなりたつので、
-$$\sum_{k} \mu_k(P,T)~\Delta N_k = 0$$
-という式が平衡状態を記述する重要な等式になります。</p>
-
-<p>ex)</p>
-<p>1例として、次の反応式、\(A \rightleftharpoons B\) を考えてみます。</p>
-<p>このとき、ギブズエネルギー変化は、
-$$\Delta G(P,T,N_k) = \mu_A(P,T)~\Delta N_A + \mu_B(P,T)~\Delta N_B$$
-となります。ここで、AとBは1:1で反応する、つまり、Aが減った分だけBが増えることを考えると、
-$$\Delta N_A + \Delta N_B = 0$$
-なので、\( \Delta N = -\Delta N_A = \Delta N_B\)とおいてやると、
-$$\Delta G(P,T,N_k) = (-\mu_A(P,T)+ \mu_B(P,T))\Delta N$$
-となります。よって、平衡状態を表す等式は、
-$$(\mu_B(P,T) - \mu_A(P,T))\Delta N = 0$$
-となり、
-$$ \mu_B(P,T) = \mu_A(P,T)$$
-が平衡状態になりたつ式ということになります。化学ポテンシャルが釣り合っているように見えますね。</p>
-</section>
-
-<section >
-<h2 ></h2>
-<p ></p>
-</section>
-
-<section >
-<h2 ></h2>
-<p ></p>
-</section>
-
-<section >
-<h2 ></h2>
-<p ></p>
-</section>
-
-<section >
-<h2 ></h2>
-<p ></p>
-</section>
-
-<section >
-<h2 ></h2>
-<p ></p>
-</section>
-
-
-
-</article>
+{{ content }}
 </body>
 </html>
