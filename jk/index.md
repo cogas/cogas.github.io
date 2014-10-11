@@ -1,13 +1,28 @@
 ---
 layout: default
-title: Oh! my lojban!
+title: lo mi lojbo .iu
 ---
-#fi'i do
+#{{ site.title }}
+
+あいうえおあいうえお
+
+title: {{ site.title}}
+
+port: {{ site.port }}
+
+markdown : {{ site.markdown }}
+
+permalink: {{ site.permalink }}
+
+baseurl: {{ site.baseurl }}
 
 <ul>
 {% for post in site.posts %}
   <li>
-    <a href="{{ post.url }}">{{ post.date | date_to_long_string }} : {{ post.title }}</a>
+    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.date | date_to_long_string }} : {{ post.title }}</a>
   </li>
 {% endfor %}
 </ul>
+
+
+**Copyright © {{ site.author.name }} 2014 All rights reserved. Please contact to {{ site.author.email }}.**
