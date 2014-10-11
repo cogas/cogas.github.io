@@ -2,11 +2,12 @@
 layout: default
 title: lo mi lojbo .iu
 ---
-#{{ site.title }}
 
-あいうえおあいうえお
+# {{ site.title }}
 
-title: {{ site.title}}
+## あいうえおあいうえお
+
+title: {{ site.title }}
 
 port: {{ site.port }}
 
