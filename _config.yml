@@ -1,0 +1,18 @@
+permalink: :categories/
+
+# Site settings
+lang: ja
+title: 生姜の物置き
+email: ""
+author:
+  name: cogas
+  email: cheeky.chic.chick@gmail.com
+
+url: "http://cogas.github.io"
+
+twitter_username: oka_iu_tcan
+github_username:  cogas
+
+# Build settings
+markdown: kramdown
+
