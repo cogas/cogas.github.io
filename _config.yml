@@ -1,4 +1,4 @@
-permalink: :categories/
+permalink: /:year-:month-:day/:title
 
 # Site settings
 lang: ja
