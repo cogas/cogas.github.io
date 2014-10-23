@@ -12,7 +12,7 @@ title: 生姜の物置き
 
 ### あーてぃこー 
 <ul class="big">
-<li><a href="article/chemicalp">すごいぞ！化学ポテンシャル</a></li>
+<li ><a href="article/chemicalp">すごいぞ！化学ポテンシャル</a></li>
 <li ><a href="article/jbo_goldendict">オフラインでロジバン辞書を使う</a></li>
 <li ><a href="article/jbo_file">ロジバンデータもろもろ</a></li>
 </ul>
