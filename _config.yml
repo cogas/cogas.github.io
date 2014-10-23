@@ -8,6 +8,9 @@ author:
   name: cogas
   email: cheeky.chic.chick@gmail.com
 
+highlighter: pygments
+github: [Repository metadata]
+
 url: "http://cogas.github.io"
 
 twitter_username: oka_iu_tcan
