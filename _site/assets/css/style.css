@@ -38,10 +38,20 @@ h2{
 h3{
   width: 90%;
   font-size: 14pt;/*文字サイズ*/
-  color: #584939f;/*文字色*/
+  color: #584939;/*文字色*/
   padding: 1px 1em 5px 0.7em;
   border-left: solid 3px #584939;
   border-bottom: dashed 1px #584939;
+  filter: alpha(opacity=100,finishopacity=10,style=1);  
+}
+
+h4{
+  width: 90%;
+  font-size: 12pt;/*文字サイズ*/
+  color: #584939;/*文字色*/
+  padding: 1px 1em 5px 0.7em;
+  border-left: solid 2px #000000;
+  border-bottom: dotted 1px #000000;
   filter: alpha(opacity=100,finishopacity=10,style=1);  
 }
 
