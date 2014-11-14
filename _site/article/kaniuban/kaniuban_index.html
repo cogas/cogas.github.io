@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>おかゆ超訳ロジバン</title>
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript" ></script>
+  <script src="/assets/js/basic.js" type="text/javascript" ></script>
+</head>
+<body>
+<div class="titlebar">生姜の物置き</div>
+
+  <br>
+<font size="2">
+published : 2014-11-14<br>
+revised : 20xx-xx-xx
+</font>
+
+<h1>おかゆ超訳ロジバン</h1>
+
+<h1 id="section">0章</h1>
+
+<h2 id="section-1">はじめに</h2>
+
+<p>　この一連の記事ではロジバンの文法のうち、統語論を重点的に学んでいきます。具体的には、slabu gerna と xorxesによる zasni gerna の２つのPEGを用いた、slabu gerna を踏襲しつつ、 zasni gerna によるアレンジを加えたPEGみたいなものを使って、どっちつかずの『トイ・ロジバン』を学んでいきます。</p>
+
+<p>その仕様から、ここで学ぶロジバン構文は一部、既存の構文解析器ではエラーが出るようなものもありますが、そのほとんどは現在のロジバンによる意思疎通にとって致命的なものではないと考えています。そのため、slabu gernaのように『時代遅れ』でもなく、zasni gerna のように『先進的すぎる』わけでもないつくりとなっているこの『トイ・ロジバン』を学ぶことは、現在のロジバンのようすを手っ取り早く学ぶためのとっておきではないかと思っています。</p>
+
+<p>また、従来の講座が名前や述語、項、基本的な文（bridi）からスタートするのと打って変わって、この記事では最も大きい構造からどんどん中に踏み込んでいく形をとっていきます。そのため、些細な表現に囚われることなく、大きな視点からロジバン文法を掴み取れるようになれるかと思います。</p>
+
+<h2 id="section-2">少しのルール</h2>
+
+<p>本編を始める前に、「PEGみたいなもの」に使われている記号について簡単に説明します。基本的にはPEGと同じです。</p>
+
+<ol>
+  <li>小文字は複合的な構造</li>
+  <li>大文字はセルマホを表しこれが末端(単語)となる</li>
+  <li>単純に並べることで順接を表す</li>
+  <li>/ が優先順位つきの選択を示す</li>
+  <li>? は 0個か 1つを示す</li>
+  <li>“*” は 0個かそれ以上を示す</li>
+  <li>”+” は 1つかそれ以上を示す</li>
+  <li>() はグループにまとめる</li>
+  <li>!A は該当箇所にAがこない、 &amp;A は該当箇所にAがくることを示す</li>
+  <li>?, *, + は最長マッチである</li>
+</ol>
+
+<p>たとえば、</p>
+
+<pre><code>selbri &lt;- selbri-1+ / (tag / NA#) selbri
+
+selbri-1 &lt;- BRIVLA# / KE# selbri-1+ KEhE#?
+
+tag &lt;- tag-unit+ (JOI# tag-unit+)* !GI#
+
+tag-unit &lt;- BAI#
+</code></pre>
+
+<p>こんな表現があったとしましょう。</p>
+
+<p>NA#, BRIVLA#, KE#, KEhE#, JOI#, GI#, BAI#<br />
+の「大文字#」の形が基本的には「ロジバンの語」だと思ってください。<br />
+つまり、代入を繰り返して、「大文字#」に辿り着いたらゴールです。<br />
+構造としてはそれを逆にたどればよいことになります。</p>
+
+<p>左が（構文の）名前であり、右がその定義となっています。</p>
+
+<p>たとえば、<br />
+「selbriとは1個以上のselbri-1, tagかNA#をつけたselbriである」</p>
+
+<p>前者はわかると思いますが、後者は再帰しているのに注意してください。つまり、</p>
+
+<p>tag selbri-1 selbri-1 selbri-1</p>
+
+<p>や</p>
+
+<p>NA# tag NA# selbri-1 selbri-1</p>
+
+<p>という形は selbri である、ということです。</p>
+
+<p>また、tagは、<br />
+「tag とは1個以上のtag-unitに0個以上のJOI# tag-unitをつけたものである」</p>
+
+<p>となります。しかし、「!GI#」で分かるように、tag GI# という形はあり得ません。</p>
+
+<p>またPEGでは / が or なわけですが、どちらも適合する場合、左が優先されます。</p>
+
+<p>ということで、</p>
+
+<p>BAI# BAI# JOI# BAI# BRIVLA#</p>
+
+<p>というようなテキストがあったとき、これは selbri として解釈されます。</p>
+
+<p>このような感じで、「PEGっぽいもの」を読みながらロジバン文法を総ざらいしてみます。</p>
+
+<h1 id="section-3">1章 - 文章・段落・言明 -</h1>
+
+<p>まずは文以上の構造から見ていきます（ほとんどの入門講座では力尽きて、ここまで説明できていないと思いますが）。</p>
+
+<p>大事なのは、<strong>text, paragraph, statement</strong> の3要素です。</p>
+
+<p>早速見て行きましょう。</p>
+
+<h2 id="text">文章（text）</h2>
+
+<pre><code>text &lt;- SI-tail* free? paragraphs FAhO#?
+</code></pre>
+
+<p>「SI-tail」と「free」はとりあえず置いておきます。そこまで重要ではありませんので。</p>
+
+<p>となると、このように書けます。</p>
+
+<pre><code>text &lt;- paragraphs FAhO#?
+</code></pre>
+
+<p>すなわち、<strong>文章とは段落の集まりとFAhO（省略可）からなる</strong>わけです。</p>
+
+<h2 id="paragraph">段落（paragraph）</h2>
+
+<pre><code>paragraphs &lt;- paragraph (NIhO# paragraph)*
+
+paragraph &lt;- statement (I# statement)*
+</code></pre>
+
+<p>次に段落です。paragraphs は段落の集まりですが、段落ひとつひとつは<strong>NIhO#</strong>によって繋がれます。言い換えれば、NIhO#によって段落は区切られます。</p>
+
+<p>そして、<strong>「段落は一連のstatementからなり、それらは I# で区切られる」</strong>わけです。</p>
+
+<p>言明をs と書くと、</p>
+
+<p>s I# s I# s NIhO# s I# NIhO s I# s I# s I# s FAhO#</p>
+
+<p>はひとつの文章をなすことになります。</p>
+
+<p>Q. 「NIhO# NIhO#」 とか 「I# I# I#」は構文エラー？</p>
+
+<p>A. エラーではありません。これについてはsentenceの節で見ていきます。</p>
+
+<h2 id="statement">言明（statement）</h2>
+
+<p>段落の中身、statementは次のようになります：</p>
+
+<pre><code>statement &lt;- statement-1 / prenex statement
+</code></pre>
+
+<p>まず言明は<strong>statement-1そのもの</strong>か、<strong>prenexが複数個つく</strong>ことになります。</p>
+
+<p>prenex prenex statement-1 は statement と解釈されます。</p>
+
+<p>さて、prenex とは<strong>冠頭</strong>と訳されますが、次のようになります：</p>
+
+<pre><code>prenex &lt;- term+ ZOhU#
+</code></pre>
+
+<p>termは「項」です。<strong>「prenexとは1個以上のtermにZOhU#をつけたもの」</strong>です。</p>
+
+<p>ですから、</p>
+
+<p>term term ZOhU# statement-1 </p>
+
+<p>は statement となります。</p>
+
+<hr />
+
+<p>次に、statementは<strong>statement-1</strong>と<strong>statement-2</strong>からなります：</p>
+
+<pre><code>statement-1 &lt;- statement-2 (I# joik-jek statement-2)*
+
+statement-2 &lt;- sentence (I# joik-jek? tag? BO# sentene)*
+</code></pre>
+
+<p><strong>joik-jek</strong>というのは接続詞の一種です。接続詞と思ってください。</p>
+
+<p><strong>statement-1 は I# joik-jek で繋がれたstatement-2の集まり</strong>です。</p>
+
+<p>最も簡素なstatement-1の形は statement-2 そのものです。</p>
+
+<p>次に、statement-2です。<br />
+<strong>statement-2は I# joik-jek tag BO# で繋がれた sentenceの集まり</strong>です。</p>
+
+<p>ただし、joik-jek と BO# は省略可能ですから、</p>
+
+<p>sentence I# BO# sentence も statement-2 です。</p>
+
+<p>最も簡素なstatement-2はsentenceそのものです。<br />
+（このことから、最も単純なstatement は　sentence であることがわかります。）</p>
+
+<p>さて、statement-1 は statement-2 よりも外部にあります。<br />
+ですから、I# joik-jek の結合力は I# joik-jek BO# よりも<strong>弱い</strong> ことが分かります。</p>
+
+<p>sentence を s と書くことにすると、</p>
+
+<p>s I# s I# BO# s I# joik-jek s I# BO# s I# joik-jek s I# s</p>
+
+<p>は、</p>
+
+<p>[ [ s I# [ [s I# BO# s] I# joik-jek [s I# BO# s] ] ] I# s ]</p>
+
+<p>となります。<strong>I# BO# は優先的にsentenceを結合します。</strong></p>
+
+<hr />
+
+<p>今回の事項をまとめると、</p>
+
+<ul>
+  <li>text とは paragraphs と FAhOからなる。</li>
+  <li>paragraphs は NIhO# で繋がれたparagraphの集まりである。</li>
+  <li>paragraph は一連のstatementからなり、それらは I# で区切られる。</li>
+  <li>statement は prenex が複数個ついた statement-1 である。</li>
+  <li>statement-1 は I# joik-jek で繋がれたstatement-2の集まりである。</li>
+  <li>statement-2 は I# joik-jek tag BO# で繋がれた sentenceの集まりである。</li>
+</ul>
+
+<p>となります。</p>
+
+<h1 id="bridi--">2章 - 文, bridi末端 -</h1>
+
+<h2 id="sentence">文（sentence）</h2>
+
+<p>さて、他の講座でも初期に学ぶであろう基本的な「文」についてみていきます。</p>
+
+<pre><code>sentence &lt;- (term+ CU#?)? bridi-tail / TUhE# paragraphs TUhU#
+		/ gek subsentence GI# subsentence / term* VAU#?
+
+subsentence &lt;- sentence / prenex sentence
+</code></pre>
+
+<p>sentenceの種類は 4つあります。</p>
+
+<ol>
+  <li>0個以上のtermとそれに続く bridi-tail （最もふつうのsentence）</li>
+  <li>paragraphs を TUhE# と TUhU# で囲んだもの</li>
+  <li>２つのsentenceを gek と GI# で区切ったもの</li>
+  <li>0個以上の term を VAU# で締めたもの</li>
+</ol>
+
+<p>順に見て行きましょう。</p>
+
+<h3 id="term-cu-bridi-tail">(term+ CU#?)? bridi-tail</h3>
+
+<p>0個以上のtermとそれに続く bridi-tail です。<br />
+これから、「termがないときは CU# を bridi-tailの前に置けない」ことがわかります。<br />
+あくまでも、CU#はtermとbridi-tailのセパレータだということですね。<br />
+これはもっとも一般的なsentenceの形となります。bridi-tail は後述します。</p>
+
+<h3 id="tuhe-paragraphs-tuhu">TUhE# paragraphs TUhU</h3>
+
+<p>TUhE# と TUhU# はいわゆる<strong>文章括弧</strong>です。</p>
+
+<p>文より大きな構造である文章はTUhE# TUhU#で囲むことで構文上「文」と同レベルになります。</p>
+
+<h3 id="gek-subsentence-gi-subsentence">gek subsentence GI# subsentence</h3>
+
+<p>subsentence とは prenex のつけられる sentence のことです。副文です。</p>
+
+<p><strong>gek</strong> は <strong>前置接続詞</strong> と呼ばれています。ここでは gek は文レベルの接続詞となっています。つまり、文と文を接続しています。</p>
+
+<p>繋げられる２つの要素は <strong>GI#</strong> で隔てられます。gek .. GI# .. というフレーズは今後も出てくるので覚えておくとよいです。</p>
+
+<p>gek .. GI# によって繋げられた２文は構文上、1つの文として解釈されます。</p>
+
+<h3 id="term-vau">term* VAU#?</h3>
+
+<p>これも単純な構造です。0個以上のtermをVAU#で締めます。</p>
+
+<p>これより、「何も書かない」こともsentenceとしてみなされることがわかります。<br />
+すなわち、</p>
+
+<p>I# I# NIhO# NIhO# I# I# FAhO#</p>
+
+<p>というような文章があったとして、これは</p>
+
+<p>( ) I# ( ) I# ( ) NIhO# ( ) NIhO# ( ) I# ( ) I# ( ) FAhO#</p>
+
+<p>と解釈されます。( )は term* VAU#? で termが0個、VAUが省略された形です。</p>
+
+<p>このことから、</p>
+
+<ul>
+  <li>文章の頭にNIhO# や I# を置くこと</li>
+  <li>NIhO# や I# を連続して置くこと</li>
+</ul>
+
+<p>が許容されることが分かります。これらがどんな意味になるかは意味論の役目です。</p>
+
+<h2 id="bridibridi-tail">bridi末端（bridi-tail）</h2>
+
+<p>文の最も一般的な形、「(term+ CU#?)? bridi-tail」に出てきた bridi-tail について詳しく見ていきます。statementのように -1 と -2 が出てきます。statementのときと比較して見てみると理解しやすいかもしれません：</p>
+
+<pre><code>bridi-tail &lt;- bridi-tail-1 (gihek bridi-tail-1 term* VAU#?)*
+
+bridi-tail-1 &lt;- bridi-tail-2 (gihek tag? BO# bridi-tail-2 term* VAU#?)*
+
+bridi-tail-2 &lt;- selbri term* VAU#?
+		/ (tag / NA#)* gek bridi-tail GI# bridi-tail term* VAU#?
+</code></pre>
+
+<p>まず、<strong>bridi-tail</strong> は大雑把には <strong>bridi-tail-1 を gihek で繋いだ形</strong>にみえます。</p>
+
+<p><strong>gihek は bridi-tail 接続詞です</strong>。実際そのように見えますね！<br />
+ただし、gihek と bridi-tail-1の間にはいくつかのtermとVAU#が入る余地があります。</p>
+
+<p><strong>bridi-tail-1 は、大雑把には bridi-tail-2 を gihek tag? BO# で繋いだ形</strong>です。</p>
+
+<p>さて、statement の定義と見比べてみましょう：</p>
+
+<pre><code>statement-1 &lt;- statement-2 (I# joik-jek statement-2)*
+
+statement-2 &lt;- sentence (I# joik-jek? tag? BO# sentene)*
+</code></pre>
+
+<p>gihek と I# を対応してみると、<strong>BO#はより強く２つを結合する</strong>という共通の構造が見えてきます。実際、BO#は2つの構造をより強く結合するために使われます。</p>
+
+<p>さて、 bridi-tail-2 が実のところの<strong>bridi末端</strong>の中身です。２つありますね。</p>
+
+<ol>
+  <li>selbri term* VAU#?</li>
+  <li>(tag / NA#)* gek bridi-tail GI# bridi-tail term* VAU#?</li>
+</ol>
+
+<h3 id="selbri-term-vau">selbri term* VAU#?</h3>
+
+<p>そのまんまですね。新たに<strong>selbri</strong>という要素が出現しましたが、これは（おそらくみなさんお馴染みの）文の中心的存在、いわゆる「述語」です。</p>
+
+<p>つまり、<strong>bridi-tail は selbri と0個以上のtermからなり、VAU#で締められる</strong>。</p>
+
+<h3 id="tag--na-gek-bridi-tail-gi-bridi-tail-term-vau">(tag / NA#)* gek bridi-tail GI# bridi-tail term* VAU#?</h3>
+
+<p>「gek .. GI# ..」の構造が出ました！これは前置接続の構文ですね。</p>
+
+<p>やはり再帰的な定義であることに注意してください。</p>
+
+<p>bridi-tailの前置接続の構造では<strong>その頭に複数個のtagやNA#が置けます</strong>。<br />
+NA# はいわゆる「否定の語」です。notです。</p>
+
+<p>ですが、必須の要素ではないので、それを省くと、</p>
+
+<p>gek bridi-tail GI# bridi-tail term* VAU#?</p>
+
+<p>となります。gek .. GI# .. で bridi-tail を接続し、さらにその後ろに複数個のtermとVAU#を置いたものは1つのbridi-tailとして解釈されます。</p>
+
+<h2 id="tail-terms">tail-terms</h2>
+
+<p>今まで、よく 「term* VAU#?」 の形が出てきたかと思います。実はこの構造には、一方のPEGには名前が割り振られていました：</p>
+
+<p>tail-terms &lt;- term* VAU#?</p>
+
+<p>これを用いると、上の定義は次のようになります：</p>
+
+<pre><code>bridi-tail &lt;- bridi-tail-1 (gihek bridi-tail-1 tail-terms)*
+
+bridi-tail-1 &lt;- bridi-tail-2 (gihek tag? BO# bridi-tail-2 tail-terms)*
+
+bridi-tail-2 &lt;- selbri term* VAU#?
+		/ (tag / NA#)* gek bridi-tail GI# bridi-tail tail-terms
+</code></pre>
+
+<p>こちらのほうが人によってはまとまっていて見やすいかもしれません。</p>
+
+<h2 id="vau">VAU</h2>
+
+<p>すべてのbridi-tailの構造には（省略可能ではあるが）VAU#が出てきたことに注意してください。</p>
+
+<p>VAU# は基本的な文（bridi）もといbridi末端の締めを示す語なのです。</p>
+
+<p>これによって、そのbridi (bridi-tail) がどこで終わるのかが分かります。</p>
+
+<hr />
+
+<p>前置接続の構造を考えないとすると、  </p>
+
+<p>bridi-tail-2 &lt;- selbri term* VAU#?</p>
+
+<p>なので、  </p>
+
+<p>bridi-tail-1 &lt;-  selbri term* VAU#? (gihek tag? BO#  selbri term* VAU#? term-tail)* </p>
+
+<p>であり、</p>
+
+<p>bridi-tail &lt;- selbri term* VAU#? (gihek tag? BO#  selbri term* VAU#? term-tail)*  (gihek selbri term* VAU#? (gihek tag? BO#  selbri term* VAU#? term-tail)*  term-tail)*</p>
+
+<p>と書き下すことができます。たとえば、</p>
+
+<p>term cu [sebri term term gihek selbri term term term <strong>VAU#</strong> term term]</p>
+
+<p>というような構造は sentenceであり、[ ]内 は bridi-tail として解釈されます。</p>
+
+<p>ここで、VAU#は省略できないことに注意してください。これを省略してしまうと後続の「term term」がbridi-tail-1 の term* の一部として認識されてしまいます。</p>
+
+<p>（意味論的には、tail-terms のtermは gihek で繋がれた bridi-tail の両方に分配されます。たとえば、selbri t1 gihek selbri t2 VAU# t3 は selbri t1 t3 と selbri t2 t3 のように意味的には解釈されます。）</p>
+
+<hr />
+
+<p>さて、これで実は、すべての文レベル以上の構造を網羅したことになります。</p>
+
+<p>見返すと、当たり前といえば当たり前ですが、<strong>ある２つの同列の構造を接続詞で接続した構造、それを繰り返した構造というのがほとんど</strong>でした。</p>
+
+<p>ですが、これがほとんどの入門講座で扱いきれていなかったのも事実ですから、実際のところ、おかゆ超訳はここまでで十分有意義なものであると思っています。</p>
+
+<p>これ以降は他の入門講座でも十分序盤で取り扱われるところであり、それと並行しながら見ると理解度が増すかと思われます。</p>
+
+<p>今回取り扱った構造は、sentenceとbridi-tail であり、基本的な構造は、</p>
+
+<ul>
+  <li>sentence は、0個以上のtermとそれに続く bridi-tailからなる。</li>
+  <li>bridi-tail は、selbri と0個以上のtermからなり、 VAU#で締められる。</li>
+</ul>
+
+<p>となります。</p>
+
+<p>次は term について踏み込んでみましょう。</p>
+
+<h1 id="section-4">3章 - 項 -</h1>
+
+<h2 id="term">項（term）</h2>
+
+<p>sentenceに複数個存在するのが許される項ですが、これについて見ていきます。</p>
+
+<pre><code>term &lt;- FA#? sumti / tag? sumti / FA# KU#? / tag !selbri KU#
+		/ NA# !gihek !selbri KU#? / gek term+ VAU#? GI# term+ VAU#?
+</code></pre>
+
+<p>term な構造は6つあります。順に見ていきます。</p>
+
+<h3 id="fa-sumti-tag-sumti">FA# sumti, tag sumti</h3>
+
+<p>sumtiという構造にFA#やtagがついたものはtermとなります。FA#やtagは省略可能ですから、sumti単体もまたtermです。</p>
+
+<p>ちなみに、<strong>sumtiはtermの最も基本的な構造</strong>です。</p>
+
+<h3 id="fa-ku-tag-selbri-ku">FA# KU#?, tag !selbri KU#?</h3>
+
+<p>「!selbri」はtagの直後にselbriが来ずにKU#がきた場合はその構造がtermであるということです。深く考えずに進みましょう。</p>
+
+<p>上のも踏まえると、<strong>FA#とtag は sumti か KU# のどちらかをその後ろに取ることができる</strong>、ということです。また、KU#は省略できるので、FA#, tag 単体は（tagの場合はその後ろがselbriでないなら）termと解釈されます。</p>
+
+<h3 id="na-gihek-selbri-ku">NA# !gihek !selbri KU#?</h3>
+
+<p>中の !gihek !selbri はとりあえず置いておいて…。とすると、「NA# KU#」の形です。</p>
+
+<p>これも、KU#は省略できるので、直後にgihek, selbriが来ない場合は、NA#単体はtermとみなされます。</p>
+
+<h3 id="gek-term-vau-gi-term-vau">gek term+ VAU#? GI# term+ VAU#?</h3>
+
+<p>出た！ gek .. GI# ですから、前置接続ですね。やはり再帰的です。</p>
+
+<p>VAU#があること以外は、単に２組のterm複数個を接続し、1つのtermとして解釈するという至ってシンプルな構造です。</p>
+
+<p>さて、KU# がよく出てきますが、これは文レベルでいうところのVAU#と同じ種類のものです。つまり、KU#はしばしば語レベルでその構造を締めくくります。</p>
+
+<h2 id="sumti">スムティ（sumti）</h2>
+
+<p>さて、termの最も基本的な構造に目を向けていきます。</p>
+
+<pre><code>sumti &lt;- sumti-1 (joik-ek sumti-1)* (VUhO# rels)?
+
+sumti-1 &lt;- sumti-2 (joik-ek tag? BO# sumti-2)*
+
+sumti-2 &lt;- quantifier? bare-sumti / quantifier selbri KU#? rels?
+	/ gek sumti GI# sumti
+</code></pre>
+
+<p>また似たような構造が出てきました。注意して欲しいのが、ここでは新しい接続語、<strong>joik-ek</strong>が出てきています。sentenceのときに出てきたのは<strong>joik-jek</strong>です。</p>
+
+<p><strong>sumti とは、 joik-ek で繋がれた一連のsumti-1 に VUhO# rels をかけたものである。</strong></p>
+
+<p>ここで、VUhO# rels というのは大雑把に言えば「関係節」です。後々でてきますが、VUhO# rels という形は 「sumti-1 (joik-ek sumti-1)*」<strong>全体</strong>を修飾します。</p>
+
+<p>どんどん行きましょう。</p>
+
+<p><strong>sumti-1 とは、joik-ek tag? BO# で繋がれた一連のsumti-2 のことである。</strong></p>
+
+<p>また BO# が出てきましたね。やはりBO#によって、２つの要素が強く結合していることが見られます。</p>
+
+<p>さて、次にsumti-2 ですが、これには3種類あります。このうち１つは gek..GI#.. の前置接続の形なので説明は省略します。</p>
+
+<h3 id="quantifier-bare-sumti">quantifier? bare-sumti</h3>
+
+<p>bare-sumti （裸sumti）にquantifier（量化子）をつけたものはsumti-2, もとい素朴なsumti と解釈されます。ここで、quantifier は省略できるので、**最も基本的なsumtiの形は bare-sumti **です。</p>
+
+<p>quantifier は大雑把には「数字」と思ってください。もう少し厳密に言えば、「モノの個数を表す数」です。</p>
+
+<h3 id="quantifier-selbri-ku-rels">quantifier selbri KU#? rels?</h3>
+
+<p>こちらは、<strong>quantifier が省略できません</strong>。すなわち、selbri をsumtiとして用いる形では、quantifier は必須ということです。 KU# や rels が後に続きますが、これらはどちらも省略できます。なお、relsは関係節のことです。</p>
+
+<p>（ここではrelsの前にVUhO#がありません。VUhO#はその後ろにくるrelsを「接続詞を飛び越えて」修飾させる機能があるわけです。ここで出てきたrelsにはVUhO#が先行していないので、[quantifier selbri KU#]にのみ係るということを表しています。）</p>
+
+<h2 id="bare-sumti">bare-sumti</h2>
+
+<p>sumti の最も基本的な形、bare-sumtiについて見ていきます。かなり量が多いですが、あまり重要でないものもあるので、さっと見ていくことにしましょう。</p>
+
+<pre><code>bare-sumti &lt;- (description / LI# mex LOhO#? / KOhA# / ZO-word#
+	/ LU# paragraphs LIhU#? / LOhU-words-LEhU# / ZOI-anything#
+	/ !tag !selbri lerfu-string !MOI# BOI#?
+	/ !tag !selbri (LAhE# / NAhE# BO#) rels? sumti LUhU#?) rels?
+</code></pre>
+
+<p>とりあえず整理してみると、</p>
+
+<ul>
+  <li>description</li>
+  <li>LI# mex LOhO#?</li>
+  <li>KOhA#</li>
+  <li>ZO-word#</li>
+  <li>LU# paragraphs LIhU#?</li>
+  <li>LOhU-words-LEhU#</li>
+  <li>ZOI-anything#</li>
+  <li>!tag !selbri lerfu-string !MOI# BOI#?</li>
+  <li>!tag !selbri (LAhE# / NAhE# BO#) rels? sumti LUhU#?</li>
+</ul>
+
+<p>があって、これらすべて、後ろに rels（関係節）がとれます。</p>
+
+<p>いくつかに分けて説明していきたいと思います：
+①description, KOhA#, lerfu-string ②LI# mex LOhO#? ③LU# paragraphs LIhU#? ④ZO-word#, LOhU-words-LEhU#, ZOI-anything# ⑤(LAhE# / NAhE# BO#) rels? sumti LUhU#?</p>
+
+<h3 id="descripiton-koha-lerfu-string">① descripiton, KOhA#, lerfu-string</h3>
+
+<p>descripiton はおそらくbare-sumtiの中でもかなり頻繁に出てくるものです。これについてはあとで詳しく説明しますが、簡単にいえば「冠詞 + selbri」の形の構造です。</p>
+
+<p>KOhA# はいわゆる「代名詞」であり、ロジバンでは「代sumti」と呼ばれているものです。</p>
+
+<p>lerfu-string は大雑把には「一連のアルファベット列」のことで、これもbare-sumtiとして（素朴なsumtiとして）解釈されます。</p>
+
+<h3 id="li-mex-loho">② LI# mex LOhO#?</h3>
+
+<p>mex とは簡単にいえば「数式」です。数字もmexのうちに入ります。</p>
+
+<p><strong>LI#は数字や数式の冠詞です</strong>。LOhO#はLI#を締める語です。</p>
+
+<h3 id="lu-paragraphs-lihu">③ LU# paragraphs LIhU#?</h3>
+
+<p>形としては、sentenceに出てきた TUhE# .. TUhU# に似ています。</p>
+
+<p>LU# .. LIhU#? は<strong>引用括弧</strong>です。いわゆる「クォーテーションマーク」ですね。
+LU#, LIhU# は文章を引用するのに使われます。</p>
+
+<h3 id="zo-word-lohu-words-lehu-zoi-anything">④ ZO-word#, LOhU-words-LEhU#, ZOI-anything</h3>
+
+<p>word, words, anything といったフレーズがついていますが、実はこれらも③と同じく引用句のひとつです。しかし、LU#, LIhU#が文章を引用するのに対して、ZO-word# や LOhU-words-LEhU# は単語（群）引用を表します。</p>
+
+<p>ZOI-anything# は非ロジバン言語の文字列（文、単語）を表します。</p>
+
+<p>これら３つについては、後々やりますが、今のところはこういったものがあり、それがbare-sumtiとして解釈されるということを知っていれば十分です。</p>
+
+<h3 id="lahe--nahe-bo-rels-sumti-luhu">⑤ (LAhE# / NAhE# BO#) rels? sumti LUhU#?</h3>
+
+<p><strong>LAhE# や NAhE# BO# を sumti にかけたものは bare-sumti である</strong> ということですが、LAhE# や NAhE# BO# は、「sumti→sumti演算子」と呼ばれることがあります。</p>
+
+<p>LUhU# はほとんどの場合省略されますが、これらの構造を締める語ですね。</p>
+
+<hr />
+
+<p>色々たくさん一気に出てきましたが、落ち着いてみてみると、どうってことはないです！</p>
+
+<h2 id="description">description</h2>
+
+<p>この節の最後は、description について見ていきます。いわゆる「描写項」というものです。</p>
+
+<pre><code>description &lt;- LA# rels? CMEVLA#+ 
+	/ (LA# / LE#) (rels / bare-sumti)? quantifier? (selbri / sumti) KU#?
+</code></pre>
+
+<h3 id="la-rels-cmevla">LA# rels? CMEVLA#+</h3>
+
+<p>CMEVLA# は「名称語」と呼ばれるものです。</p>
+
+<p><strong>1つ以上のCMEVLA#列は LA# を冠することで bare-sumti となる。</strong></p>
+
+<p>また、関係節rels は LA#の後ろと、CMEVLA#+ の後ろ（すなわち、descriptionの後ろ）のどちらにもつけることができます。</p>
+
+<h3 id="la--le-rels--bare-sumti-quantifier-selbri--sumti-ku">(LA# / LE#) (rels / bare-sumti)? quantifier? (selbri / sumti) KU#?</h3>
+
+<p>こちらは少しややこしいですね。選択の総通りを数えてみると</p>
+
+<ol>
+  <li>LA#かLE#か (2)</li>
+  <li>rels（関係節）か bare-sumti か 無しか (3)</li>
+  <li>量化子 ありかなしか (2)</li>
+  <li>selbri か sumti か (2)</li>
+  <li>KU# ありかなしか (2)</li>
+</ol>
+
+<p>となり、 2×3×2×2×2 = 48 通りのパターンが考えられます。</p>
+
+<p>…しかし、構造は書いてある通りです。この辺りは統語論よりも意味論のほうが複雑なところと言えそうです。</p>
+
+<p>しかし、もっとも基本的かつ頻繁に現れるdescriptionの形は、</p>
+
+<p>LE# selbri KU#?</p>
+
+<p>です。一応この形だけを頭に叩き込むだけでもひとまずは十分です。</p>
+
+<hr />
+
+<p>さて、次は selbri について踏み込んでいきます。</p>
+
+<h1 id="selbri-">4章 -関係節/句, selbri-</h1>
+
+<p>さて、selbriに入る前に、さんざん出てきた rels について学んでおきましょう。</p>
+
+<h2 id="rels-rel">関係節句（rels, rel）</h2>
+
+<pre><code>rels &lt;- rel (ZIhE# rel)*
+
+rel &lt;- GOI# term GEhU#? / NOI# subsentence KUhO#?
+</code></pre>
+
+<p><strong>rels とは、 一連のrel を ZIhE# で繋いだものである</strong>。</p>
+
+<p>実は、rel こそが関係節（句）であり、relsはその複合体でした。</p>
+
+<p>さて、では関係節（句）はと言いますと・・・。</p>
+
+<p><strong>relとは、GOI#のあとにtermを置いたものか、NOI#の後に副文を置いたものである</strong>。</p>
+
+<p>term は言ってしまえば「名詞句」に相当するものですから、”of xxx” のような構造が GOI# term です。GEhU#? はこの構造を締める語です。</p>
+
+<p>関係節と言えば、NOI# .. のほうですね。 subsentence は sentence に複数個のprenexをつけたものでした。NOI#は英語でいうところの関係代名詞に近いものです。</p>
+
+<h2 id="selbri">selbri</h2>
+
+<p>それでは、ロジバンの本丸（？）に突入していきましょう！</p>
+
+<pre><code>selbri &lt;- selbri-1 (CEI# selbri)? / (tag / NA#) selbri
+
+selbri-1 &lt;- selbri-2+ (CO# selbri-1)?
+
+selbri-2 &lt;- selbri-3 (joik-jek selbri-3)*
+
+selbri-3 &lt;- selbri-4 (joik-jek tag? BO# selbri-4)*
+
+selbri-4 &lt;- tanru-unit (BO# tanru-unit)*
+</code></pre>
+
+<p>…とはいえ、どこかで見たことのある構造ですね。今回出てきている接続詞は<strong>joik-jek</strong>であることに注意しましょう。joik-ekはsumtiにのみ使われます。</p>
+
+<p>まず、もっとも素朴な構造を見つけてみましょう。そのためには、省略できるもの（?, *のついたもの）は省き、+は取ればいいわけですから・・・</p>
+
+<pre><code>selbri &lt;- selbri-1 / (tag / NA#) selbri
+
+selbri-1 &lt;- selbri-2 
+
+selbri-2 &lt;- selbri-3
+
+selbri-3 &lt;- selbri-4
+
+selbri-4 &lt;- tanru-unit
+</code></pre>
+
+<p>となりますね。</p>
+
+<p>(tag / NA#) selbri というのは、再帰的な構造です。つまり、<strong>selbriの頭には複数個のtag や NA# をつけられる</strong>ということです。</p>
+
+<p>それを踏まえても、selbri とは tag,NA#をつけた selbri-1 のことであり、 selbri-1 とは selbri-2 のことであり、 selbri-2 とは selbri-3 のことであり、 selbri-3とはselbri-4のことであり、selbri-4とはtanru-unitのことですから、<strong>selbriの最も基本的な構造は tanru-unitである</strong>ことが分かります。</p>
+
+<p>それでは『飾り』も踏まえて見て行きましょう。</p>
+
+<pre><code>selbri &lt;- selbri-1 (CEI# selbri)? / (tag / NA#) selbri
+</code></pre>
+
+<p>tag, NA# が selbriの頭に複数個付けられることはさっきも言った通りですね。</p>
+
+<p>selbriは CEI# selbri がつけられるという点以外はselbri-1と同じです。</p>
+
+<p>（CEI#という構造は意味論的には「代入」を意味します。selbri-1 の内容をCEI#の直後のselbriに代入することができます。代入用の空selbriが用意されてあるので、普通はそれに代入します。意味論の話はこれくらいにしておきましょう。）</p>
+
+<pre><code>selbri-1 &lt;- selbri-2+ (CO# selbri-1)?
+</code></pre>
+
+<p>これは少し不思議な構造をしています。まず、より下層の selbri-2が1つ以上続きます。そのあとに、CO# selbri-1 という構造が許可されます。これは再帰的ですね。ということは、たとえば、</p>
+
+<p>selbri-2 selbri-2 CO# selbri-2 CO# selbri-2 selbri-2 CO# selbri-2</p>
+
+<p>といったフレーズはselbri-1と解釈されます。少し詳しく見てみると、</p>
+
+<p>①[selbri-2 selbri-2] ②[CO# ③[selbri-2 CO# selbri-2 selbri-2 CO# selbri-2]]</p>
+
+<p>①[ ]は selbri-2+, ②[ ] は CO# selbri-1 に相当し、 ③[ ]は selbri-1 です。</p>
+
+<p>③[ ] をさらに見ていくと、</p>
+
+<p>④[selbri-2] ⑤[CO# ⑥[selbri-2 selbri-2 CO# selbri-2]]</p>
+
+<p>④[ ]は selbri-2+, ⑤[ ] が CO# selbri-1, ⑥[ ]がselbri-1 です。</p>
+
+<p>⑥[ ]についてさらに見ると、</p>
+
+<p>⑦[selbri-2 selbri-2] ⑧[CO# ⑨[selbri-2]]</p>
+
+<p>⑦[ ] は selbri-2+, ⑧[ ]はCO# selbri-1 で、⑨[ ] は selbri-1 です。</p>
+
+<p>⑨[ ]は selbri-2 だけで、これは(CO# selbri-1)? が無い selbri-1の形になります。</p>
+
+<p>selbri-2 を x で表すとすると、さっきの構造は、</p>
+
+<p>(x x (CO# (x (CO# (x x (CO# x))))))</p>
+
+<p>となることが分かります。</p>
+
+<hr />
+
+<pre><code>selbri-2 &lt;- selbri-3 (joik-jek selbri-3)*
+
+selbri-3 &lt;- selbri-4 (joik-jek tag? BO# selbri-4)*
+
+selbri-4 &lt;- tanru-unit (BO# tanru-unit)*
+</code></pre>
+
+<p>さて、ここからはデジャヴュな構造です。</p>
+
+<p><strong>selbri-2 は 一連のselbri-3をjoik-jekで繋いだもの</strong>。</p>
+
+<p><strong>selbri-3 は一連のselbri-4をjoik-jek tag? BO#で繋いだもの</strong>。</p>
+
+<p>これは、今までにもよくある光景でしたね。</p>
+
+<p><strong>selbri-4 は一連のtanru-unit をBO#で繋いだもの</strong>。</p>
+
+<p>これらは結局のところ、tanru-unit の結合力を明示しているにすぎません。</p>
+
+<p>BO# &gt; joik-jek BO# &gt; joik-jek &gt; normal &gt; CO#</p>
+
+<p>tanru-unit を t と書くと、</p>
+
+<p>t t BO# t t CO# t joik-jek t t joik-jek BO# t BO# t t</p>
+
+<p>は、</p>
+
+<p>t [t BO# t] t CO# [t joik-jek t] [t joik-jek BO# [t BO# t]] t</p>
+
+<p>のように優先括弧がつけられます。</p>
+
+<hr />
+
+<p>さて、次はtanru-unit・・・と言いたいところですが、tanru-unitもまたbare-sumtiのときのようにかなり雑多ですから、節を分けたいと思います。</p>
+
+<h1 id="tanru---">5章 - tanru単位, 付加引数 -</h1>
+
+<p>前回はselbriについてやりました。今回は、selbriの最も基本的な構造であるtanru単位についてやっていきましょう。</p>
+
+<h2 id="tanrutanru-unit">tanru単位（tanru-unit）</h2>
+
+<pre><code>tanru-unit &lt;- tanru-unit-1 linkargs?
+
+tanru-unit-1 &lt;- BRIVLA# / word-ZEI-word# / GOhA# RAhO#?
+		/ ME# (sumti / mex) MEhU#? MOI#? / mex MOI#
+		/ NU# (joik-jek NU#)* subsentence KEI#?
+		/ KE# selbri-2+ KEhE#? / NUhA# operator
+		/ (SE# / JAI# tag? / NAhE#) tanru-unit-1
+</code></pre>
+
+<p><strong>tanru-unitとは、tanru-unit-1にlinkargsをつけたものである</strong>。</p>
+
+<p>linkargsはこの次にやりますが、<strong>付加引数</strong>と呼ばれています。これについては後述します。</p>
+
+<p>大事なのは、tanru-unit-1の中身です。…ごちゃごちゃしていますね…。</p>
+
+<p><strong>BRIVLA#</strong>は「内容語」と呼ばれるもので、tanru単位の中で最も基本的なものです。</p>
+
+<p><strong>word-ZEI-word</strong>はZEI#を用いて2つの語を繋げた造語です。これについてはまた後々触れます。</p>
+
+<p><strong>GOhA# RAhO#</strong> の<strong>GOhA#</strong>はいわゆる「代動詞」に相当します。よく言われるのは<strong>代selbri</strong>です。RAhO#はGOhA#に対する意味論的な作用を持ちます。</p>
+
+<p><strong>ME# (sumti/ mex) MEhU#? MOI#?</strong> はMOI#があるかどうかで意味論的には２つの大きな違いが生じます。<br />
+　MOI#がないとき、「ME# (sumti /mex)」というのは、sumtiやmex（数式）を<strong>selbri化</strong>した形として使われます。詳しい意味論については割愛します。<br />
+　MOI#があるとき、「ME# (sumti/mex)」は、MOI#の直前にくるmexの代わりとして機能します。これについても詳しい意味論は割愛します。</p>
+
+<p>mex <strong>MOI#</strong> はselbriをなします。（意味論的には、MOI#はその直前に数式をとって、「n番目の」とか「n倍だ」とかいう述語になります。）</p>
+
+<p><strong>NU#</strong> はその後ろに副文をとって、それら全体で1つのtanru単位をなします。NU#は<strong>抽象詞</strong>と呼ばれ、「～という出来事だ」「～という性質だ」というような述語を作ります。</p>
+
+<p><strong>KE# .. KEhE#</strong> は<strong>tanru括弧</strong>です。selbri-2が1つ以上連なった構造を囲み、1つのtanru単位を構成します。sentenceのTUhE#..TUhU#に似ていますね。</p>
+
+<p><strong>NUhA# operator</strong> は数式(mex)を学んでからでないと分かりにくいのですが、簡単に言うと、<strong>NUhA#は数式の演算子（足し算とか）をselbri化</strong>します。</p>
+
+<p>(SE# / JAI# tag? / NAhE#) tanru-unit-1 はよく見る構造ですね。<strong>tanru-unit-1の頭には複数個のSE#, JAI# tag?, NAhE# をつけられます。</strong></p>
+
+<p>bare-sumtiやtanru単位は、構造のかなり下層に来ているので、色々な表現が一気に出てきて混乱するかもしれませんが、ひとつひとつチェックしていきましょう。</p>
+
+<h2 id="linkargs">付加引数（linkargs）</h2>
+
+<p>tanru-unit &lt;- tanru-unit-1 linkargs? に出てきたlinkargsについてやりましょう。</p>
+
+<pre><code>linkargs &lt;- BE# term (BEI# term)* BEhO#?
+</code></pre>
+
+<p>ここまで見てきた方なら特に和訳しなくても十分読解できそうな構造です。BE#の次にtermがきた後に、複数個のBEI# term がきて、BEhO#が締める。</p>
+
+<p>これも意味論のほうが大切な要素ですが、簡単に言えば、係る tanru-unit-1の引数にtermを代入し、それによって新しい意味の tanru-unit を生成します。これも色々と意味論的な解釈がありますが、それについては触れないでおきます。</p>
+
+<hr />
+
+<p>（おそらく）統語論の半分までやってきました。あとは、接続詞、tag、 mex、 その他少々くらいです。具体的には今までも出てきた joik-jek, joik-ek, tag, mex の構造を暴いていきます。</p>
+
+<p>ターニングポイントです！頑張って行きましょう！</p>
+
+<h1 id="tag-">6章 -接続詞, tag-</h1>
+
+<p>残りの文法構造を暴いていきましょう。まずは接続詞から。</p>
+
+<h2 id="section-5">接続詞</h2>
+
+<pre><code>ek &lt;- NA#? SE#? A#
+
+gihek &lt;- NA#? SE#? GIhA#
+
+jek &lt;- NA#? SE#? JA#
+
+joik &lt;- SE#? JOI# / GAhO#? interval GAhO#?
+
+interval &lt;- SE#? BIhI#
+
+joik-ek &lt;- joik / ek
+
+joik-jek &lt;- joik / jek
+
+gek &lt;- SE#? GA# / joik GI# / tag-unit+ (joik-jek tag-unit+)* GI#
+</code></pre>
+
+<p>ek, gihek, jek, joik に注目してください。これらは、<strong>基本要素（A#, GIhA#, JA#, JOI#）の頭に NA# SE# がついている</strong>という構造になっています。</p>
+
+<p>さらに joikの場合は、GAhO# intervel GAhO# という構造があります。この構造の肝はintervalであり、これはさらに SE# BIhI# という構造であることが分かります。</p>
+
+<p>（intervalの肝である BIhI#は意味論的には「…から～まで」という間隔を表すための接続詞です。）</p>
+
+<p>joik-ek は実はそのまんまで、joikかekか という構造でした。joik-jekも joikかjekかという構造です。</p>
+
+<p>これで joik-jek, joik-ek の内部構造が完全に明らかになりました。</p>
+
+<p>最後に、前置接続であるgekは3種の構造をなします：</p>
+
+<ul>
+  <li>SE#? GA# :: 最も一般的な構造です。GA#が肝です。</li>
+  <li>joik GI# :: joikを前置する場合はGI#が必要となります。joik GI# .. GI# .. です。</li>
+  <li>tag-unit+ (joik-jek tag-unit+)* GI# :: 複数のtag-unitをjoik-jekで接続したものも前置接続化することができます。意味論はいつも通り割愛で…。</li>
+</ul>
+
+<h2 id="tag">tag</h2>
+
+<p>勢いに乗って、tagもやってしまいましょう。</p>
+
+<pre><code>tag &lt;- tag-unit+ (joik-jek tag-unit+)* !GI#
+
+tag-unit &lt;- BAI# / mex ROI# / FIhO# selbri FEhU#? / (NAhE# / SE#) tag-unit
+</code></pre>
+
+<p>tagも色々なところで出てきましたが、その内部構造はこうなっています：</p>
+
+<p><strong>tagとは、複数のtag-unitをjoik-jekで繋いだものである</strong>。</p>
+
+<p>さらに、tag-unit, すなわち tag単位については4種類の形があります。</p>
+
+<p><strong>BAI#</strong>はtag-unitで最も一般的な形です。</p>
+
+<p><strong>mex ROI#</strong>も意味論的にはBAI#と同種ですが、構文上の違いは「その前に数式をとるかどうか」です。たとえば「～回」という意味をもつものはROI#に当てはまります。</p>
+
+<p><strong>FIhO# selbri FEhU#?</strong>はBAI#の素と言える構造です。意味論的には、BAI#はすべてFIhO# selbri FEhU#?の形で定義されます。</p>
+
+<p>そして、いつも通り（？）<strong>tag-unitの頭には複数個のNAhE#やSE#がつけられます</strong>。</p>
+
+<hr />
+
+<p>ざっくりと説明しましたが、ここまで来た皆さんなら実に容易いことでしょう！</p>
+
+<p>次は、ちょっとの難関、数式(mex)についてやりたいと思います。</p>
+
+<h1 id="section-6">7章 - 数式 -</h1>
+
+<p>それでは、度々出てきたmex、数式の内部構造を見ていきます！</p>
+
+<p>（ここで説明するmexの文法、xorxesによる改案を採用しています： <a href="http://www.lojban.org/tiki/MEX+grammar+proposal">MEX grammar proposal</a> ）</p>
+
+<h2 id="quantifier">quantifier</h2>
+
+<p>quantifier は description で出てきましたね。</p>
+
+<pre><code>description &lt;- LA# rels? CMEVLA#+ 
+		/ (LA# / LE#) (rels / bare-sumti)? quantifier? (selbri / sumti) KU#?
+</code></pre>
+
+<p>簡単に言えば、quantifierとは「モノの個数を表す数」です。</p>
+
+<pre><code>quantifier &lt;- !selbri !bare-sumti mex
+</code></pre>
+
+<p>その前にselbri, bare-sumti がこないような mex が quantifier です。</p>
+
+<p>（「まどろっこしい書き方だなあ。諸仮定抜けばmexと同じじゃん」と思う方もいると思います。これは、公式現行文法ではquantifierがmexと等しくないところから生じていると思います。簡潔さのため、ここではmexとquantifierが等しい案を採用しています。）</p>
+
+<h2 id="mex">mex</h2>
+
+<p>さて、それではmexの内部構造に踏み込んでいきます。</p>
+
+<pre><code>mex &lt;- mex-1 (operator mex-1)*
+
+mex-1 &lt;- mex-2 (operator tag? BO# mex-2)*
+</code></pre>
+
+<p>まず、<strong>mexとは一連のmex-1をoperatorで繋いだもの</strong>です。</p>
+
+<p>operatorの中身はすぐあとでやりますが、「演算子」のことで、加減乗除などの二項演算全般（一部、三項以上演算も）の記号のことです。</p>
+
+<p>そして、<strong>mex-1とは一連のmex-2をoperator tag? BO#で繋いだもの</strong>です。</p>
+
+<p>これはいつものBO#付きの構造ですね。</p>
+
+<p>（あるロジバニストは「operatorとは構文上は接続詞と同じである（二項演算であるため）」と述べており、彼が作った新文法案では operator はすべて接続詞と同じ品詞にまとめられています。ここでは、そこまでの改案は採用せず、その中間くらいのアイデアを採用しています。）</p>
+
+<hr />
+
+<p>さて、ここからが本番。mex-2は9種！もの構造を含みます。</p>
+
+<pre><code>mex-2 &lt;- number BOI#? / lerfu-string BOI#? / VEI# mex VEhO#?
+		/ NIhE# selbri TEhU#? / MOhE# sumti TEhU#? / gek mex GI# mex
+		/ (LAhE# / NAhE# BO#) mex LUhU#? / PEhO#? operator mex+ KUhE#?
+		/ FUhA# rp-expression
+</code></pre>
+
+<p>見るのも嫌になりますが、少し整理してみましょう。</p>
+
+<h3 id="section-7">① 再帰的な構造</h3>
+
+<ul>
+  <li>VEI# mex VEhO#?</li>
+  <li>gek mex GI# mex</li>
+  <li>(LAhE# / NAhE# BO#) mex LUhU#?</li>
+</ul>
+
+<p>またまたmexに逆戻りするような構造種が3つあります。</p>
+
+<p>一つ目は<strong>VEI# mex VEhO#?</strong>で、<strong>mex括弧</strong>ですね。</p>
+
+<p>そして、またもや登場 前置接続です。</p>
+
+<p>それから、前置修飾？ mexの頭には複数個のLAhE#, NAhE# BO をつけることができます。</p>
+
+<h3 id="mex-">② →mex 変換</h3>
+
+<ul>
+  <li>NIhE# selbri TEhU#?</li>
+  <li>MOhE# sumti TEhU#?</li>
+</ul>
+
+<p>NIhE#とMOhE#はそれぞれ非mexな語句（selbri, sumti）をmexに変換します。細かい意味論は述べません。</p>
+
+<h3 id="section-8">③ 特殊な記法</h3>
+
+<ul>
+  <li>PEhO#? operator mex+ KUhE#?</li>
+  <li>FUhA# rp-expression</li>
+</ul>
+
+<p>PEhO# は前置記法マーカーとして機能します。たとえば、”2 + 1” とかくところを、”+ 2 1” という風に書くことができます。</p>
+
+<p>FUhA# は後置記法マーカーとして機能します。すなわち、逆ポーランド記法です。”2 + 1” とかくところを、 “2 1 +” という風に書くことができます。</p>
+
+<p>FUhA#に続く rp-expression は次のように定義されます：</p>
+
+<pre><code>rp-expression &lt;- mex (rp-expression operator)*
+</code></pre>
+
+<p>たとえば、</p>
+
+<p>mex mex mex operator operator mex operator</p>
+
+<p>という構造は、</p>
+
+<p>((mex (mex (mex operator)) operator) mex operator)</p>
+
+<p>となります。</p>
+
+<h3 id="section-9">④ 基本的な要素</h3>
+
+<ul>
+  <li>number BOI#? </li>
+  <li>lerfu-string BOI#?</li>
+</ul>
+
+<p>見ての通り、<strong>数字</strong>と<strong>文字列</strong>はmex-2となります。</p>
+
+<p>このことからわかると思いますが、mex-2 はoperand（被演算子）です。</p>
+
+<p>numberとlerfu-stringの定義も見ておきましょう：</p>
+
+<pre><code>number &lt;- PA# (PA# / lerfu-word)*
+
+lerfu-string &lt;- lerfu-word (PA# / lerfu-word)*
+
+lerfu-word &lt;- BY# / word-BU# / LAU# lerfu-word / TEI# lerfu-string FOI#
+</code></pre>
+
+<p><strong>numberとはPA#から始まる一連のPA#とlerfu-wordの文字列である</strong>。</p>
+
+<p><strong>lerfu-stringとはlerfu-wordから始まる一連のPA#とlerfu-wordの文字列である</strong>。</p>
+
+<p>numberとlerfu-stringが最初の語の違いしかないことが分かります。<br />
+<strong>PA#</strong>はdigit, 桁, 基本数です。1とか2とかです。</p>
+
+<p>一方、</p>
+
+<p><strong>lerfu-wordとはBY#またはword-BU#である</strong>。</p>
+
+<p>（LAU#とTEI#..FOI#については説明を省きます。というのも、これらはいまだかつてほとんど使われていないためです。）</p>
+
+<p>BY#とは子音のアルファベットのことです。word-BUも何らかの１文字の名前にあたる語ですが、これについては後々やることにします。</p>
+
+<p>結局のところ、numberやlerfu-stringというのは数字とアルファベットを組み合わせた一連の文字列のことです。</p>
+
+<hr />
+
+<p>ということで、急ぎ早に9種を説明しました。整理すればどうってことないかと思います。</p>
+
+<p>さて、それではお待ちかね（？）のoperatorです。</p>
+
+<pre><code>operator &lt;- (SE# / NAhE#) operator / MAhO# mex TEhU#? / NAhU# selbri TEhU#?
+		/ VUhU# / JOhI# / joik-jek
+</code></pre>
+
+<p>まず、<strong>operatorには複数個のSE#やNAhE#がつけられる</strong>。</p>
+
+<p>そして、 <strong>MAhO# は mex（主に文字列）を、NAhU#はselbriを演算子化します</strong>。</p>
+
+<p>joik-jekはいつものｱﾚです。</p>
+
+<p><strong>JOhI#はmexを繋げて配列化します</strong>。ベクトルなどを表現するのに使われます。</p>
+
+<p>そして、<strong>VUhU#は演算子全般</strong>です。<br />
+加減乗除の二項演算から、絶対値・階乗などの一項演算、微分演算などの三項演算など色々ありますが、これらはすべて構文上は二項演算子として定義されます。</p>
+
+<hr />
+
+<p>ここでひとつだけ注意しておきたいことがあります。PEGはファイルの先頭から読まれていくと考えてください。そこで、</p>
+
+<pre><code> description &lt;- .. (LA# / LE#) (rels / bare-sumti)? quantifier? (selbri / sumti) KU#?
+</code></pre>
+
+<p>というのがあったことを思い出してください。</p>
+
+<p>そしてさらに、</p>
+
+<pre><code>bare-sumti &lt;- .. / !tag !selbri lerfu-string !MOI# BOI#? / ..
+</code></pre>
+
+<p>があり、それより後ろに、</p>
+
+<pre><code>mex-2 &lt;- .. / lerfu-string BOI#? / ..
+</code></pre>
+
+<p>があります。</p>
+
+<p>ここで、「LE# BY# selbri」 がどう解釈されるかを考えてみます。</p>
+
+<p>BY# は　lerfu-string としてみなされるわけですが、それによってまずマッチするのが bare-sumtiであることが重要です。すなわち、<strong>このとき BY# は quantifierとして解釈されません</strong>。</p>
+
+<p>（これは意味論も踏まえると、{lo ny. plise}が「N個のリンゴ」でなく、「Nと関係のあるリンゴ」と訳されるということです。）</p>
+
+<p>BY#がquantifierとして解釈されるには、</p>
+
+<p>LE# VEI# BY# VEhO#? selbri</p>
+
+<p>と、VEI#を使う必要があることに注意してください。すなわち、<strong>lerfu-stringをquantifierとして認識させたい場合はVEI#が必要となる</strong>ということです。numberの場合は、numberはbare-sumtiになりませんから、VEI#がなくても quantiferとして認識されます。</p>
+
+<hr />
+
+<p>少し細かいところまで触れましたが、特に問題なかったかと思います。</p>
+
+<p>mexも実のところ、numberの意味論がかなり充実しているので、意味論の勉強が少し大変かもしれません。しかし、ここで統語論を一度学んでいるので、意味論と統語論を分離して思考できるようになっていると思います。これはロジバンを学習するにあたって明瞭に道を見通せる力だと思います。</p>
+
+<p>さて、残りもわずか！次は細々とした文法をやっていきます。</p>
+
+<h1 id="section-10">8章 - 細々としたもの（引用句） -</h1>
+
+<p>一段落つきはじめたところで、bare-sumti と tanru-unit-1 をもう一度見てみましょう。</p>
+
+<pre><code>bare-sumti &lt;- (description / LI# mex LOhO#? / KOhA# / ZO-word#
+		/ LU# paragraphs LIhU#? / LOhU-words-LEhU# / ZOI-anything#
+		/ !tag !selbri lerfu-string !MOI# BOI#?
+		/ !tag !selbri (LAhE# / NAhE# BO#) rels? sumti LUhU#?) rels?
+
+tanru-unit-1 &lt;- BRIVLA# / word-ZEI-word# / GOhA# RAhO#?
+		/ ME# (sumti / mex) MEhU#? MOI#? / mex MOI#
+		/ NU# (joik-jek NU#)* subsentence KEI#?
+		/ KE# selbri-2+ KEhE#? / NUhA# operator
+		/ (SE# / JAI# tag? / NAhE#) tanru-unit-1
+</code></pre>
+
+<p>mexやlerfu-string, operator などなどを学んできましたから、これらのほとんどの要素が理解できるようになっていると思います。</p>
+
+<p>しかし、この中にはまだ手強そうなものが残っていますね…。</p>
+
+<ul>
+  <li>ZO-word#</li>
+  <li>LOhU-words-LEhU#</li>
+  <li>ZOI-anything#</li>
+  <li>word-ZEI-word#</li>
+</ul>
+
+<p>そして、前回に出てきた</p>
+
+<ul>
+  <li>word-BU</li>
+</ul>
+
+<p>今回はこの5つの正体を暴いてやりましょう！</p>
+
+<hr />
+
+<h3 id="zo-word">ZO-word</h3>
+
+<p>それでは順番にみていきます。まずは、ZO-wordから。</p>
+
+<pre><code>ZO-word &lt;- ZO any-word
+</code></pre>
+
+<p>ZOはいつもと同じ「ロジバンの語」ですが、#がついていません。</p>
+
+<p>実は X# と X の違いは、Xの語の前後にごちゃごちゃ『飾り』がついているかどうかなのですが、Xは純粋にその語だけを表します。</p>
+
+<p><strong>ZO-wordとは、ZOのあとにany-wordがきたものである</strong></p>
+
+<p>さて、any-wordとは何かというと</p>
+
+<pre><code>any-word &lt;- CMEVLA / BRIVLA / CMAVO
+</code></pre>
+
+<p>これは、<strong>ロジバンの語すべて</strong>です。つまり、<strong>ZOはその後ろにロジバンの語を何でも1つ取る</strong>のです。</p>
+
+<p>（ちなみに、ZOの意味論は「1語引用」です。なるほど確かに、と言った感じですね）</p>
+
+<p>鋭い人はなぜZO#でなくZOなのかがわかったかと思います。そうです。<strong>ZO#だとZOの前後の『飾り』を取り込んでしまう</strong>からですね。</p>
+
+<h3 id="lohu-words-lehu">LOhU-words-LEhU</h3>
+
+<p>次は LOhU-words-LEhUを見てみましょう：</p>
+
+<pre><code>LOhU-words-LEhU &lt;- LOhU (!LEhU any-word)* LEhU?
+</code></pre>
+
+<p>またまたany-wordが出てきました。LOhUから始まり、LEhU以外の語なんでもが複数個続いたあとに LEhUによって締められます。</p>
+
+<p>LOhUにはやはり#がついていないことに注目してください。</p>
+
+<p>（LOhU .. LEhU は「エラー引用括弧」と呼ばれています。なぜ「エラー」かというと、これは LU# .. LIhU# が構文上正しいロジバン文を引用するのに対して、LOhU .. LEhU は構文上正しくないロジバン語列を引用できるからです。）</p>
+
+<h3 id="zoi-anything">ZOI-anything</h3>
+
+<p>次はZOI-anythingです：</p>
+
+<pre><code>ZOI-anything &lt;- ZOI x (!x anything)* x
+</code></pre>
+
+<p>これは実はPEGとしては不適切な（というかPEGで表現できない）構造です。なので、それっぽく書きました。</p>
+
+<p>つまり、<strong>ZOIのあとに何か任意の一語(x)がきたのち、x以外の文字列がきて、xによって締められる</strong>という構造です。</p>
+
+<p>ここで、anythingであって、any-wordでないことに注意してください。<strong>anythingはロジバン以外の言語の文字列もOKです</strong>。つまり、日本語でも大丈夫です。</p>
+
+<p>（ZOIは最も汎用的な引用開始語です。）</p>
+
+<h3 id="word-zei-word--word-bu">word-ZEI-word と word-BU</h3>
+
+<p>以上の3つはどれもbare-sumti、すなわち sumtiになれる構造でした。次にするものは、tanru-unit-1, つまり、selbriになれる構造です。</p>
+
+<pre><code>word-ZEI-word &lt;- (ZO-word / LOhU-words-LEhU / ZOI-anything / any-word)
+		(ZEI-tail* BU-tail+)* ZEI-tail+
+
+ZEI-tail &lt;- word-SI* ZEI any-word
+</code></pre>
+
+<p>続いて、word-BUも見ておきましょう：</p>
+
+<pre><code>word-BU &lt;- (ZO-word / LOhU-words-LEhU / ZOI-anything / any-word)
+	(BU-tail* ZEI-tail+)* BU-tail+
+
+BU-tail &lt;- word-SI* BU
+</code></pre>
+
+<p>word-ZEI-word にも word-BUにも共通の構造がありますね。</p>
+
+<p>(ZO-word / LOhU-words-LEhU / ZOI-anything / any-word) です。</p>
+
+<p>これは、<strong>ZO-word, LOhU句, ZOI句はその他のany-wordと同じように1語とみなして取り扱う</strong>ということです。それだけのことです。</p>
+
+<p>それらの擬一語のあとに、word-ZEI-wordでは (ZEI-tail* BU-tail+)* ZEI-tail+ がきており、word-BUでは (BU-tail* ZEI-tail+)* BU-tail+ がきています。</p>
+
+<p>ここで、なんとか-tail とは何かを見てみると</p>
+
+<pre><code>ZEI-tail &lt;- word-SI* ZEI any-word
+
+BU-tail &lt;- word-SI* BU
+</code></pre>
+
+<p>となっています。とりあえず word-SI* は置いておきましょう。とすると、これらは</p>
+
+<pre><code>ZEI-tail &lt;- ZEI any-word
+
+BU-tail &lt;- BU
+</code></pre>
+
+<p>となりますね。ということはたとえば、</p>
+
+<p>XX ZEI XX BU ZEI XX BU BU ZEI XX</p>
+
+<p>は word-ZEI-word と解釈されます。なお、XXはany-wordです。また、</p>
+
+<p>XX BU ZEI XX ZEI XX BU BU ZEI XX BU BU</p>
+
+<p>は word-BU と解釈されます。</p>
+
+<p>（ZEIは無理やり２語を繋げてselbri化させる機能をもちます。word-BUは以前にも書きましたが、任意の語を前にとって「○○文字」や、それ相応のアルファベットを表すのに使われます。）</p>
+
+<hr />
+
+<p>あまり映えない回でしたね…。</p>
+
+<p>さて、気づいた人がいるかもしれません。</p>
+
+<p>「説明してきたものに # がついてないのだけど？」</p>
+
+<p>その通りです。そこで、次回は # の謎を暴きたいとおもいます。</p>
+
+<h1 id="xxx--">9章 - xxx# -</h1>
+
+<p>今回は、今までよく出てきた XX# という構造についてやります。</p>
+
+<p>ほとんどすべての XXX# という構造は次のように定義されています：</p>
+
+<pre><code>XXX# &lt;- pre XXX post
+</code></pre>
+
+<p>一部の語は次のように post 部分が変わっています：</p>
+
+<pre><code>COI# &lt;- pre COI vocative-post
+
+PA# &lt;- pre PA number-post
+
+BY# &lt;- pre BY lerfu-post
+
+word-BU# &lt;- pre word-BU lerfu-post
+</code></pre>
+
+<p>結局、<strong>すべてのXX#にはその前にpreが、その後ろにpostがついている</strong>ということです。</p>
+
+<p>preとpostの中身を順にみていきましょう。</p>
+
+<h2 id="pre-post">pre, post</h2>
+
+<pre><code>pre &lt;- (word-SI* BAhE)* word-SI*
+
+post &lt;- !BU-tail !ZEI-tail free?
+</code></pre>
+
+<p>見たことのない要素が出てきました。</p>
+
+<ul>
+  <li>free</li>
+  <li>word-SI</li>
+</ul>
+
+<h3 id="free">free</h3>
+
+<p>まずは free を見てみます。</p>
+
+<pre><code>free &lt;- UI# / XI# mex-2 / mex-2 MAI# / SEI# (term+ CU#?)? selbri SEhU#?
+		/ TO# paragraphs TOI#? / vocative
+
+vocative &lt;- (COI#+ DOI#? / DOI#)
+	(rels? selbri rels? / sumti? / rels? CMEVLA# rels?) DOhU#?
+</code></pre>
+
+<ul>
+  <li>UI#</li>
+  <li>XI# mex-2</li>
+  <li>mex-2 MAI#</li>
+  <li>SEI# (term+ CU#?)? selbri SEhU#?</li>
+  <li>TO# paragraphs TOI#?</li>
+  <li>vocative</li>
+</ul>
+
+<p>の6種類がfreeの構造としてあります。</p>
+
+<p>mex-2はいわゆる「数式・数字」の部分でしたね。</p>
+
+<p>UI#は単独でfreeとなります。UI#は最も頻繁に出てくるfreeの構造です。</p>
+
+<p>XI# mex-2 や mex-2 MAI# も特に言うことはないです。</p>
+
+<p>SEI# (term+ CU#?)? selbri SEhU#? と TO# paragraphs TOI#? はどちらも<strong>文括弧</strong>であることがわかります。ただし、SEI# .. SEhU# では文の構造はかなり制限されています。</p>
+
+<p>TO# .. TOI# は sentenceで出てきた TUhU .. TUhE と形が似ていますが、TO# .. TOI# は<strong>free</strong>であり、ほとんどどこにでも置くことのできる文章構造体となっています。</p>
+
+<p>そして vocative は・・・。もう特に言わなくても分かるかと思います。</p>
+
+<h3 id="word-si">word-SI</h3>
+
+<p>次にword-SIを見てみます。</p>
+
+<pre><code>word-SI &lt;- (word-ZEI-word / word-BU / ZO-word / LOhU-words-LEhU / ZOI-anything 
+		/ any-word) SI-tail
+
+SI-tail &lt;- word-SI* SI
+</code></pre>
+
+<p>前回出てきた構造に似た、(word-ZEI-word / word-BU / ZO-word / LOhU-words-LEhU / ZOI-anything / any-word)が出ました。前回と違うところは、word-BUも含まれていることですね。やはり、<strong>これらは擬似的に1語としてみなす</strong>ということです。</p>
+
+<p>そしてそのあとに SI-tail がきており、 SI-tailとは（word-SI*を除けば）SIそのものです。</p>
+
+<p>（SIは「一語消去」です。つまり、word-SIとは「消された語とSI」という句を表しています）</p>
+
+<hr />
+
+<p>最後に、xxx-post についてみましょう。</p>
+
+<pre><code> number-post &lt;- !BU-tail !ZEI-tail (!PA# free)?
+
+ lerfu-post &lt;- !BU-tail !ZEI-tail (!lerfu-word free)?
+
+ vocative-post &lt;- !BU-tail !ZEI-tail (!vocative free)?
+</code></pre>
+
+<p>これらが言いたいのは、<strong>特定の要素はメインの構造でなくてpostに取り込め</strong>ということです。</p>
+
+<hr />
+
+<p>さて、最初に見た text をもう一度見てみましょう。</p>
+
+<pre><code>text &lt;- SI-tail* free? paragraphs FAhO#?
+</code></pre>
+
+<p>SI-tail と free は最初は飛ばしましたが、これですべてが分かるようになりました！</p>
+
+<hr />
+
+<p>これにて、おそらくすべての構文を把握できるようになったと思います。</p>
+
+<h1 id="section-11">最終章</h1>
+
+<p>おつかれさまでした。これでおかゆ超訳ロジバンは終了です。</p>
+
+<p>xorxesの新文法案はこれよりもずっと簡潔なものであり、きっといまの力で読みこなせると思います。</p>
+
+<p>現行文法もあまり変わりはしませんが、sa というツワモノがいるせいでごちゃごちゃ文法になってしまっています。<br />
+おかゆ超訳は現行文法からsaに関わるところを取っ払って、適宜 xorxes案を導入した形となっています。</p>
+
+<p>たとえば、主に現行文法と違っている点は、</p>
+
+<ul>
+  <li>mex</li>
+  <li>tag, 特に時制・空間制のtag</li>
+  <li>freeのおける場所</li>
+</ul>
+
+<p>です。</p>
+
+<p>mexは本編でもコメントした通りです。</p>
+
+<p>テンスタグについては、<strong>より使い勝手のよい</strong>方を、ということでxorxes案を採用しました。<br />
+実際、現行文法だと「不具合」に近い何かが起こっていますので…。</p>
+
+<p>freeのおける場所については、おかゆ超訳では「XXX# の後ろならどこでも」としています。<br />
+しかし、現行文法ではfreeのうち UI#以外の要素はおける場所が制限されています。<br />
+おかゆ超訳ではそれを取っ払って、xorxesの新文法案と同じような仕様にしています。</p>
+
+<p>そんなこんなで、「どっちつかずの」統語論となっていますが、実用性は十分だと思います。</p>
+
+<p>一部、修飾構造が統語論とすれ違うようなものもありますが、基本的にはこの統語論に従えば迷うことはないはずです。</p>
+
+<p>それでは、またどこかで。 co’o</p>
+
+
+<hr>
+
+
+<footer><p> Copyright © cogas 2014 All rights reserved. </p></footer>  
+</div>
+
+</body>
+</html>
