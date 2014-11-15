@@ -158,7 +158,7 @@ term term ZOhU# statement-1
 次に、statement-2です。  
 **statement-2は I# joik-jek tag BO# で繋がれた sentenceの集まり**です。
 
-ただし、joik-jek と BO# は省略可能ですから、
+ただし、joik-jek と tag は省略可能ですから、
 
 sentence I# BO# sentence も statement-2 です。
 
