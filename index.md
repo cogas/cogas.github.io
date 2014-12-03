@@ -12,15 +12,16 @@ title: 生姜の物置き
 
 ### あーてぃこー 
 <ul class="big">
-<li ><a href="article/kaniuban/kaniuban_index.html">おかゆ超訳ロジバン</a></li>
 <li ><a href="article/chemicalp.html">すごいぞ！化学ポテンシャル</a></li>
+</ul>
+
+#### ロジバン関連
+<ul class="big">
+<li><a href="article/jbo_chemical.html">lojbo xukmi bo cmene -ロジバンで化合物命名- </a></li>
+<li ><a href="article/kaniuban/kaniuban_index.html">おかゆ超訳ロジバン</a></li>
 <li ><a href="article/jbo_goldendict.html">オフラインでロジバン辞書を使う</a></li>
 <li ><a href="article/jbo_file.html">ロジバンデータもろもろ</a></li>
 </ul>
-
-#### torirot関連
-
-- 
 
 <h3 >- さいと - </h3>
 <ul class="big">
