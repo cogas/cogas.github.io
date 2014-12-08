@@ -133,6 +133,15 @@ a:active { color:#fcb034;}
     border: 1px solid #584939;
 }
 
+.enclose{
+	margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-right:1em;
+    margin-left:1em;
+	padding: 0.2em 1em 0.2em 1em;
+    border: 2px solid #8dc63f;    
+}
+
 .titlebox{
 }
 .titlebox:first-child{

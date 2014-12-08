@@ -55,8 +55,8 @@ $$\left( \frac{\partial G }{\partial N_k} \right )_{P,T,N_i} = \mu_k(P,T)$$
 <p>平衡状態では\(\Delta G = 0\)がなりたつので、
 $$\sum_{k} \mu_k(P,T)~\Delta N_k = 0$$
 という式が平衡状態を記述する重要な等式になります。</p>
-<ul class="example">
-<p>ex)<p>
+<div class="enclose">
+<p>ex)</p>
 <p>1例として、次の反応式、\(A \rightleftharpoons B\) を考えてみます。</p>
 <p>このとき、ギブズエネルギー変化は、
 $$\Delta G(P,T,N_k) = \mu_A(P,T)~\Delta N_A + \mu_B(P,T)~\Delta N_B$$
@@ -69,7 +69,7 @@ $$(\mu_B(P,T) - \mu_A(P,T))\Delta N = 0$$
 となり、
 $$ \mu_B(P,T) = \mu_A(P,T)$$
 が平衡状態になりたつ式ということになります。化学ポテンシャルが釣り合っているように見えますね。</p>
-</ul>
+</div>
 </section>
 
 <h2 >2. 理想気体の化学ポテンシャル</h2>
@@ -532,6 +532,7 @@ $$\ln \frac{P}{P_o} = -\frac{\Delta H_m}{R} \left( \frac{1}{T} - \frac{1}{T_o} \
 <li >量子化学（1次元箱の波動方程式、ヒュッケル近似による共役系の波動関数、錯体化学、原子のエネルギー準位）</li>
 <li >速度論（ミカエリス・メンテン式、１次反応）</li>
 <li >分光学（IR,UV,NMR,MS,ES)</li>
+</ul>
 </p>
 かな！
 </section>
@@ -540,6 +541,7 @@ $$\ln \frac{P}{P_o} = -\frac{\Delta H_m}{R} \left( \frac{1}{T} - \frac{1}{T_o} \
 <h2 >参考文献</h2>
 <ul>
 <li >現代熱力学―熱機関から散逸構造へ (イリヤ・プリゴジン) [朝倉書店]</li>
-<li >化学ポテンシャルと平衡定数（http://ir.lib.hiroshima-u.ac.jp/metadb/up/81936204/Refthermo_G.pdf）</li>
+<li >化学ポテンシャルと平衡定数 （http://ir.lib.hiroshima-u.ac.jp/metadb/up/81936204/Refthermo_G.pdf）</li>
+</ul>
 </section>
 
