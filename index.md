@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 生姜の物置き
+title: 生姜ばこ -la zingibero tanxe-
 ---
 ### 本拠地
 
