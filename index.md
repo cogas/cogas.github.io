@@ -17,6 +17,7 @@ title: 生姜の物置き
 
 #### ロジバン関連
 <ul class="big">
+<li><a href="article/jbo_links.html">ロジバン関連リンク集 </a></li>
 <li><a href="article/jbo_chemical.html">lojbo xukmi bo cmene -ロジバンで化合物命名- </a></li>
 <li ><a href="article/kaniuban/kaniuban_index.html">おかゆ超訳ロジバン</a></li>
 <li ><a href="article/jbo_goldendict.html">オフラインでロジバン辞書を使う</a></li>
