@@ -1,12 +1,12 @@
 ---
 layout: post
-title: PJCG 選定 gismu
+title: PJCG gimste
 date: 2014-12-08
 ---
 
 ## 概要
 
-<b>PJCG選定gismu</b>は[ロジバン若手の会](https://groups.google.com/forum/#!forum/ponjo_lojbo_citno_girzu)の基本語彙選定プロジェクトです。（[関連議論](https://groups.google.com/forum/#!topic/ponjo_lojbo_citno_girzu/8mYyBLmW_Qg)）
+<b>PJCG gimste</b>は[ロジバン若手の会](https://groups.google.com/forum/#!forum/ponjo_lojbo_citno_girzu)の基本語彙選定プロジェクトです。（[関連議論](https://groups.google.com/forum/#!topic/ponjo_lojbo_citno_girzu/8mYyBLmW_Qg)）
 
 参加者はロジバン若手の会のメンバーで、運営（スプレッドシートやアンケートフォームの回収、結果の整理等）は.cogas.によってなされました。
 
@@ -33,14 +33,14 @@ date: 2014-12-08
 
 ## 目次
 
-### PJCG gismu レベル0
+### PJCG gimste レベル0
 
 ※ レベル0ではペアワード・カテゴリワードは未整理であるため、ここには掲載していません。
 
 
-### PJCG gismu Lv.1
+### PJCG gimste Lv.1
 
-- [A1](.) : xxx単語; カテゴリ：
-- [B1](.) : xxx単語; カテゴリ：
-- [C1](.) : xxx単語; カテゴリ：
-- [D1](.) : xxx単語; カテゴリ：
+- [A1](./1moi/A1.html) : 145単語; カテゴリ：体の部位、図形、色、植物、床、空、東西南北、上下左右前後、朝昼晩夜、姿勢
+- [B1](./1moi/B1.html) : 101単語; カテゴリ：文法用語、物質の三態、容器、乗り物、店・建物・場所、所在、実行、理由、道、水辺、ご飯、見る
+- [C1](./1moi/C1.html) : 114単語; カテゴリ：時間、笑い、味、作成、恐怖感情、興味喚起、配送、依頼、集団、結合、変化、単位、破壊、許す、表面
+- [D1](./1moi/D1.html) : 159単語; カテゴリ：動物、飲み物、命題感情、音、集団、関連、命令、色、類似、兵、寝具、性愛、broda、服飾

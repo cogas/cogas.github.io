@@ -59,6 +59,10 @@ dfn{
     font-weight:bold;    
 }
 
+dt{
+	font-weight:bold;
+}
+
 /* デフォルト */
 ul {
 	list-style-type:square;
