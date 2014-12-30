@@ -64,4 +64,4 @@ PJCG gimste の学習用ツールとして、スプレッドシート(.xlsx)、p
 
 - [.xlsx](./1moi/pjcg_gimste_1.xlsx): A,B,C,Dそれぞれの一覧とペア、カテゴリ、etc.をそれぞれまとめてあります。
 - [.pdf](./1moi/pjcg_gimste_1.pdf): HTMLのA,B,C,Dを単にまとめた形になってあります。
-- [Quizlet](): 調整中
+- [Quizlet](http://quizlet.com/cogas_uasanbon/folders/pjcg-gimste-lv1): A,B,C,Dの4つの一覧をQuizlet化しています。
