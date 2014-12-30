@@ -39,12 +39,23 @@ revised_date: 2014-12-30
 ※ レベル0ではペアワード・カテゴリワードは未整理であるため、ここには掲載していません。
 
 
-### PJCG gimste Lv.1
+### PJCG gimste Lv.1（517語）
 
 - [A1](./1moi/A1.html) : 145単語; カテゴリ：体の部位、図形、色、植物、床、空、東西南北、上下左右前後、朝昼晩夜、姿勢
 - [B1](./1moi/B1.html) : 101単語; カテゴリ：文法用語、物質の三態、容器、乗り物、店・建物・場所、所在、実行、理由、道、水辺、ご飯、見る
 - [C1](./1moi/C1.html) : 114単語; カテゴリ：時間、笑い、味、作成、恐怖感情、興味喚起、配送、依頼、集団、結合、変化、単位、破壊、許す、表面
 - [D1](./1moi/D1.html) : 159単語; カテゴリ：動物、飲み物、命題感情、音、集団、関連、命令、色、類似、兵、寝具、性愛、broda、服飾
+
+## <a name ="cilre">学習のために</a>
+
+PJCG gimste の学習用ツールとして、スプレッドシート(.xlsx)、pdf、Quizletの3つを用意してあります。
+
+### PJCG gimste Lv.1
+
+- [.xlsx](./1moi/pjcg_gimste_1.xlsx): A,B,C,Dそれぞれの一覧とペア、カテゴリ、etc.をそれぞれまとめてあります。
+- [.pdf](./1moi/pjcg_gimste_1.pdf): HTMLのA,B,C,Dを単にまとめた形になってあります。
+- [Quizlet](http://quizlet.com/cogas_uasanbon/folders/pjcg-gimste-lv1): A,B,C,Dの4つの一覧をQuizlet化しています。
+
 
 ## このプロジェクトの推移
 
@@ -56,12 +67,9 @@ revised_date: 2014-12-30
 12/30 HTML完成  
 
 
-## <a name ="cilre">学習のために</a>
+## 今後の予定
 
-PJCG gimste の学習用ツールとして、スプレッドシート(.xlsx)、pdf、Quizletの3つを用意してあります。
+- カテゴリの再審議
+- PJCG gimste収録単語のjbovlasteの日本語定義の充実・調整
+- 1→2改訂
 
-### PJCG gimste Lv.1
-
-- [.xlsx](./1moi/pjcg_gimste_1.xlsx): A,B,C,Dそれぞれの一覧とペア、カテゴリ、etc.をそれぞれまとめてあります。
-- [.pdf](./1moi/pjcg_gimste_1.pdf): HTMLのA,B,C,Dを単にまとめた形になってあります。
-- [Quizlet](http://quizlet.com/cogas_uasanbon/folders/pjcg-gimste-lv1): A,B,C,Dの4つの一覧をQuizlet化しています。
