@@ -52,6 +52,6 @@ title: 生姜ばこ -la zingibero tanxe-
 <p>大学生。薬学部に入ってから薬に興味が無いことに気付く。<br>
 劣等生しながら、色んなことに手を出しすぎた結果、器用貧乏と化す。</p>
 
-<p>balcu'e tadni .i balonu co'a cmima lo micyxu'i tadni klesi kei mi facki lonu mi na cinri lo micxu'i tadni<br>
+<p>balcu'e tadni .i balonu co'a cmima lo micyxu'i tadni klesi kei mi facki lonu mi na se cinri lo nu micxu'i tadni<br>
 .i faulonu lo micyxu'i tadni zo'u ca'o xlali tadni cu troci lonu cilre fi lo du'e drata keigi'eja'ebo binxo lo za'e malsornalcre</p>
 </div>
