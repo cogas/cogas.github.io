@@ -2,7 +2,7 @@
 layout: post
 title: PJCG gimste
 date: 2014-12-08
-revised_date: 2014-12-30 
+revised_date: 2014-12-31 
 ---
 
 ## 概要
@@ -54,7 +54,7 @@ PJCG gimste の学習用ツールとして、スプレッドシート(.xlsx)、p
 
 - [.xlsx](./1moi/pjcg_gimste_1.xlsx): A,B,C,Dそれぞれの一覧とペア、カテゴリ、etc.をそれぞれまとめてあります。
 - [.pdf](./1moi/pjcg_gimste_1.pdf): HTMLのA,B,C,Dを単にまとめた形になってあります。
-- [Quizlet](http://quizlet.com/cogas_uasanbon/folders/pjcg-gimste-lv1): A,B,C,Dの4つの一覧をQuizlet化しています。
+- [Quizlet](http://quizlet.com/cogas_uasanbon/folders/pjcg-gimste-lv1): A,B,C,Dそれぞれで、ペア・カテゴリ２区分・etcに分けてまとめてあります。
 
 
 ## このプロジェクトの推移
