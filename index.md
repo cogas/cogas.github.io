@@ -15,6 +15,12 @@ title: 生姜ばこ -la zingibero tanxe-
 <li ><a href="article/jbo_file.html">ロジバンデータもろもろ</a></li>
 </ul>
 
+### 縁語かんれん -ra'a la engon-
+<ul class="big">
+<li ><a href="article/engo/engo_non_genle.html">縁語概要</a></li>
+</ul>
+
+
 ### そのた -lo drata-
 <ul class="big">
 <li ><a href="article/chemicalp.html">すごいぞ！化学ポテンシャル</a></li>
