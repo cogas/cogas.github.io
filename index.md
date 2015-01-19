@@ -7,6 +7,7 @@ title: 生姜ばこ -la zingibero tanxe-
 
 ### ロジバンかんれん -lo ckini be lo lojbo-
 <ul class="big">
+<li><a href="article/xalbebna_lojban.html">酔いどれロジバン</a></li>
 <li><a href="article/pjcg_gimste/index.html">PJCG gimste</a></li>
 <li><a href="article/jbo_links.html">ロジバン関連リンク集 </a></li>
 <li><a href="article/jbo_chemical.html">lojbo xukmi bo cmene -ロジバンで化合物命名- </a></li>
