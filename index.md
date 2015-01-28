@@ -24,6 +24,7 @@ title: 生姜ばこ -la zingibero tanxe-
 
 ### そのた -lo drata-
 <ul class="big">
+<li ><a href="article/moyu_classification.html">モユ分類</a></li>
 <li ><a href="article/chemicalp.html">すごいぞ！化学ポテンシャル</a></li>
 </ul>
 
