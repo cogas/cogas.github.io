@@ -19,9 +19,28 @@
 
   <h1>萌語の個人的メモ</h1>
 
+<p>15/06/20 ver1.0
+15/06/20 ver1.01 すぐさまモヤ氏からいくつかレスポンスがあったので追記。</p>
+
 <p>※ モヤ氏によって設計されている萌語の個人的なメモ。ここでいう萌語は統語論厳密のほうで、kiskrunの方。</p>
 
-<h2 id="section">構文論</h2>
+<h2 id="section">音韻論</h2>
+
+<p>使う音素はロジバンと同じ。<br />
+音節の頭で使える二重子音はXlとYrの2種類のみである。<br />
+Xはpbfvkgが、Yはこれらにtdを加えたものが該当する。</p>
+
+<p>二重母音はロジバンと同じ。<br />
+音節末に来られる子音はrlnsの4つ。<br />
+ただし、条件によってn↔m, s↔zの交替があり得る。<br />
+s→zは、後続の子音が有声音の時に、連濁により発生する。<br />
+n→mは、基本的には、後続の子音が唇音の時になる。  </p>
+
+<p>もう一つn→mのパターンがあって、後続の子音がnの場合。<br />
+amnaみたいな発音になって、同じ子音が連続するのを防ぐ。<br />
+逆に後続の子音がmの時はnのままになって、anmaのようになる。  </p>
+
+<h2 id="section-1">構文論</h2>
 
 <p>sentence ← ai sentence conjunction sentence au / (interjection)* verb (noun)*<br />
 verb ← i word? o value (interjection)*<br />
@@ -48,7 +67,7 @@ value-1 ← ai value+ au? / ai sentence au? / word  </p>
 
 <p>とか。ちなみにこれは不必要に ai..au を設けないという点も改良してある。</p>
 
-<h2 id="section-1">語彙メモ</h2>
+<h2 id="section-2">語彙メモ</h2>
 
 <p>萌語では同じくモヤ氏によって開発されたS語根を語彙として用いる。<br />
 現在公開されている限りでは、5種くらいに分かれている（<a href="https://onedrive.live.com/view.aspx?resid=9C3F8BE2B10E2F75!6749&amp;ithint=file%2cxlsx&amp;app=Excel&amp;authkey=!AP1KJWaPdNANHjQ">S語根</a>）：</p>
@@ -68,7 +87,9 @@ value-1 ← ai value+ au? / ai sentence au? / word  </p>
 <p>単純語（feisfilte）はレベルがあり、レベルが低いほど発音がしやすい単語（だったはず）。<br />
 S語根は発音のしやすさで単語を数レベルに分け、低レベルのものから順に重要（普遍的）な概念を対応させている（はず）。</p>
 
-<h2 id="section-2">意味論メモ</h2>
+<p>合成語を作る際は、単純語の語末のCVを落とした形が接辞になる。</p>
+
+<h2 id="section-3">意味論メモ</h2>
 
 <p>以下はモヤ氏がツイッターで述べていたこと：</p>
 
@@ -143,7 +164,7 @@ feismerke はロジバンでいえば… ma’ovla かしら。</p>
 
 <p>なお、ia (i a), io (i o) はそれぞれ絶対格、直接法を表す。</p>
 
-<h3 id="section-3">チェックサム冠詞</h3>
+<h3 id="section-4">チェックサム冠詞</h3>
 
 <p>不明。</p>
 
@@ -151,7 +172,7 @@ feismerke はロジバンでいえば… ma’ovla かしら。</p>
 
 <p>不明。</p>
 
-<h3 id="section-4">相表現</h3>
+<h3 id="section-5">相表現</h3>
 
 <p>相表現は今のところ（15/06/20)、</p>
 
@@ -164,11 +185,15 @@ feismerke はロジバンでいえば… ma’ovla かしら。</p>
 
 <p>が収録されている。</p>
 
-<h3 id="section-5">関係詞</h3>
+<h3 id="section-6">関係詞</h3>
 
-<p>fau が feismerkeとして登録されているが、使い方は不明。</p>
+<p>fau が feismerkeとして登録されている。これはロジバンの{ke’a}に相当する。</p>
 
-<h3 id="section-6">代名詞</h3>
+<p>value ai sen .. fau .. tence au</p>
+
+<p>と、valueを修飾する節内にfauを入れることで、先行詞（value）の位置を示す。</p>
+
+<h3 id="section-7">代名詞</h3>
 
 <p>それっぽいものとして、feismerkeに</p>
 
@@ -180,10 +205,9 @@ feismerke はロジバンでいえば… ma’ovla かしら。</p>
   <li>xei : 疑問詞</li>
 </ul>
 
-<p>がある。これが feismerke である理由は不明だが、<br />
-verbのvalueとして使えないという理由（つまり nounのvalueにのみ適合）からだろう。</p>
+<p>がある。これが feismerke である理由は作者のミスらしい（後々変わるところかもしれない）。</p>
 
-<h3 id="section-7">数表現</h3>
+<h3 id="section-8">数表現</h3>
 
 <p>数は、接尾辞が用意されている。</p>
 
@@ -206,16 +230,14 @@ verbのvalueとして使えないという理由（つまり nounのvalueにの�
   <li>empo : 数詞開始タグ</li>
 </ul>
 
-<p>があるので、数詞として（つまり、数をnounとして）用いる場合は</p>
+<p>があり、これはem/poと分離可能。em-で数詞を導く。<br />
+たとえば、”entikupa”で”123”を表す（em-は音の変化でen-になることにも注意）。  </p>
 
-<p>emponu, empoti, empoku, …</p>
+<p>量化は、nounのvalueに前置することで行われる。 ex) ya enku pimpi : 人間２人</p>
 
-<p>とする（のかもしれない）。</p>
+<p>また、後置すると序数として解される。 ex) ya pimpi enku : 2番目の人</p>
 
-<p>一方で、nounの量化としての用法は未確認ではあるが、おそらく noun に数接尾辞をつけるのだろう。</p>
-
-<p>全称が “lau” で接尾辞でない点はよく分からない。<br />
-個人的には「２以上の」という接尾辞をつくって、複数対象指示の明示ができるといいかなと思った。</p>
+<p>数字は３桁(emdadada)までであり、1000以上の数は適宜内容語を用いて表す。  </p>
 
 <hr />
 
@@ -242,8 +264,8 @@ word ← cmevla / (ei cmevla+)? brivla  </p>
 
 <hr>
 <font size="2">
-published : 2014-06-20<br>
-revised : 
+published : 2015-06-20<br>
+revised : 2015-06-20
 </font>
 
 <footer><p> Copyright © cogas 2014 All rights reserved. </p></footer>  
