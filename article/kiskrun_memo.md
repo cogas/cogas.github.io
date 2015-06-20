@@ -106,6 +106,8 @@ noun ← i (word? a / case-feismerke) value
 
 とすべきだろう。
 
+なお、ia (i a), io (i o) はそれぞれ絶対格、直接法を表す。
+
 ### チェックサム冠詞
 
 不明。
