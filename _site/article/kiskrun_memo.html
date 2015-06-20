@@ -41,6 +41,14 @@ word ← cmevla / (ei cmevla+)? brivla  </p>
 それぞれに o, a, u が品詞マーカーとしてさらに割り当てられている。<br />
 そのため、word自体に形態論的な区別はない、はず。</p>
 
+<p>さらに、valueの定義文が循環してpegとして機能しない気がする。改良案として、</p>
+
+<p>value ← ai value-1 (conjuction value-1)+ au / value-1<br />
+value-1 ← ai value-2+ au / value-2
+value-2 ← ai sentence au / word </p>
+
+<p>とかになるかと思われる。</p>
+
 <h2 id="section-1">語彙メモ</h2>
 
 <p>萌語では同じくモヤ氏によって開発されたS語根を語彙として用いる。<br />
@@ -93,7 +101,7 @@ S語根は発音のしやすさで単語を数レベルに分け、低レベル�
 <p>しかしながら、実際のところは、cmevlaでもbrivlaでもないfeismerkeが多用されるだろう。<br />
 feismerke はロジバンでいえば… ma’ovla かしら。</p>
 
-<p>たとえば、verbの構文、”i word? o value” の “word? o”は法を司るfeismerke:</p>
+<p>たとえば、verbの構文、”i word? o value” の “i word? o”は法を司るfeismerke:</p>
 
 <ul>
   <li>to : 必然を性す法。</li>
@@ -106,15 +114,19 @@ feismerke はロジバンでいえば… ma’ovla かしら。</p>
 
 <p>に置換されうる。なので、あの形式文法は厳密にいえば、</p>
 
-<p>verb ← i (word? o / modal-feismerke) value</p>
+<p>verb ← (i word? o / modal-feismerke) value</p>
 
 <p>にすべきだと思われる。さらに、”io”は省略可能なので、</p>
 
-<p>verb ← (i (word? o / modal-feismerke))? value</p>
+<p>verb ← (i word? o / modal-feismerke)? value</p>
 
-<p>とするのが現実的かなと思う。</p>
+<p>とするのが現実的かなと思う。（もう少し、意味論に即したいのであれば、</p>
 
-<p>同様に、nounについても、”word? a”は格を司るfeismerke:</p>
+<p>verb ← ((i word? o)? / modal-feismerke) value</p>
+
+<p>とかのほうがいいかもしれない。）</p>
+
+<p>同様に、nounについても、”i word? a”は格を司るfeismerke:</p>
 
 <ul>
   <li>sa : 動作主の格</li>
@@ -126,7 +138,7 @@ feismerke はロジバンでいえば… ma’ovla かしら。</p>
 
 <p>に置換されうるので、</p>
 
-<p>noun ← i (word? a / case-feismerke) value</p>
+<p>noun ← (i word? a / case-feismerke) value</p>
 
 <p>とすべきだろう。</p>
 
@@ -218,11 +230,13 @@ verbのvalueとして使えないという理由（つまり nounのvalueにの�
 
 <p>text ← sentence*<br />
 sentence ← ai sentence conjunction sentence au / (interjection)* verb (noun)*<br />
-verb ← (i (word? o / modal-feismerke))? value (interjection)*<br />
-noun ← i (word? a / case-feismerke) value (interjection)*<br />
-value ← ai value conjunction value au / ai value value au / ai sentence au / word  <br />
-conjunction ← i (word? u / conjunction-feismerke)<br />
-interjection ← i (word? e / interjection-feismerke) value<br />
+verb ← (i word? o / modal-feismerke)? value (interjection)*<br />
+noun ← (i word? a / case-feismerke) value (interjection)*<br />
+value ← ai value-1 (conjuction value-1)+ au / value-1<br />
+value-1 ← ai value-2+ au / value-2
+value-2 ← ai sentence au / word 
+conjunction ← i word? u / conjunction-feismerke<br />
+interjection ← i word? e / interjection-feismerke value<br />
 word ← cmevla / (ei cmevla+)? brivla  </p>
 
 <p>なお、これでも尚 pronoun-feismerkeは実装されていない。</p>

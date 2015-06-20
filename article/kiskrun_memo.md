@@ -26,6 +26,14 @@ word ← cmevla / (ei cmevla+)? brivla
 それぞれに o, a, u が品詞マーカーとしてさらに割り当てられている。  
 そのため、word自体に形態論的な区別はない、はず。
 
+さらに、valueの定義文が循環してpegとして機能しない気がする。改良案として、
+
+value ← ai value-1 (conjuction value-1)+ au / value-1  
+value-1 ← ai value-2+ au / value-2
+value-2 ← ai sentence au / word 
+
+とかになるかと思われる。
+
 ## 語彙メモ
 
 萌語では同じくモヤ氏によって開発されたS語根を語彙として用いる。  
@@ -191,7 +199,9 @@ text ← sentence*
 sentence ← ai sentence conjunction sentence au / (interjection)* verb (noun)*  
 verb ← (i word? o / modal-feismerke)? value (interjection)*  
 noun ← (i word? a / case-feismerke) value (interjection)*  
-value ← ai value conjunction value au / ai value value au / ai sentence au / word    
+value ← ai value-1 (conjuction value-1)+ au / value-1  
+value-1 ← ai value-2+ au / value-2  
+value-2 ← ai sentence au / word  
 conjunction ← i word? u / conjunction-feismerke  
 interjection ← i word? e / interjection-feismerke value  
 word ← cmevla / (ei cmevla+)? brivla  
