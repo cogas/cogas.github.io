@@ -12,8 +12,7 @@ sentence ← ai sentence conjunction sentence au / (interjection)* verb (noun)*
 verb ← i word? o value (interjection)*  
 noun ← i word? a value (interjection)*  
 conjunction ← i word? u  
-value ← ai value conjunction value au /  
-   ai value value au / ai sentence au / word   
+value ← ai value conjunction value au / ai value value au / ai sentence au / word   
 interjection ← i word? e value  
 word ← cmevla / (ei cmevla+)? brivla  
 
@@ -181,3 +180,16 @@ emponu, empoti, empoku, ...
 
 というか、形式文法で書くことの強みは、「何がどれの構文糖衣か」を示せることだと思うので、  
 構文糖衣な語を形式文法上で表さないというのは勿体無い気がする。
+
+feismerkeがどれだけ増えるかによるが、せめてこれくらいの改変は許されそうだ。
+
+text ← sentence*  
+sentence ← ai sentence conjunction sentence au / (interjection)* verb (noun)*  
+verb ← (i (word? o / modal-feismerke))? value (interjection)*  
+noun ← i (word? a / case-feismerke) value (interjection)*  
+value ← ai value conjunction value au / ai value value au / ai sentence au / word    
+conjunction ← i (word? u / conjunction-feismerke)  
+interjection ← i (word? e / interjection-feismerke) value  
+word ← cmevla / (ei cmevla+)? brivla  
+
+なお、これでも尚 pronoun-feismerkeは実装されていない。
