@@ -72,7 +72,7 @@ verb, noun の構文にある"word?"はそれぞれ法と格を明示する語�
 しかしながら、実際のところは、cmevlaでもbrivlaでもないfeismerkeが多用されるだろう。  
 feismerke はロジバンでいえば… ma'ovla かしら。
 
-たとえば、verbの構文、"i word? o value" の "word? o"は法を司るfeismerke:
+たとえば、verbの構文、"i word? o value" の "i word? o"は法を司るfeismerke:
 
 - to : 必然を性す法。
 - go : 推奨を表す法。価値判断の法の一つ。
@@ -83,13 +83,17 @@ feismerke はロジバンでいえば… ma'ovla かしら。
 
 に置換されうる。なので、あの形式文法は厳密にいえば、
 
-verb ← i (word? o / modal-feismerke) value
+verb ← (i word? o / modal-feismerke) value
 
 にすべきだと思われる。さらに、"io"は省略可能なので、
 
-verb ← (i (word? o / modal-feismerke))? value
+verb ← (i word? o / modal-feismerke)? value
 
-とするのが現実的かなと思う。
+とするのが現実的かなと思う。（もう少し、意味論に即したいのであれば、
+
+verb ← ((i word? o)? / modal-feismerke) value
+
+とかのほうがいいかもしれない。）
 
 同様に、nounについても、"word? a"は格を司るfeismerke:
 
@@ -101,7 +105,7 @@ verb ← (i (word? o / modal-feismerke))? value
 
 に置換されうるので、
 
-noun ← i (word? a / case-feismerke) value
+noun ← (i word? a / case-feismerke) value
 
 とすべきだろう。
 
@@ -185,11 +189,11 @@ feismerkeがどれだけ増えるかによるが、せめてこれくらいの�
 
 text ← sentence*  
 sentence ← ai sentence conjunction sentence au / (interjection)* verb (noun)*  
-verb ← (i (word? o / modal-feismerke))? value (interjection)*  
-noun ← i (word? a / case-feismerke) value (interjection)*  
+verb ← (i word? o / modal-feismerke)? value (interjection)*  
+noun ← (i word? a / case-feismerke) value (interjection)*  
 value ← ai value conjunction value au / ai value value au / ai sentence au / word    
-conjunction ← i (word? u / conjunction-feismerke)  
-interjection ← i (word? e / interjection-feismerke) value  
+conjunction ← i word? u / conjunction-feismerke  
+interjection ← i word? e / interjection-feismerke value  
 word ← cmevla / (ei cmevla+)? brivla  
 
 なお、これでも尚 pronoun-feismerkeは実装されていない。

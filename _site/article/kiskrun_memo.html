@@ -214,6 +214,19 @@ verbのvalueとして使えないという理由（つまり nounのvalueにの�
 <p>というか、形式文法で書くことの強みは、「何がどれの構文糖衣か」を示せることだと思うので、<br />
 構文糖衣な語を形式文法上で表さないというのは勿体無い気がする。</p>
 
+<p>feismerkeがどれだけ増えるかによるが、せめてこれくらいの改変は許されそうだ。</p>
+
+<p>text ← sentence*<br />
+sentence ← ai sentence conjunction sentence au / (interjection)* verb (noun)*<br />
+verb ← (i (word? o / modal-feismerke))? value (interjection)*<br />
+noun ← i (word? a / case-feismerke) value (interjection)*<br />
+value ← ai value conjunction value au / ai value value au / ai sentence au / word  <br />
+conjunction ← i (word? u / conjunction-feismerke)<br />
+interjection ← i (word? e / interjection-feismerke) value<br />
+word ← cmevla / (ei cmevla+)? brivla  </p>
+
+<p>なお、これでも尚 pronoun-feismerkeは実装されていない。</p>
+
 
 <hr>
 <font size="2">
