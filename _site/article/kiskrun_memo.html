@@ -43,9 +43,8 @@ word ← cmevla / (ei cmevla+)? brivla  </p>
 
 <p>さらに、valueの定義文が循環してpegとして機能しない気がする。改良案として、</p>
 
-<p>value ← ai value-1 (conjunction value-1)+ au / value-1+<br />
-value-1 ← ai value+ au / value-2<br />
-value-2 ← ai sentence au / word</p>
+<p>value ← ai value-1 (conjunction value-1)+ au? / value-1+ <br />
+value-1 ← ai value+ au? / ai sentence au? / word  </p>
 
 <p>とか。ちなみにこれは不必要に ai..au を設けないという点も改良してある。</p>
 
@@ -232,9 +231,8 @@ verbのvalueとして使えないという理由（つまり nounのvalueにの�
 sentence ← ai sentence conjunction sentence au / (interjection)* verb (noun)*<br />
 verb ← (i word? o / modal-feismerke)? value (interjection)*<br />
 noun ← (i word? a / case-feismerke) value (interjection)*<br />
-value ← ai value-1 (conjunction value-1)+ au / value-1<br />
-value-1 ← ai value+ au / value-2 <br />
-value-2 ← (ai sentence au / word)+<br />
+value ← ai value-1 (conjunction value-1)+ au? / value-1+ <br />
+value-1 ← ai value+ au? / ai sentence au? / word<br />
 conjunction ← i word? u / conjunction-feismerke<br />
 interjection ← i word? e / interjection-feismerke value<br />
 word ← cmevla / (ei cmevla+)? brivla  </p>
