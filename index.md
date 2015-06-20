@@ -16,9 +16,10 @@ title: 生姜ばこ -la zingibero tanxe-
 <li ><a href="article/jbo_file.html">ロジバンデータもろもろ</a></li>
 </ul>
 
-### 縁語かんれん -ra'a la engon-
+### 人工言語かんれん -ra'a lo runbau-
 <ul class="big">
 <li ><a href="article/engo/engo_non_genle.html">縁語概要</a></li>
+<li ><a href="article/kiskrun_memo.html">萌語個人的まとめ</a></li>
 </ul>
 
 
