@@ -95,7 +95,7 @@ verb ← ((i word? o)? / modal-feismerke) value
 
 とかのほうがいいかもしれない。）
 
-同様に、nounについても、"word? a"は格を司るfeismerke:
+同様に、nounについても、"i word? a"は格を司るfeismerke:
 
 - sa : 動作主の格
 - la : 条件格
