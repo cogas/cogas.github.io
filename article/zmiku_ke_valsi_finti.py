@@ -67,19 +67,19 @@ def valsi_check (vla):
     else:
         return True
 
-# 単語の生成。lerna'u は生成する単語の文字数（厳密にはpamoiに続く文字数）。pamoiは開始文字を指定できる。
+# 単語の生成。lerna'u は生成する単語の文字数。pamoiは開始文字を指定できる。
 def finti_valsi(lernahu, pamoi = ""):
     valsi = pamoi
     if(valsi == ""):
         valsi = Lerfu().sampling()
-    for i in range(lernahu-1):
+    for i in range(lernahu-len(valsi)):
         romoi = valsi[-1]
         temp = Lerfu(Lerfu().setCunste(Lerfu.gunynahuste[romoi]))
         valsi = valsi + temp.sampling()
     if (valsi_check(valsi)):
         return valsi
     else:
-        return finti_valsi(lernahu, pamoi = "")
+        return finti_valsi(lernahu, pamoi = pamoi)
 
 # 単語列の生成。finti_valsiによって複数個の単語を生成。vlana'u は単語数、 lerna'u は単語の文字数。
 def finti_vlapoi (vlanahu, lernahu, pamoi=""):
