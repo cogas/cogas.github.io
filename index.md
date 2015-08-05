@@ -7,20 +7,20 @@ title: 生姜ばこ -la zingibero tanxe-
 
 ### ロジバンかんれん -lo ckini be lo lojbo-
 <ul class="big">
-<li><a href="article/xalbebna_lojban.html">酔いどれロジバン</a></li>
-<li><a href="article/pjcg_gimste/index.html">PJCG gimste</a></li>
-<li><a href="article/jbo_links.html">ロジバン関連リンク集 </a></li>
-<li><a href="article/jbo_chemical.html">lojbo xukmi bo cmene -ロジバンで化合物命名- </a></li>
-<li ><a href="article/kaniuban/kaniuban_index.html">おかゆ超訳ロジバン</a></li>
-<li ><a href="article/jbo_goldendict.html">オフラインでロジバン辞書を使う</a></li>
-<li ><a href="article/jbo_file.html">ロジバンデータもろもろ</a></li>
+<li><a href="article/lojbo/xalbebna_lojban.html">酔いどれロジバン</a></li>
+<li><a href="article/lojbo/pjcg_gimste/index.html">PJCG gimste</a></li>
+<li><a href="article/lojbo/jbo_links.html">ロジバン関連リンク集 </a></li>
+<li><a href="article/lojbo/jbo_chemical.html">lojbo xukmi bo cmene -ロジバンで化合物命名- </a></li>
+<li ><a href="article/lojbo/kaniuban/kaniuban_index.html">おかゆ超訳ロジバン</a></li>
+<li ><a href="article/lojbo/jbo_goldendict.html">オフラインでロジバン辞書を使う</a></li>
+<li ><a href="article/lojbo/jbo_file/jbo_file.html">ロジバンデータもろもろ</a></li>
 </ul>
 
 ### 人工言語かんれん -ra'a lo runbau-
 <ul class="big">
-<li ><a href="article/eniciki.html">縁式</a></li>
-<li ><a href="article/engo/engo_non_genle.html">縁語概要</a></li>
-<li ><a href="article/kiskrun_memo.html">萌語個人的まとめ</a></li>
+<li ><a href="article/runbau/eniciki.html">縁式</a></li>
+<li ><a href="article/runbau/engo/engo_non_genle.html">縁語概要</a></li>
+<li ><a href="article/runbau/kiskrun_memo.html">萌語個人的まとめ</a></li>
 </ul>
 
 
@@ -37,6 +37,7 @@ title: 生姜ばこ -la zingibero tanxe-
 <li><a href="http://misonikomilojban.blogspot.jp/">味噌煮込みロジバン</a>: ロジバンについて書いてあるブログ。</li>
 <li><a href="http://seesaawiki.jp/hajiloji/">はじめてのロジバン</a>: ロジバン入門講座。執筆のコアメンバーです。</li>
 </ul>
+
 
 <!--
 <h3 >- じゃんく ぷよぐやむ -</h3>
