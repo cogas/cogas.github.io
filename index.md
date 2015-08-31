@@ -18,7 +18,9 @@ title: 生姜ばこ -la zingibero tanxe-
 
 ### 人工言語かんれん -ra'a lo runbau-
 <ul class="big">
-<li ><a href="article/runbau/eniciki.html">縁式</a></li>
+<li ><a href="https://sites.google.com/site/enishikiceniski/" target="_blank">ceniski</a>（外部リンク）</li>
+<li ><a href="https://sites.google.com/site/xaanapalaadi/home" target="_blank">xaana palaadi</a>（外部リンク）</li>
+<li ><a href="article/runbau/koware_eniciki.html">壊れ縁式</a></li>
 <li ><a href="article/runbau/engo/engo_non_genle.html">縁語概要</a></li>
 <li ><a href="article/runbau/kiskrun_memo.html">萌語個人的まとめ</a></li>
 </ul>
