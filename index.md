@@ -14,6 +14,7 @@ title: 生姜ばこ -la zingibero tanxe-
 <li ><a href="article/lojbo/kaniuban/kaniuban_index.html">おかゆ超訳ロジバン</a></li>
 <li ><a href="article/lojbo/jbo_goldendict.html">オフラインでロジバン辞書を使う</a></li>
 <li ><a href="article/lojbo/jbo_file/jbo_file.html">ロジバンデータもろもろ</a></li>
+<li ><a href="aricle/lojbo/mahothon.html">ma'othon liste -頻度順ma'oste-</a></li>
 </ul>
 
 ### 人工言語かんれん -ra'a lo runbau-
