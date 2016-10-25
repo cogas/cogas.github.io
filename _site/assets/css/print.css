@@ -1,7 +1,0 @@
-@media print{
-#mainWrap{width:100%; padding: 0px, 0px, 0px, 0px; float:none;}
-.titlebar{display:none; font-size:0px;}
-.tweetbtn{display:none;}
-footer{display:none;}
-body{color:#000000; font-size: 9pt;/*文字サイズ*/}
-}
