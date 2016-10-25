@@ -147,7 +147,7 @@ term term ZOhU# statement-1
 
     statement-1 <- statement-2 (I# joik-jek statement-2)*
 
-    statement-2 <- sentence (I# joik-jek? tag? BO# sentene)*
+    statement-2 <- sentence (I# joik-jek? tag? BO# sentence)*
 
 **joik-jek**というのは接続詞の一種です。接続詞と思ってください。
 
