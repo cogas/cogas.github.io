@@ -279,7 +279,7 @@ I# I# NIhO# NIhO# I# I# FAhO#
 
     statement-1 <- statement-2 (I# joik-jek statement-2)*
 
-    statement-2 <- sentence (I# joik-jek? tag? BO# sentene)*
+    statement-2 <- sentence (I# joik-jek? tag? BO# sentence)*
 
 gihek と I# を対応してみると、**BO#はより強く２つを結合する**という共通の構造が見えてきます。実際、BO#は2つの構造をより強く結合するために使われます。
 
