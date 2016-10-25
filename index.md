@@ -3,43 +3,44 @@ layout: default
 title: 生姜ばこ -la zingibero tanxe-
 ---
 
-## つくったもの -lo se finti-
+## つくったもの -lo se zbasu be mi-
 
-### ロジバンかんれん -lo ckini be lo lojbo-
-<ul class="big">
-<li><a href="article/lojbo/xalbebna_lojban.html">酔いどれロジバン</a></li>
-<li><a href="article/lojbo/pjcg_gimste/index.html">PJCG gimste</a></li>
-<li><a href="article/lojbo/jbo_links.html">ロジバン関連リンク集 </a></li>
-<li><a href="article/lojbo/jbo_chemical.html">lojbo xukmi bo cmene -ロジバンで化合物命名- </a></li>
-<li ><a href="article/lojbo/kaniuban/kaniuban_index.html">おかゆ超訳ロジバン</a></li>
-<li ><a href="article/lojbo/jbo_goldendict.html">オフラインでロジバン辞書を使う</a></li>
-<li ><a href="article/lojbo/jbo_file/jbo_file.html">ロジバンデータもろもろ</a></li>
-<li ><a href="article/lojbo/mahothon.html">ma'othon liste -頻度順ma'oste-</a></li>
-</ul>
+### ロジバンかんれん -lo ckini be lo lojbo bei da-
+
+{:.big}
+- [酔いどれロジバン](./article/lojbo/xalbebna_lojban.html)
+- [PJCG gimste](./article/lojbo/pjcg_gimste/index.html)
+- [ロジバン関連リンク集](./article/lojbo/jbo_links.html)
+- [lojbo xukmi bo cmene -ロジバンで化合物命名- ](./article/lojbo/jbo_chemical.html)
+- [オフラインでロジバン辞書を使う](./article/lojbo/jbo_goldendict.html)
+- [ロジバンデータもろもろ](./article/lojbo/jbo_file/jbo_file.html)
+- [ma'othon liste -頻度順ma'oste-](./article/lojbo/mahothon.html)
 
 ### 人工言語かんれん -ra'a lo runbau-
-<ul class="big">
-<li ><a href="https://sites.google.com/site/enishikiceniski/" target="_blank">ceniski</a>（外部リンク）</li>
-<li ><a href="https://sites.google.com/site/xaanapalaadi/home" target="_blank">xaana palaadi</a>（外部リンク）</li>
-<li ><a href="article/runbau/koware_eniciki.html">壊れ縁式</a></li>
-<li ><a href="article/runbau/engo/engo_non_genle.html">縁語概要</a></li>
-<li ><a href="article/runbau/kiskrun_memo.html">萌語個人的まとめ</a></li>
-</ul>
+
+{:.big}
+- [ceniski](https://sites.google.com/site/enishikiceniski/){:target="blank"}（外部）
+- [xaana palaadi](https://sites.google.com/site/xaanapalaadi/home){:target="blank"}（外部）
+- [壊れ縁式](./article/runbau/koware_eniciki.html)
+- [縁語概要](./article/runbau/engo/engo_non_genle.html)
+- [萌語個人的まとめ](./article/runbau/kiskrun_memo.html)
 
 
 ### そのた -lo drata-
-<ul class="big">
-<li ><a href="article/moyu_classification.html">モユ分類</a></li>
-<li ><a href="article/chemicalp.html">すごいぞ！化学ポテンシャル</a></li>
-</ul>
+
+{:.big}
+- [モユ分類](./article/moyu_classification.html)
+- [すごいぞ！化学ポテンシャル](./article/chemicalp.html)
+
 
 ### さいと -lo kibro stuzi-
-<ul class="big">
-<li ><a href="http://yakumido.blogspot.jp/">やくみ堂～砂漠から徒歩３分～</a>: 本拠地（？）</li>
-<li><a href="/hajiloji/">はじめてのロジバン（仮）</a>: 次世代はじロジ（工事中）</li>
-<li><a href="http://misonikomilojban.blogspot.jp/">味噌煮込みロジバン</a>: ロジバンについて書いてあるブログ。</li>
-<li><a href="http://seesaawiki.jp/hajiloji/">はじめてのロジバン</a>: ロジバン入門講座。執筆のコアメンバーです。</li>
-</ul>
+
+{:.big}
+- [はじめてのロジバン第２版](./hajiloji){:target="blank"}（外部） : ロジバン入門講座の第２版。みかんです。
+- [はじめてのロジバン](http://seesaawiki.jp/hajiloji/){:target="blank"}（外部） : ↑ の前版
+- [ゆくゆくは有へと](http://iuk.hateblo.jp/){:target="blank"}（外部）
+- [味噌煮込みロジバン](http://misonikomilojban.blogspot.jp/){:target="blank"}（外部） : ロジバン考察＆学習ブログ
+- [やくみ堂～砂漠から徒歩３分～](http://yakumido.blogspot.jp/){:target="blank"}（外部） : もうほとんど使ってないけど雑記ブログ
 
 
 <!--
@@ -61,11 +62,4 @@ title: 生姜ばこ -la zingibero tanxe-
 
 ## わたし -mi-
 
-### 生姜とは -la cogas cu mo-
-<div class="box">
-<p>大学生。薬学部に入ってから薬に興味が無いことに気付く。<br>
-劣等生しながら、色んなことに手を出しすぎた結果、器用貧乏と化す。</p>
-
-<p>balcu'e tadni .i balonu co'a cmima lo micyxu'i tadni klesi kei mi facki lonu mi na se cinri lo nu micxu'i tadni<br>
-.i faulonu lo micyxu'i tadni zo'u ca'o xlali tadni cu troci lonu cilre fi lo du'e drata keigi'eja'ebo binxo lo za'e malsornalcre</p>
-</div>
+mi'e cogas.iuk.uasanbon .i mi remna .i mi danlu .i mi dacti
