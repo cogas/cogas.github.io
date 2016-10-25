@@ -2,10 +2,10 @@ permalink: :categories/
 
 # Site settings
 lang: ja
-title: 生姜ばこ -la zingibero tanxe-
+title: lela.iúk.tánxe
 email: ""
 author:
-  name: cogas
+  name: cogas.iuk.uasanbon
   email: cheeky.chic.chick@gmail.com
 
 url: "http://cogas.github.io"
@@ -15,4 +15,3 @@ github_username:  cogas
 
 # Build settings
 markdown: kramdown
-

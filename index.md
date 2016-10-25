@@ -1,41 +1,55 @@
 ---
 layout: default
-title: 生姜ばこ -la zingibero tanxe-
+title: index
 ---
 
-## つくったもの -lo se zbasu be mi-
+### ロジバン関連 -lo ckini be lo lojbo bei da-
 
-### ロジバンかんれん -lo ckini be lo lojbo bei da-
-
-{:.big}
-- [酔いどれロジバン](./article/lojbo/xalbebna_lojban.html)
-- [PJCG gimste](./article/lojbo/pjcg_gimste/index.html)
-- [ロジバン関連リンク集](./article/lojbo/jbo_links.html)
-- [lojbo xukmi bo cmene -ロジバンで化合物命名- ](./article/lojbo/jbo_chemical.html)
-- [オフラインでロジバン辞書を使う](./article/lojbo/jbo_goldendict.html)
-- [ロジバンデータもろもろ](./article/lojbo/jbo_file/jbo_file.html)
-- [ma'othon liste -頻度順ma'oste-](./article/lojbo/mahothon.html)
+<ul>
+{% for x in site.pages %}
+  {% assign y = x.url | split: "/" | size %}
+  {% if x.url contains "/pages/lojbo" and y == 4 %}
+    <li>
+      <a href="{{x.url}}">{{x.title}}</a> -- {{x.date}}
+    </li>
+  {% endif %}
+{% endfor %}
+</ul>
 
 ### 人工言語かんれん -ra'a lo runbau-
 
-{:.big}
 - [ceniski](https://sites.google.com/site/enishikiceniski/){:target="blank"}（外部）
 - [xaana palaadi](https://sites.google.com/site/xaanapalaadi/home){:target="blank"}（外部）
-- [壊れ縁式](./article/runbau/koware_eniciki.html)
-- [縁語概要](./article/runbau/engo/engo_non_genle.html)
-- [萌語個人的まとめ](./article/runbau/kiskrun_memo.html)
+
+<ul>
+{% for x in site.pages %}
+  {% assign y = x.url | split: "/" | size %}
+  {% if x.url contains "/pages/runbau" and y == 4 %}
+    <li>
+      <a href="{{x.url}}">{{x.title}}</a> -- {{x.date}}
+    </li>
+  {% endif %}
+{% endfor %}
+</ul>
 
 
 ### そのた -lo drata-
 
-{:.big}
-- [モユ分類](./article/moyu_classification.html)
-- [すごいぞ！化学ポテンシャル](./article/chemicalp.html)
+<ul>
+{% for x in site.pages %}
+  {% assign y = x.url | split: "/" | size %}
+  {% if x.url contains "/pages/" and y == 3 %}
+    <li>
+      <a href="{{x.url}}">{{x.title}}</a> -- {{x.date}}
+    </li>
+  {% endif %}
+{% endfor %}
+</ul>
 
 
 ### さいと -lo kibro stuzi-
 
-{:.big}
+
 - [はじめてのロジバン第２版](./hajiloji){:target="blank"}（外部） : ロジバン入門講座の第２版。みかんです。
 - [はじめてのロジバン](http://seesaawiki.jp/hajiloji/){:target="blank"}（外部） : ↑ の前版
 - [ゆくゆくは有へと](http://iuk.hateblo.jp/){:target="blank"}（外部）

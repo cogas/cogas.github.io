@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>lela.iúk.tánxe - 萌語の個人的メモ</title>
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/assets/css/print.css" type="text/css">
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript" ></script>
+  <script src="/assets/js/basic.js" type="text/javascript" ></script>
+</head>
+<body>
+<div class="titlebar">lela.iúk.tánxe</div>
+<p align="right" class="tweetbtn">
+<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</p>
+
+  <h1>萌語の個人的メモ</h1>
+
+<p>15/06/20 ver1.0
+15/06/20 ver1.01 すぐさまモヤ氏からいくつかレスポンスがあったので追記。</p>
+
+<p>※ モヤ氏によって設計されている萌語の個人的なメモ。ここでいう萌語は統語論厳密のほうで、kiskrunの方。</p>
+
+<h2 id="section">音韻論</h2>
+
+<p>以下はすべてモヤ氏のツイートの引用である。</p>
+
+<p>使う音素はロジバンと同じ。<br />
+音節の頭で使える二重子音はXlとYrの2種類のみである。<br />
+Xはpbfvkgが、Yはこれらにtdを加えたものが該当する。</p>
+
+<p>二重母音はロジバンと同じ。<br />
+音節末に来られる子音はrlnsの4つ。<br />
+ただし、条件によってn↔m, s↔zの交替があり得る。<br />
+s→zは、後続の子音が有声音の時に、連濁により発生する。<br />
+n→mは、基本的には、後続の子音が唇音の時になる。</p>
+
+<p>もう一つn→mのパターンがあって、後続の子音がnの場合。<br />
+amnaみたいな発音になって、同じ子音が連続するのを防ぐ。<br />
+逆に後続の子音がmの時はnのままになって、anmaのようになる。</p>
+
+<p>最後に、緩衝子音のmについて。<br />
+音節末のrlsについて、後続の子音が同じ場合に、緩衝子音としてmを挟む。sについては、後続子音がzcjの場合も対象。<br />
+例えば、kis + sel としたい場合は、kismselとする。</p>
+
+<h2 id="section-1">構文論</h2>
+
+<p>sentence ← ai sentence conjunction sentence au / (interjection)* verb (noun)*<br />
+verb ← i word? o value (interjection)*<br />
+noun ← i word? a value (interjection)*<br />
+conjunction ← i word? u<br />
+value ← ai value conjunction value au / ai value value au / ai sentence au / word <br />
+interjection ← i word? e value<br />
+word ← cmevla / (ei cmevla+)? brivla</p>
+
+<hr />
+
+<p>恐らく「text ← sentence*」というのが抜けている。</p>
+
+<p>構造括弧が ai .. au。</p>
+
+<p>述語、項、接続詞には開始マーカーとして i があり、<br />
+それぞれに o, a, u が品詞マーカーとしてさらに割り当てられている。<br />
+そのため、word自体に形態論的な区別はない、はず。</p>
+
+<p>さらに、valueの定義文が循環してpegとして機能しない気がする。改良案として、</p>
+
+<p>value ← ai value-1 (conjunction value-1)+ au? / value-1+ <br />
+value-1 ← ai value+ au? / ai sentence au? / word</p>
+
+<p>とか。ちなみにこれは不必要に ai..au を設けないという点も改良してある。</p>
+
+<h2 id="section-2">語彙メモ</h2>
+
+<p>萌語では同じくモヤ氏によって開発されたS語根を語彙として用いる。<br />
+現在公開されている限りでは、5種くらいに分かれている（<a href="https://onedrive.live.com/view.aspx?resid=9C3F8BE2B10E2F75!6749&amp;ithint=file%2cxlsx&amp;app=Excel&amp;authkey=!AP1KJWaPdNANHjQ">S語根</a>）：</p>
+
+<ul>
+  <li>feismerke : 包み語。特定の単語の並びを省略する単語。糖衣構文を形成する単語。（cvv, ccv, ccvv, vccv, -cv, cv）</li>
+  <li>feisfilte : 合成語でない単純語。（cvccv, ccvccv, cvvccv, cvvccv, ccvvccv, ccvvccv）</li>
+  <li>feizdispu : 合成語、複合語（今のところ cvvccvccv のみ確認）</li>
+  <li>feistaiste : 外来語</li>
+  <li>feiskerte : 名称語 (おそらく、語末が子音）</li>
+</ul>
+
+<p>多分まだ外来語はない。</p>
+
+<p>名称語も３語だけで、kiskrun（厳密萌語）、kistel（曖昧萌語）、feismsaus（S語根）がある。</p>
+
+<p>単純語（feisfilte）はレベルがあり、レベルが低いほど発音がしやすい単語（だったはず）。<br />
+S語根は発音のしやすさで単語を数レベルに分け、低レベルのものから順に重要（普遍的）な概念を対応させている（はず）。</p>
+
+<p>合成語を作る際は、単純語の語末のCVを落とした形が接辞になる。</p>
+
+<h2 id="section-3">意味論メモ</h2>
+
+<p>以下はモヤ氏がツイッターで述べていたこと：</p>
+
+<ul>
+  <li>NA順。</li>
+  <li>ia,ioは発音の関係上ya,yoとしてよい。</li>
+  <li>iaの意味は、絶対格。</li>
+  <li>ioの意味は、直接法（事実について言及）</li>
+  <li>文頭にいきなりwordが来た場合は、ioが省略されてるものとみなす。</li>
+</ul>
+
+<p>（ここまで）</p>
+
+<p>以下、生姜による独自考察。</p>
+
+<h3 id="nounverb">nounとverbについて</h3>
+
+<p>verb, noun の構文にある”word?”はそれぞれ法と格を明示する語が入るはず。<br />
+ここでいう word は “cmevla” か “brivla”（とcmevlaの複合体）なわけだが、<br />
+これはkiskrunでいえば、</p>
+
+<ul>
+  <li>cmevla = feiskerte</li>
+  <li>brivla = feisfilte &amp; feizdispu</li>
+</ul>
+
+<p>だろう。feistaiste（外来語）がどちらに属するかは不明。多分 brivla ？</p>
+
+<p>しかしながら、実際のところは、cmevlaでもbrivlaでもないfeismerkeが多用されるだろう。<br />
+feismerke はロジバンでいえば… ma’ovla かしら。</p>
+
+<p>たとえば、verbの構文、”i word? o value” の “i word? o”は法を司るfeismerke:</p>
+
+<ul>
+  <li>to : 必然を性す法。</li>
+  <li>go : 推奨を表す法。価値判断の法の一つ。</li>
+  <li>xo : 接続法。事実判断を保留した単なる命題を表す。</li>
+  <li>po : 可能性を表す法。</li>
+  <li>mo : 義務を表す法。価値判断の法の一つ。</li>
+  <li>ro : 許可を表す法。価値判断の法の一つ。</li>
+</ul>
+
+<p>に置換されうる。なので、あの形式文法は厳密にいえば、</p>
+
+<p>verb ← (i word? o / modal-feismerke) value</p>
+
+<p>にすべきだと思われる。さらに、”io”は省略可能なので、</p>
+
+<p>verb ← (i word? o / modal-feismerke)? value</p>
+
+<p>とするのが現実的かなと思う。（もう少し、意味論に即したいのであれば、</p>
+
+<p>verb ← ((i word? o)? / modal-feismerke) value</p>
+
+<p>とかのほうがいいかもしれない。）</p>
+
+<p>同様に、nounについても、”i word? a”は格を司るfeismerke:</p>
+
+<ul>
+  <li>sa : 動作主の格</li>
+  <li>la : 条件格</li>
+  <li>ka : 起点格</li>
+  <li>fa : 終点格</li>
+  <li>ba : 具格</li>
+</ul>
+
+<p>に置換されうるので、</p>
+
+<p>noun ← (i word? a / case-feismerke) value</p>
+
+<p>とすべきだろう。</p>
+
+<p>なお、ia (i a), io (i o) はそれぞれ絶対格、直接法を表す。</p>
+
+<h3 id="section-4">チェックサム冠詞</h3>
+
+<p>（モヤ氏のツイート引用）<br />
+これは、使っても使わなくても良いけど、念のため用意してる程度のもの。<br />
+単語の文字列からチェックサムを求めて、対応するチェックサム冠詞を単語の頭に接辞として付けるというもの。</p>
+
+<p>チェックサム接頭辞、が名称としては正しいな。<br />
+後ろのCVを落とした、ar-, il-, un-, es-が接頭辞。<br />
+聞き間違いを減らすための工夫の仕組みなので、基本的には使わなくていい。</p>
+
+<p>想定している使用方法は、外来語で似た単語が出てきてしまった時に付けるとか、あるいは、n対語とかのための使用を想定。<br />
+（まだ、n対接辞を思い付く前に作られた仕組みなので、母音交替でのn対語しかなかったという背景がある。）</p>
+
+<h3 id="n">n対接辞</h3>
+
+<p>不明。</p>
+
+<h3 id="section-5">相表現</h3>
+
+<p>相表現は今のところ（15/06/20)、</p>
+
+<ul>
+  <li>kli- : 状態</li>
+  <li>pru- : atelicな動作</li>
+  <li>tre- : telicな動作の継続相</li>
+  <li>flu- : telicな動作の完了相</li>
+</ul>
+
+<p>が収録されている。</p>
+
+<h3 id="section-6">関係詞</h3>
+
+<p>fau が feismerkeとして登録されている。これはロジバンの{ke’a}に相当する。</p>
+
+<p>value ai sen .. fau .. tence au</p>
+
+<p>と、valueを修飾する節内にfauを入れることで、先行詞（value）の位置を示す。</p>
+
+<h3 id="section-7">代名詞</h3>
+
+<p>それっぽいものとして、feismerkeに</p>
+
+<ul>
+  <li>toi : 既出の対象を指示</li>
+  <li>pei : 新出の対象を指示</li>
+  <li>sai : あなた</li>
+  <li>mai : 私</li>
+  <li>xei : 疑問詞</li>
+</ul>
+
+<p>がある。これが feismerke である理由は作者のミスらしい（後々変わるところかもしれない）。</p>
+
+<h3 id="section-8">数表現</h3>
+
+<p>数は、接尾辞が用意されている。</p>
+
+<ul>
+  <li>-nu : 0</li>
+  <li>-ti : 1</li>
+  <li>-ku : 2</li>
+  <li>-pa : 3</li>
+  <li>-fe : 4</li>
+  <li>-so : 5</li>
+  <li>-gi : 6</li>
+  <li>-bo : 7</li>
+  <li>-li : 8</li>
+  <li>-da : 9</li>
+</ul>
+
+<p>これの使い方は詳細には分からないが、feismerke に</p>
+
+<ul>
+  <li>empo : 数詞開始タグ</li>
+</ul>
+
+<p>があり、これはem/poと分離可能。em-で数詞を導く。<br />
+たとえば、”entikupa”で”123”を表す（em-は音の変化でen-になることにも注意）。</p>
+
+<p>量化は、nounのvalueに前置することで行われる。 ex) ya enku pimpi : 人間２人</p>
+
+<p>また、後置すると序数として解される。 ex) ya pimpi enku : 2番目の人</p>
+
+<p>数字は３桁(emdadada)までであり、1000以上の数は適宜内容語を用いて表す。</p>
+
+<hr />
+
+<p>形式文法自体には、feismerke は登場しないが、kiskrunにとって重要な要素だと思うので、<br />
+しっかりと形式文法に組み込む必要があるように思う。</p>
+
+<p>というか、形式文法で書くことの強みは、「何がどれの構文糖衣か」を示せることだと思うので、<br />
+構文糖衣な語を形式文法上で表さないというのは勿体無い気がする。</p>
+
+<p>feismerkeがどれだけ増えるかによるが、せめてこれくらいの改変は許されそうだ。</p>
+
+<p>text ← sentence*<br />
+sentence ← ai sentence conjunction sentence au / (interjection)* verb (noun)*<br />
+verb ← (i word? o / modal-feismerke)? value (interjection)*<br />
+noun ← (i word? a / case-feismerke) value (interjection)*<br />
+value ← ai value-1 (conjunction value-1)+ au? / value-1+ <br />
+value-1 ← ai value+ au? / ai sentence au? / word<br />
+conjunction ← i word? u / conjunction-feismerke<br />
+interjection ← i word? e / interjection-feismerke value<br />
+word ← cmevla / (ei cmevla+)? brivla</p>
+
+<p>なお、これでも尚 pronoun-feismerkeは実装されていない。</p>
+
+
+<hr>
+<font size="2">
+published : 2015-06-20<br>
+revised : 2015-06-20
+</font>
+
+<footer><p> Copyright © cogas.iuk.uasanbon 2014 All rights reserved. </p></footer>
+</div>
+
+</body>
+</html>
