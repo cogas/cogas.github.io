@@ -13,7 +13,7 @@ date: 2014-12-8
 　人工言語なので公式サイトなるものがあるのです。
 - [ロジバン相談室 google group](https://groups.google.com/forum/?fromgroups=#!forum/lojban-soudan)  
 　日本語で質問できる。割と濃い質問からライトな質問はもちろん、議論まで色々できます。
-- [ロジバン若手の会](https://groups.google.com/forum/#!forum/lojbo_citno_girzu)  
+- [日本ロジバン若手の会](https://groups.google.com/forum/#!forum/ponjo_lojbo_citno_girzu)  
 　最近できた「ロジバン相談室」の後追い（？）のgoogle group. 「より俗っぽい話題をできる場に」だそう。
 - [BPFKsections](http://www.lojban.org/tiki/BPFK+Sections)  
 　BPFKとは簡単にいえば「ロジバン文法委員会」です。その委員会で正式に定義された文法項目についてのページ。英語ですが、ためになります。
