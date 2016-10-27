@@ -51,7 +51,7 @@ ca'e galfi ge
 
 gi
 
-<div class="box">zoi zoi <b>mono,di,tri,...</b> zoi zoi <b>PAmei</b> zoi</div>
+<div class="box">zoi zoi <b>mono,di,tri,...</b> zoi zoi zoi <b>PAmei</b> zoi</div>
 
 .i mu'a
 
