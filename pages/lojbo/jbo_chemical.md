@@ -35,7 +35,7 @@ ni'o
 
 **2-methylpentane** → 2-methyl mulkan → **rebopalkil**mulkan
 
-<img src="jbo_xukmi_pixra/2-methylpentane.gif">
+<img src="../jbo_xukmi_pixra/2-methylpentane.gif">
 
 .i ja'o
 
@@ -57,7 +57,7 @@ gi
 
 2,4-dimethylhexane → re**je**vo**boremei**palkilxalkan (re je vo bo remei palkil xalkan)
 
-<img src="jbo_xukmi_pixra/2,4-dimethylhexane.gif">
+<img src="../jbo_xukmi_pixra/2,4-dimethylhexane.gif">
 
 
 ## 1.2 アルケン、アルキン (alkene, alkyne)
@@ -65,21 +65,21 @@ gi
 ni'o
 
 <div class="box">but-1-ene ≡ volk bo pa bo <b>en</b> → vol<b>g</b>bopabo<b>'</b>en</div>
-<img src="jbo_xukmi_pixra/but-1-ene.gif">
+<img src="../jbo_xukmi_pixra/but-1-ene.gif">
 
 .e'o jundi la'oi **k → g**
 
 ni'o
 
 <div class="box">hepta-2,4-<b>diene</b> → zelgborejevobo<b>remei'en</b> (zelk bo re je vo bo remei en)</div> 
-<img src="jbo_xukmi_pixra/hepta-2,4-diene.png" width="100px">
+<img src="../jbo_xukmi_pixra/hepta-2,4-diene.png" width="100px">
 
 e'o jundi la'oi <b>di → remei</b>
 
 .imu'a (la'aru'e mlixe nandu)
 
 pent-3-en-1-yne → mulgbocibo'enbopabo'**in** (mulk bo ci bo en bo pa bo in)  
-<img src="jbo_xukmi_pixra/pent-3-ene-1-yne.jpg" width="100px">
+<img src="../jbo_xukmi_pixra/pent-3-ene-1-yne.jpg" width="100px">
 
 e'o jundi la'oi <b>yne → in</b>
 
@@ -99,12 +99,12 @@ ca'e galfi
 mu'a
 
 cyclohexane → **jin**xalkan  
-<img src="jbo_xukmi_pixra/cyclohexane.png" width="100px">
+<img src="../jbo_xukmi_pixra/cyclohexane.png" width="100px">
 
 cyclohexene → **jin**xalken  
-<img src="jbo_xukmi_pixra/cyclohexene.png" width="100px">
+<img src="../jbo_xukmi_pixra/cyclohexene.png" width="100px">
 
 methylcyclohexane → palkiljinxalkan  
-<img src="jbo_xukmi_pixra/methylcyclohexane.png" width="100px">
+<img src="../jbo_xukmi_pixra/methylcyclohexane.png" width="100px">
 
 
