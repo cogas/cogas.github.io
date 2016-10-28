@@ -3,52 +3,54 @@ layout: default
 title: index
 ---
 
-### ロジバン関連 -lo ckini be lo lojbo bei da-
+### ロジバン
 
 <ul>
 {% for x in site.pages %}
   {% assign y = x.url | split: "/" | size %}
   {% if x.url contains "/pages/lojbo" and y == 4 %}
     <li>
-      <a href="{{x.url}}">{{x.title}}</a> -- {{x.date}}
+      <a href="{{x.url}}">{{x.title}}</a> ― {{x.date}}
     </li>
   {% endif %}
 {% endfor %}
 </ul>
 
-### 人工言語かんれん -ra'a lo runbau-
-
-- [ceniski](https://sites.google.com/site/enishikiceniski/){:target="blank"}（外部）
-- [xaana palaadi](https://sites.google.com/site/xaanapalaadi/home){:target="blank"}（外部）
+### 人工言語
 
 <ul>
+  <li>
+    <a href="https://sites.google.com/site/enishikiceniski/" target="blank">ceniski</a>（外部）
+  </li>
+  <li>
+    <a href="https://sites.google.com/site/xaanapalaadi/home" target="blank">xaana palaadi</a>（外部）
+  </li>
 {% for x in site.pages %}
   {% assign y = x.url | split: "/" | size %}
   {% if x.url contains "/pages/runbau" and y == 4 %}
     <li>
-      <a href="{{x.url}}">{{x.title}}</a> -- {{x.date}}
+      <a href="{{x.url}}">{{x.title}}</a> ― {{x.date}}
     </li>
   {% endif %}
 {% endfor %}
 </ul>
 
 
-### そのた -lo drata-
+### その他
 
 <ul>
 {% for x in site.pages %}
   {% assign y = x.url | split: "/" | size %}
-  {% if x.url contains "/pages/" and y == 3 %}
+  {% if x.url contains "/pages/vrici" and y == 4 %}
     <li>
-      <a href="{{x.url}}">{{x.title}}</a> -- {{x.date}}
+      <a href="{{x.url}}">{{x.title}}</a> ― {{x.date}}
     </li>
   {% endif %}
 {% endfor %}
 </ul>
 
 
-### さいと -lo kibro stuzi-
-
+### サイト
 
 - [はじめてのロジバン第２版](./hajiloji){:target="blank"}（外部） : ロジバン入門講座の第２版。みかんです。
 - [はじめてのロジバン](http://seesaawiki.jp/hajiloji/){:target="blank"}（外部） : ↑ の前版
