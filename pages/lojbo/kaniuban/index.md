@@ -522,7 +522,7 @@ LUhU# はほとんどの場合省略されますが、これらの構造を締�
 この節の最後は、description について見ていきます。いわゆる「描写項」というものです。
 
     description <- LA# rels? CMEVLA#+
-		/ (LA# / LE#) (rels / bare-sumti)? quantifier? (selbri / sumti) KU#?
+		/ (LA# / LE#) (rels / bare-sumti)? (quantifier? selbri / quantifier sumti) KU#?
 
 ### LA# rels? CMEVLA#+
 
@@ -532,17 +532,16 @@ CMEVLA# は「名称語」と呼ばれるものです。
 
 また、関係節rels は LA#の後ろと、CMEVLA#+ の後ろ（すなわち、descriptionの後ろ）のどちらにもつけることができます。
 
-### (LA# / LE#) (rels / bare-sumti)? quantifier? (selbri / sumti) KU#?
+### (LA# / LE#) (rels / bare-sumti)? (quantifier? selbri / quantifier sumti) KU#?
 
 こちらは少しややこしいですね。選択の総通りを数えてみると
 
 1. LA#かLE#か (2)
 2. rels（関係節）か bare-sumti か 無しか (3)
-3. 量化子 ありかなしか (2)
-4. selbri か sumti か (2)
-5. KU# ありかなしか (2)
+3. quantifier有りselbri か 無しselbri か sumti か (3)
+4. KU# ありかなしか (2)
 
-となり、 2×3×2×2×2 = 48 通りのパターンが考えられます。
+となり、 2×3×3×2 = 36 通りのパターンが考えられます。
 
 …しかし、構造は書いてある通りです。この辺りは統語論よりも意味論のほうが複雑なところと言えそうです。
 
@@ -551,6 +550,13 @@ CMEVLA# は「名称語」と呼ばれるものです。
 LE# selbri KU#?
 
 です。一応この形だけを頭に叩き込むだけでもひとまずは十分です。
+
+※ zasni gerna では、description は
+
+    (LA# / LE#) (rels / bare-sumti)? quantifier? (selbri / sumti) KU#?
+
+となっていますが、2016/10/29 現在で ilmentufa に実装されているどのパーサでも、
+quantifier無しのsumti は構文エラーとなっているので、ここでもそれに倣っています。
 
 -----
 
@@ -832,7 +838,7 @@ tagも色々なところで出てきましたが、その内部構造はこう�
 quantifier は description で出てきましたね。
 
     description <- LA# rels? CMEVLA#+
-    		/ (LA# / LE#) (rels / bare-sumti)? quantifier? (selbri / sumti) KU#?
+    		/ (LA# / LE#) (rels / bare-sumti)? (quantifier? selbri / quantifier sumti) KU#?
 
 簡単に言えば、quantifierとは「モノの個数を表す数」です。
 
@@ -973,7 +979,7 @@ joik-jekはいつものｱﾚです。
 
 ここでひとつだけ注意しておきたいことがあります。PEGはファイルの先頭から読まれていくと考えてください。そこで、
 
-     description <- .. (LA# / LE#) (rels / bare-sumti)? quantifier? (selbri / sumti) KU#?
+     description <- .. (LA# / LE#) (rels / bare-sumti)? (quantifier? selbri / quantifier sumti) KU#?
 
 というのがあったことを思い出してください。
 
