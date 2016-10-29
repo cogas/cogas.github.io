@@ -10,10 +10,13 @@ title: index
   {% assign y = x.url | split: "/" | size %}
   {% if x.url contains "/pages/lojbo" and y == 4 %}
     <li>
-      <a href="{{x.url}}">{{x.title}}</a> ― {{x.date}}
+        <a href="{{x.url}}">{{x.title}}</a> ― {{x.date}}
     </li>
   {% endif %}
 {% endfor %}
+  <li>
+    <a href="https://github.com/cogas/jbovlaste_otmize">jbovlaste OTMize</a>
+  </li>
 </ul>
 
 ### 人工言語
