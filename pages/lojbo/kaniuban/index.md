@@ -538,7 +538,7 @@ CMEVLA# は「名称語」と呼ばれるものです。
 
 1. LA#かLE#か (2)
 2. rels（関係節）か bare-sumti か 無しか (3)
-3. quantifier有りselbri か 無しselbri か sumti か (3)
+3. quantifier有りselbri か 無しselbri か quantifier有りsumti か (3)
 4. KU# ありかなしか (2)
 
 となり、 2×3×3×2 = 36 通りのパターンが考えられます。
