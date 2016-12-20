@@ -24,11 +24,11 @@ revised_date: 20xx-xx-xx
 3. 単純に並べることで順接を表す
 4. / が優先順位つきの選択を示す
 5. ? は 0個か 1つを示す
-6. "*" は 0個かそれ以上を示す
+6. "\*" は 0個かそれ以上を示す
 7. "+" は 1つかそれ以上を示す
 8. () はグループにまとめる
 9. !A は該当箇所にAがこない、 &A は該当箇所にAがくることを示す
-9. ?, *, + は最長マッチである
+9. ?, \*, + は最長マッチである
 
 
 たとえば、
@@ -63,7 +63,7 @@ NA# tag NA# selbri-1 selbri-1
 
 という形は selbri である、ということです。
 
-また、tagは、  
+また、tag は、  
 「tag とは1個以上のtag-unitに0個以上のJOI# tag-unitをつけたものである」
 
 となります。しかし、「!GI#」で分かるように、tag GI# という形はあり得ません。
@@ -96,7 +96,7 @@ BAI# BAI# JOI# BAI# BRIVLA#
 
     text <- paragraphs FAhO#?
 
-すなわち、**文章とは段落の集まりとFAhO（省略可）からなる**わけです。
+すなわち、**文章とは段落の集まりとFAhO（省略可）からなる** わけです。
 
 
 ## 段落（paragraph）
@@ -105,9 +105,9 @@ BAI# BAI# JOI# BAI# BRIVLA#
 
     paragraph <- statement (I# statement)*
 
-次に段落です。paragraphs は段落の集まりですが、段落ひとつひとつは**NIhO#**によって繋がれます。言い換えれば、NIhO#によって段落は区切られます。
+次に段落です。paragraphs は段落の集まりですが、段落ひとつひとつは**NIhO#** によって繋がれます。言い換えれば、NIhO#によって段落は区切られます。
 
-そして、**「段落は一連のstatementからなり、それらは I# で区切られる」**わけです。
+そして、**「段落は一連のstatementからなり、それらは I# で区切られる」** わけです。
 
 言明をs と書くと、
 
@@ -125,7 +125,7 @@ A. エラーではありません。これについてはsentenceの節で見て
 
     statement <- statement-1 / prenex statement
 
-まず言明は**statement-1そのもの**か、**prenexが複数個つく**ことになります。
+まず言明は**statement-1そのもの**か、**prenexが複数個つく** ことになります。
 
 prenex prenex statement-1 は statement と解釈されます。
 
@@ -133,7 +133,7 @@ prenex prenex statement-1 は statement と解釈されます。
 
     prenex <- term+ ZOhU#
 
-termは「項」です。**「prenexとは1個以上のtermにZOhU#をつけたもの」**です。
+termは「項」です。**「prenexとは1個以上のtermにZOhU#をつけたもの」** です。
 
 ですから、
 
@@ -143,20 +143,20 @@ term term ZOhU# statement-1
 
 ------
 
-次に、statementは**statement-1**と**statement-2**からなります：
+次に、statementは**statement-1** と**statement-2** からなります：
 
     statement-1 <- statement-2 (I# joik-jek statement-2)*
 
     statement-2 <- sentence (I# joik-jek? tag? BO# sentence)*
 
-**joik-jek**というのは接続詞の一種です。接続詞と思ってください。
+**joik-jek** というのは接続詞の一種です。接続詞と思ってください。
 
-**statement-1 は I# joik-jek で繋がれたstatement-2の集まり**です。
+**statement-1 は I# joik-jek で繋がれたstatement-2の集まり** です。
 
 最も簡素なstatement-1の形は statement-2 そのものです。
 
 次に、statement-2です。  
-**statement-2は I# joik-jek tag BO# で繋がれた sentenceの集まり**です。
+**statement-2は I# joik-jek tag BO# で繋がれた sentenceの集まり** です。
 
 ただし、joik-jek と tag は省略可能ですから、
 
@@ -273,7 +273,7 @@ I# I# NIhO# NIhO# I# I# FAhO#
 **gihek は bridi-tail 接続詞です**。実際そのように見えますね！  
 ただし、gihek と bridi-tail-1の間にはいくつかのtermとVAU#が入る余地があります。
 
-**bridi-tail-1 は、大雑把には bridi-tail-2 を gihek tag? BO# で繋いだ形**です。
+**bridi-tail-1 は、大雑把には bridi-tail-2 を gihek tag? BO# で繋いだ形** です。
 
 さて、statement の定義と見比べてみましょう：
 
@@ -281,7 +281,7 @@ I# I# NIhO# NIhO# I# I# FAhO#
 
     statement-2 <- sentence (I# joik-jek? tag? BO# sentence)*
 
-gihek と I# を対応してみると、**BO#はより強く２つを結合する**という共通の構造が見えてきます。実際、BO#は2つの構造をより強く結合するために使われます。
+gihek と I# を対応してみると、**BO#はより強く２つを結合する** という共通の構造が見えてきます。実際、BO#は2つの構造をより強く結合するために使われます。
 
 さて、 bridi-tail-2 が実のところの**bridi末端**の中身です。２つありますね。
 
@@ -362,7 +362,7 @@ term cu [sebri term term gihek selbri term term term **VAU#** term term]
 
 さて、これで実は、すべての文レベル以上の構造を網羅したことになります。
 
-見返すと、当たり前といえば当たり前ですが、**ある２つの同列の構造を接続詞で接続した構造、それを繰り返した構造というのがほとんど**でした。
+見返すと、当たり前といえば当たり前ですが、**ある２つの同列の構造を接続詞で接続した構造、それを繰り返した構造というのがほとんど** でした。
 
 ですが、これがほとんどの入門講座で扱いきれていなかったのも事実ですから、実際のところ、おかゆ超訳はここまでで十分有意義なものであると思っています。
 
@@ -393,7 +393,7 @@ term な構造は6つあります。順に見ていきます。
 
 sumtiという構造にFA#やtagがついたものはtermとなります。FA#やtagは省略可能ですから、sumti単体もまたtermです。
 
-ちなみに、**sumtiはtermの最も基本的な構造**です。
+ちなみに、**sumtiはtermの最も基本的な構造** です。
 
 ### FA# KU#?, tag !selbri KU#?
 
@@ -442,7 +442,7 @@ VAU#があること以外は、単に２組のterm複数個を接続し、1つ�
 
 ### quantifier? bare-sumti
 
-bare-sumti （裸sumti）にquantifier（量化子）をつけたものはsumti-2, もとい素朴なsumti と解釈されます。ここで、quantifier は省略できるので、**最も基本的なsumtiの形は bare-sumti **です。
+bare-sumti （裸sumti）にquantifier（量化子）をつけたものはsumti-2, もとい素朴なsumti と解釈されます。ここで、quantifier は省略できるので、**最も基本的なsumtiの形は bare-sumti** です。
 
 quantifier は大雑把には「数字」と思ってください。もう少し厳密に言えば、「モノの個数を表す数」です。
 
@@ -450,7 +450,7 @@ quantifier は大雑把には「数字」と思ってください。もう少し
 
 こちらは、**quantifier が省略できません**。すなわち、selbri をsumtiとして用いる形では、quantifier は必須ということです。 KU# や rels が後に続きますが、これらはどちらも省略できます。なお、relsは関係節のことです。
 
-（ここではrelsの前にVUhO#がありません。VUhO#はその後ろにくるrelsを「接続詞を飛び越えて」修飾させる機能があるわけです。ここで出てきたrelsにはVUhO#が先行していないので、[quantifier selbri KU#]にのみ係るということを表しています。）
+（ここではrelsの前にVUhO#がありません。VUhO#はその後ろにくるrelsを「接続詞を飛び越えて」修飾させる機能があります。ここで出てきたrelsにはVUhO#が先行していないので、[quantifier selbri KU#]にのみ係るということを表しています。）
 
 ## bare-sumti
 
@@ -486,20 +486,20 @@ KOhA# はいわゆる「代名詞」であり、ロジバンでは「代sumti」
 
 lerfu-string は大雑把には「一連のアルファベット列」のことで、これもbare-sumtiとして（素朴なsumtiとして）解釈されます。
 
-###② LI# mex LOhO#?
+### ② LI# mex LOhO#?
 
 mex とは簡単にいえば「数式」です。数字もmexのうちに入ります。
 
 **LI#は数字や数式の冠詞です**。LOhO#はLI#を締める語です。
 
-###③ LU# paragraphs LIhU#?
+### ③ LU# paragraphs LIhU#?
 
 形としては、sentenceに出てきた TUhE# .. TUhU# に似ています。
 
 LU# .. LIhU#? は**引用括弧**です。いわゆる「クォーテーションマーク」ですね。
 LU#, LIhU# は文章を引用するのに使われます。
 
-###④ ZO-word#, LOhU-words-LEhU#, ZOI-anything#
+### ④ ZO-word#, LOhU-words-LEhU#, ZOI-anything#
 
 word, words, anything といったフレーズがついていますが、実はこれらも③と同じく引用句のひとつです。しかし、LU#, LIhU#が文章を引用するのに対して、ZO-word# や LOhU-words-LEhU# は単語（群）引用を表します。
 
@@ -507,7 +507,7 @@ ZOI-anything# は非ロジバン言語の文字列（文、単語）を表しま
 
 これら３つについては、後々やりますが、今のところはこういったものがあり、それがbare-sumtiとして解釈されるということを知っていれば十分です。
 
-###⑤ (LAhE# / NAhE# BO#) rels? sumti LUhU#?
+### ⑤ (LAhE# / NAhE# BO#) rels? sumti LUhU#?
 
 **LAhE# や NAhE# BO# を sumti にかけたものは bare-sumti である** ということですが、LAhE# や NAhE# BO# は、「sumti→sumti演算子」と呼ばれることがあります。
 
@@ -601,7 +601,7 @@ term は言ってしまえば「名詞句」に相当するものですから、
 
 …とはいえ、どこかで見たことのある構造ですね。今回出てきている接続詞は**joik-jek**であることに注意しましょう。joik-ekはsumtiにのみ使われます。
 
-まず、もっとも素朴な構造を見つけてみましょう。そのためには、省略できるもの（?, *のついたもの）は省き、+は取ればいいわけですから・・・
+まず、もっとも素朴な構造を見つけてみましょう。そのためには、省略できるもの（?, \*のついたもの）は省き、+は取ればいいわけですから・・・
 
     selbri <- selbri-1 / (tag / NA#) selbri
 
@@ -615,9 +615,9 @@ term は言ってしまえば「名詞句」に相当するものですから、
 
 となりますね。
 
-(tag / NA#) selbri というのは、再帰的な構造です。つまり、**selbriの頭には複数個のtag や NA# をつけられる**ということです。
+(tag / NA#) selbri というのは、再帰的な構造です。つまり、**selbriの頭には複数個のtag や NA# をつけられる** ということです。
 
-それを踏まえても、selbri とは tag,NA#をつけた selbri-1 のことであり、 selbri-1 とは selbri-2 のことであり、 selbri-2 とは selbri-3 のことであり、 selbri-3とはselbri-4のことであり、selbri-4とはtanru-unitのことですから、**selbriの最も基本的な構造は tanru-unitである**ことが分かります。
+それを踏まえても、selbri とは tag,NA#をつけた selbri-1 のことであり、 selbri-1 とは selbri-2 のことであり、 selbri-2 とは selbri-3 のことであり、 selbri-3とはselbri-4のことであり、selbri-4とはtanru-unitのことですから、**selbriの最も基本的な構造は tanru-unitである** ことが分かります。
 
 それでは『飾り』も踏まえて見て行きましょう。
 
@@ -714,15 +714,15 @@ t [t BO# t] t CO# [t joik-jek t] [t joik-jek BO# [t BO# t]] t
 
 **tanru-unitとは、tanru-unit-1にlinkargsをつけたものである**。
 
-linkargsはこの次にやりますが、**付加引数**と呼ばれています。これについては後述します。
+linkargsはこの次にやりますが、**付加引数** と呼ばれています。これについては後述します。
 
 大事なのは、tanru-unit-1の中身です。…ごちゃごちゃしていますね…。
 
-**BRIVLA#**は「内容語」と呼ばれるもので、tanru単位の中で最も基本的なものです。
+**BRIVLA#** は「内容語」と呼ばれるもので、tanru単位の中で最も基本的なものです。
 
 **word-ZEI-word**はZEI#を用いて2つの語を繋げた造語です。これについてはまた後々触れます。
 
-**GOhA# RAhO#** の**GOhA#**はいわゆる「代動詞」に相当します。よく言われるのは**代selbri**です。RAhO#はGOhA#に対する意味論的な作用を持ちます。
+**GOhA# RAhO#** の**GOhA#** はいわゆる「代動詞」に相当します。よく言われるのは**代selbri**です。RAhO#はGOhA#に対する意味論的な作用を持ちます。
 
 **ME# (sumti/ mex) MEhU#? MOI#?** はMOI#があるかどうかで意味論的には２つの大きな違いが生じます。  
 　MOI#がないとき、「ME# (sumti /mex)」というのは、sumtiやmex（数式）を**selbri化**した形として使われます。詳しい意味論については割愛します。  
@@ -1281,7 +1281,7 @@ xorxesの新文法案はこれよりもずっと簡潔なものであり、き�
 
 mexは本編でもコメントした通りです。
 
-テンスタグについては、**より使い勝手のよい**方を、ということでxorxes案を採用しました。  
+テンスタグについては、**より使い勝手のよい** 方を、ということでxorxes案を採用しました。  
 実際、現行文法だと「不具合」に近い何かが起こっていますので…。
 
 freeのおける場所については、おかゆ超訳では「XXX# の後ろならどこでも」としています。  
